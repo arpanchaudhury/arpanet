@@ -1,0 +1,43 @@
+# Ignore webapp junkies
+# ---------------------
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore api junkies
+# ------------------
+
+*.class
+*.log
+
+# Ignore sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Ignore Scala-IDE specific
+.scala_dependencies
+
+# Ignore IDE specific
+.idea/
+
+# Ignore play specific
+logs
+project/project
+project/target
+target
+tmp
+dist
+.cache
