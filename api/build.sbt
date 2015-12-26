@@ -24,10 +24,17 @@ javaOptions ++= Seq(
   "-Duser.language=en-US"
 )
 
+lazy val libraries = Seq(
+  cache,
+  "org.reactivemongo" %% "reactivemongo" % "0.11.9",
+  "org.scala-lang.modules" %% "scala-async" % "0.9.3",
+  "com.sksamuel.scrimage" %% "scrimage-core" % "2.1.0"
+)
+
 val api = project.in(file("."))
             .enablePlugins(PlayScala)
             .settings(
               name := "api",
               scalaVersion := "2.11.7",
-              libraryDependencies ++= Seq.empty
+              libraryDependencies ++= libraries
             )

@@ -1,0 +1,10 @@
+                                    API Documentation
+                                    -----------------
+
+
+Routes                                                      Description
+======                                                      ===========
+
+GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided
+
+GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided
