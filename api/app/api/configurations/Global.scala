@@ -19,6 +19,6 @@ object Global extends GlobalSettings {
 
   override def onError(request: RequestHeader, ex: Throwable) = {
     logger.error(ex.getMessage)
-    Future(Results.InternalServerError.as("text/html"))
+    Future(Results.NotFound.as("text/html"))
   }
 }

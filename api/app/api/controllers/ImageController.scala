@@ -21,7 +21,7 @@ class ImageController @Inject()(cache: CacheApi, imageService: ImageService) ext
             Ok.sendFile(
               cache.getOrElse(s"$imageType-$imageId") {
                 // async - await does not help here (by-name argument)
-                val image = Await.result(imageService.getPublicImages(imageId), 10.seconds)
+                val image = Await.result(imageService.getPublicImage(imageId), 10.seconds)
                 cache.set(s"$imageType-$imageId", image, 6.hours)
                 image
               }
