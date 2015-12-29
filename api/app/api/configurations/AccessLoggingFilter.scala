@@ -9,6 +9,8 @@ import scala.concurrent.Future
 
 @Singleton
 class AccessLoggingFilter extends Filter {
+  val logger = Logger(this.getClass)
+
   def apply(nextFilter: RequestHeader => Future[Result])(requestHeader: RequestHeader): Future[Result] = {
     val startTime = System.currentTimeMillis
 
@@ -16,7 +18,7 @@ class AccessLoggingFilter extends Filter {
       val endTime = System.currentTimeMillis
       val requestTime = endTime - startTime
 
-      Logger.info(s"${requestHeader.method} ${requestHeader.uri} took ${requestTime}ms and returned ${result.header.status}")
+      logger.info(s"${requestHeader.method} ${requestHeader.uri} took ${requestTime}ms and returned ${result.header.status}")
       result.withHeaders("Request-Time" -> requestTime.toString)
     }
   }

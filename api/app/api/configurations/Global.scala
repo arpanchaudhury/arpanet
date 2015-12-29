@@ -7,18 +7,18 @@ import play.api.{Application, GlobalSettings, Logger}
 import scala.concurrent.Future
 
 object Global extends GlobalSettings {
+  val logger = Logger(this.getClass)
 
   override def onStart(app: Application) = {
-    Logger.info("Application has started...")
-    // check if database is connected
+    logger.info("Application has started...")
   }
 
   override def onStop(app: Application) = {
-    Logger.info("Application is shutting down...")
-    // check if database connection is retired
+    logger.info("Application is shutting down...")
   }
 
   override def onError(request: RequestHeader, ex: Throwable) = {
+    logger.error(ex.getMessage)
     Future(Results.InternalServerError.as("text/html"))
   }
 }

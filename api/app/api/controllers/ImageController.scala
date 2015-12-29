@@ -1,7 +1,7 @@
 package api.controllers
 
 import api.services.ImageService
-import javax.inject.{Inject, Singleton}
+import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.mvc.{Action, Controller}

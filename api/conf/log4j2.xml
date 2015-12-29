@@ -1,0 +1,27 @@
+<Configuration status="WARN">
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%coloredLevel %logger{15} - %message%n%xException{full}"/>
+        </Console>
+
+        <RollingFile name="RollingFile" filename="logs/sl4j2.log" filepattern="${logPath}/%d{YYYYMMddHHmmss}-api.log">
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss.SSSZ} - [%level] - from %logger in %thread %n%message%n%xException%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+        <Root level="warn">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
