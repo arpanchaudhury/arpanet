@@ -1,0 +1,29 @@
+.footer {
+  height: 150px;
+  background-color: #000000;
+  .utility-links {
+    height: 65%;
+  }
+  .copy-right {
+    color: #BBBBBB;
+    margin-top: 1.0rem;
+    margin-right: 1.5rem;
+  }
+  .list-group {
+    margin-left: 30px;
+    .list-group-item {
+      border: none;
+      color: #CCCCCC;
+      padding: 0.25rem 0.25rem;
+      background-color: transparent;
+      font-family: "Comic Sans MS", sans-serif;
+      &:hover {
+        color: #666666;
+        background-color: transparent;
+      }
+    }
+    .list-group-item:first-child {
+      margin-top: 1.75rem;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+#contact-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'ContactModal', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-sm{:role => 'document'}
+    .modal-content
+      .modal-header
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} &times;
+        .h6
+          Yeah! finally we can chat.
+      .modal-body
+        %fieldset.form-group
+          %label{:for => 'visitor-email'} Your E-mail
+          %input#visitor-email.form-control{:type => 'email'}
+            %small.text-muted I'll never share your email with anyone else.
+          %label.validation-text
+        %fieldset.form-group
+          %label{:for => 'visitor-message-body'} Leave a Message
+          %textarea#visitor-message-body.form-control{:rows => '5'}
+      .modal-footer
+        %button.btn.btn-secondary{:type => 'button', 'data-dismiss' => 'modal'} Close
+        %button.btn.btn-primary{:type => 'button'} Send

@@ -1,0 +1,7 @@
+#image-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'ImageModal', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-sm{:role => 'document'}
+    .modal-content
+      .modal-body
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} &times;
+        %img.center-block{:src => image_url, :alt => alternative_text}

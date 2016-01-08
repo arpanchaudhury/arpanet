@@ -1,0 +1,46 @@
+.social-media-links {
+  padding: 10px;
+  a {
+    color: #666666;
+    &:visited {
+      color: #666666;
+    }
+    &:hover {
+      color: #0E11AC;
+    }
+  }
+  .nav {
+    padding-left: 6px;
+  }
+}
+
+.profile-picture {
+  &.img-thumbnail {
+    border: 2px solid #96C425;
+  }
+  &:hover {
+    border: 1px solid #96C425;
+  }
+}
+
+.about-me {
+  &.heading {
+    color: #1CD4D1;
+    font-size: 72px;
+    font-family: 'Tangerine', serif;
+    margin-top: 40px;
+    .bengali {
+      color: #B775B0;
+      font-size: 30px;
+      font-family: 'Hind Siliguri', serif;
+    }
+  }
+
+  &.body [class*="paragraph-"] {
+    margin-top: 30px;
+    text-align: justify;
+    color: #666666;
+    font-size: 20px;
+    font-family: 'Calligraffitti', sans-serif;
+  }
+}

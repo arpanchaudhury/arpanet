@@ -1,0 +1,10 @@
+#resume-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'ResumeModal', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-lg{:role => 'document'}
+    .modal-content
+      .modal-header
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} &times;
+        .h6
+          Resume (Arpan Chaudhury)
+      .modal-body
+        %embed.center-block{:src => get_resume_url, :type => 'application/pdf'}
