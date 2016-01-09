@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @profile_image = "assets/profile-one.jpg"
+    @profile_image = "assets/profile-picture.jpg"
     @body_paragraph_one =
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a interdum velit. Quisque sit amet justo porta, varius mauris in, rutrum dui.
         Pellentesque eu est nec ante convallis auctor. Fusce semper, justo a efficitur condimentum, orci erat cursus diam, eu maximus neque velit in erat.

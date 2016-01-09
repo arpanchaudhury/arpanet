@@ -16,33 +16,25 @@ section {
 }
 
 .modal {
-  .modal-lg {
-    width: 85vw;
-  }
-
-  .modal-sm {
-    width: 40vw;
-  }
-
-  embed {
-    width: 80vw;
-    height: 80vh;
-  }
-
-  .modal-sm {
-    width: 40vw;
-  }
-
-  img {
-    width: 100%;
-    position: relative;
-  }
-
   .modal-body {
-    .close {
-      z-index: 999;
-      position: absolute;
-      margin-left: -1px;
+    &.no-padding {
+      padding: 0;
+
+      .close {
+        top: 12px;
+        left: 20px;
+        z-index: 999;
+        position: absolute;
+      }
+    }
+
+    embed {
+      min-width: 100%;
+      min-height: 80vh;
+    }
+
+    img.square {
+      max-width: 100%;
     }
   }
 }
