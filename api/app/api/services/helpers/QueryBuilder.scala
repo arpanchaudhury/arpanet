@@ -6,4 +6,5 @@ import reactivemongo.bson.BSONDocument
 @Singleton
 class QueryBuilder {
   def findByIdQuery(id: String) = BSONDocument("_id" -> id)
+  def findByNameQuery(name: String) = BSONDocument("name" -> name)
 }

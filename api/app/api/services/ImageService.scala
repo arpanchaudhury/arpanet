@@ -30,7 +30,7 @@ class ImageService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBuilde
   val getPhotograph = getImageHelper(photographyCollectionName, photographCollectionF) _
 
   private def getImageHelper(collectionName: String, collectionF: Future[BSONCollection])(imageId: String) = async {
-    val imageFile = await(collectionF).find(queryBuilder.findByIdQuery(imageId)).one[BSONDocument].map {
+    val eventualImageFile = await(collectionF).find(queryBuilder.findByIdQuery(imageId)).one[BSONDocument].map {
       case Some(document) =>
         val imagePath = document.getAsTry[String]("url")
         imagePath match {
@@ -43,7 +43,7 @@ class ImageService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBuilde
         logger.error(noImageFoundErrorMessage(collectionName, imageId))
         sys.error(noImageFoundErrorMessage(collectionName, imageId))
     }
-    await(imageFile)
+    await(eventualImageFile)
   }
 
   private def urlFieldNotFoundErrorMessage(collectionName: String, imageId: String): String = {

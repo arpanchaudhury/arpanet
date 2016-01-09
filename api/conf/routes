@@ -1,4 +1,6 @@
-GET     /images/$imageType<public-image|photography>/:imageId     @api.controllers.ImageController.getImage(imageType: String, imageId: String)
+GET     /images/$imageType<public-image|photography>/:imageId     @api.controllers.StaticAssetsController.getImage(imageType: String, imageId: String)
+
+GET     /resume                                                   @api.controllers.StaticAssetsController.getResume
 
 GET     /*whatever                                                @api.controllers.ApplicationController.other(whatever: String)
 
