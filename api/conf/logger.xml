@@ -20,7 +20,7 @@
     <logger name="play" level="WARN" />
     <logger name="reactivemongo" level="WARN" />
 
-    <root level="ERROR">
+    <root level="INFO">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </root>

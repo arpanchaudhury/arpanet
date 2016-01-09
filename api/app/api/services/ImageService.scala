@@ -1,8 +1,6 @@
 package api.services
 
-import java.io.File
-
-import api.services.helpers.{MongoConnectionApi, QueryBuilder}
+import api.services.helpers.{FileFinder, MongoConnectionApi, QueryBuilder}
 import com.google.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
@@ -14,7 +12,9 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 @Singleton
-class ImageService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBuilder: QueryBuilder) {
+class ImageService @Inject()(fileFinder: FileFinder,
+                             queryBuilder: QueryBuilder,
+                             mongoConnectionApi: MongoConnectionApi) {
   private val logger = Logger(this.getClass)
 
   private implicit lazy val imageDatabaseF = mongoConnectionApi.getDatabase("arpa(n)2et")
@@ -34,7 +34,7 @@ class ImageService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBuilde
       case Some(document) =>
         val imagePath = document.getAsTry[String]("url")
         imagePath match {
-          case Success(path) => new File(path)
+          case Success(path) => fileFinder.find(path)
           case Failure(exception) =>
             logger.error(urlFieldNotFoundErrorMessage(collectionName, imageId))
             sys.error(urlFieldNotFoundErrorMessage(collectionName, imageId))
