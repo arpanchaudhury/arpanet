@@ -37,4 +37,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.react.variant = :development
+
+  config.x.api.url = 'http://localhost:9000'
 end

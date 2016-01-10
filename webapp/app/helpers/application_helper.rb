@@ -1,5 +1,5 @@
 module ApplicationHelper
   def get_resume_url
-    'assets/ArpanChaudhury.pdf'
+    "#{Rails.configuration.x.api.url}/resume"
   end
 end

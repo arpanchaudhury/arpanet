@@ -2,6 +2,6 @@
   .modal-dialog{:role => 'document'}
     .modal-content
       .modal-body.no-padding
-        %img.square{:src => image_url, :alt => alternative_text}
+        %img{:src => image_url, :alt => alternative_text}
         %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} &times;
