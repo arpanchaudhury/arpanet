@@ -1,10 +1,20 @@
-$('#send-email').click(function (event) {
-    event.preventDefault();
+$(function () {
+    function init() {
+        contact_form_init()
+    }
 
-    var $form = $('#contact'),
-        url = $form.attr('action'),
-        email = $form.find('#visitor-email').val(),
-        content = $form.find("#visitor-message-body").val();
+    function contact_form_init() {
+        $('#send-email').click(function (event) {
+            event.preventDefault();
 
-    $.post(url, {user_email: email, email_content: content});
+            var $form = $('#contact'),
+                url = $form.attr('action'),
+                email = $form.find('#visitor-email').val(),
+                content = $form.find("#visitor-message-body").val();
+
+            $.post(url, {user_email: email, email_content: content});
+        });
+    }
+
+    init();
 });
