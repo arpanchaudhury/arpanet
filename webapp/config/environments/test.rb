@@ -43,4 +43,19 @@ Rails.application.configure do
   config.react.variant = :development
 
   config.x.api.url = 'http://localhost:9000'
+
+  config.x.owner.email = 'arpanchaudhury@gmail.com'
+
+  config.x.mailer.email = 'arpan.personal.website@gmail.com'
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                  587,
+      user_name:            'arpan.personal.website@gmail.com',
+      password:             '########',
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
 end
