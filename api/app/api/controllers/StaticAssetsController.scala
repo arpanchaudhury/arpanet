@@ -4,7 +4,8 @@ import api.services.{PdfService, ImageService}
 import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
-import play.api.mvc.{Action, Controller}
+import play.api.libs.iteratee.Enumerator
+import play.api.mvc.{Result, ResponseHeader, Action, Controller}
 
 import scala.async.Async._
 import scala.concurrent.Await
@@ -43,15 +44,11 @@ class StaticAssetsController @Inject()(cache: CacheApi,
 
   def getResume = Action.async {
     implicit request =>
-      async {
-        Ok.sendFile(
-          cache.getOrElse(s"resume") {
-            // async - await does not help here (by-name argument)
-            val resume = Await.result(pdfService.getDocument("resume"), 10.seconds)
-            cache.set(s"resume", resume, 6.hours)
-            resume
-          }
-        ).as("application/pdf")
+      pdfService.getDocument("resume").map {
+        resume => Result(
+          header = ResponseHeader(200, Map(CONTENT_LENGTH -> resume.length.toString, CONTENT_TYPE -> "application/pdf")),
+          body = Enumerator.fromFile(resume)
+        )
       }
   }
 }
