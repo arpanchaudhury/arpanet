@@ -15,6 +15,7 @@ class HomeController < ApplicationController
   end
 
   def contact
-    ContactMailer.personal_mail('test-user@xmail.com', @body_paragraph_one).deliver_now
+    ContactMailer.personal_mail(params[:user_email], params[:email_content]).deliver_now
+    render nothing: true
   end
 end

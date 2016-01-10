@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'contact' => 'home#contact'
+  post 'contact' => 'home#contact'
 
   root 'home#index'
 
