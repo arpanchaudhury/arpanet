@@ -5,6 +5,10 @@
 Routes                                                      Description
 ======                                                      ===========
 
-GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided
+GET     /resume                                             Get resume as 'application/pdf'
+
+GET     /images/photography                                 Get paginated details of photographs <Query Parameters - page-start, page-length>
 
 GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided
+
+GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided

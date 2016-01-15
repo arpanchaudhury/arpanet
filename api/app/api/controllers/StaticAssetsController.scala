@@ -16,29 +16,17 @@ import scala.language.postfixOps
 class StaticAssetsController @Inject()(cache: CacheApi,
                                        imageService: ImageService,
                                        pdfService: PdfService) extends Controller {
-  def getImage(imageType: String, imageId: String) = Action.async {
+  def getImage(imageId: String) = Action.async {
     implicit request =>
       async {
-        imageType match {
-          case "public-image" =>
-            Ok.sendFile(
-              cache.getOrElse(s"$imageType-$imageId") {
-                // async - await does not help here (by-name argument)
-                val image = Await.result(imageService.getPublicImage(imageId), 10.seconds)
-                cache.set(s"$imageType-$imageId", image, 6.hours)
-                image
-              }
-            ).as("image/jpeg")
-          case "photography" =>
-            Ok.sendFile(
-              cache.getOrElse(s"$imageType-$imageId") {
-                // async - await does not help here (by-name argument)
-                val image = Await.result(imageService.getPhotograph(imageId), 10.seconds)
-                cache.set(s"$imageType-$imageId", image, 6.hours)
-                image
-              }
-            ).as("image/png")
-        }
+        Ok.sendFile(
+          cache.getOrElse(s"public-images-$imageId") {
+            // async - await does not help here (by-name argument)
+            val image = Await.result(imageService.getPublicImage(imageId), 10.seconds)
+            cache.set(s"public-images-$imageId", image, 6.hours)
+            image
+          }
+        ).as("image/jpeg")
       }
   }
 
