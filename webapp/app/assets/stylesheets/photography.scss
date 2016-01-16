@@ -1,0 +1,21 @@
+.photo-small {
+  margin: 10px;
+  max-height: 300px;
+  cursor: pointer;
+}
+
+#photograph-modal {
+  .modal-lg {
+    width: 1080px;
+  }
+
+  .close {
+    opacity: 0.5;
+    color: #F7F7F7;
+    font-size: 1.2rem;
+
+    &:hover{
+      opacity: 1.0;
+    }
+  }
+}

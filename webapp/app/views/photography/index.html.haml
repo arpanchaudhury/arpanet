@@ -1,0 +1,7 @@
+%section
+  .two-column-layout.container-fluid
+    .row
+      .column.column-one.col-lg-12
+        - for i in 0..(@image_details.size - 1)
+          = image_tag(get_photography_url(@image_details[i]), {:class => 'img-thumbnail photo-small', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => i})
+  = render partial: 'partials/photography_modal', :locals => {:alternative_text => 'photograph'}

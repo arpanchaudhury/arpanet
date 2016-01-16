@@ -1,0 +1,23 @@
+#photograph-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-lg{:role => 'document'}
+    .modal-content
+      .modal-body.no-padding
+        #carousel.carousel.slide{'data-ride' => 'carousel'}
+          %ol.carousel-indicators
+            - for i in 0..(@image_details.size - 1)
+              %li{'data-slide-to' => i, 'data-target' => '#carousel'}
+          .carousel-inner{:role => 'listbox'}
+            - for i in 0..(@image_details.size - 1)
+              .carousel-item
+                %img{:alt => "slide #{i}", :src => "#{get_photography_url(@image_details[i])}"}
+                .carousel-caption
+                  %h3= get_photography_title(@image_details[i])
+                  %p= get_photography_description(@image_details[i])
+          %a.left.carousel-control{'data-slide' => 'prev', :href => '#carousel', :role => 'button'}
+            %span.icon-prev{'aria-hidden' => 'true'}
+            %span.sr-only Previous
+          %a.right.carousel-control{'data-slide' => 'next', :href => '#carousel', :role => 'button'}
+            %span.icon-next{'aria-hidden' => 'true'}
+            %span.sr-only Next
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} &times;

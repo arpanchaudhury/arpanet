@@ -62,6 +62,8 @@ GEM
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
+    domain_name (0.5.25)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
     font-awesome-sass (4.5.0)
@@ -81,6 +83,8 @@ GEM
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -98,6 +102,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
+    netrc (0.11.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     rack (1.6.4)
@@ -136,6 +141,10 @@ GEM
       execjs
       rails (>= 3.2)
       tilt
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
     sass (3.4.20)
@@ -164,6 +173,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -184,6 +196,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails-assets-tether (>= 1.1.0)!
   react-rails (~> 1.5.0)
+  rest-client (~> 1.8.0)
   sass-rails (~> 5.0)
   spring
   turbolinks

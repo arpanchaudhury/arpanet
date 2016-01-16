@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'photography' => 'photography#index'
+
   post 'contact' => 'home#contact'
 
   root 'home#index'
