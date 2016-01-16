@@ -34,7 +34,7 @@ class ImageService @Inject()(fileFinder: FileFinder,
 
   def getPhotographDetails(pageStart: Int, pageLength: Int) = async {
     implicit val documentFormat = Macros.handler[ImageDocument]
-    val queryOptions = new QueryOpts(skipN = pageStart, batchSizeN = pageLength, flagsN = 0)
+    val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
     val documentsF = await(photographCollectionF).find(queryBuilder.emptyQuery).options(queryOptions).cursor[ImageDocument]().collect[List](pageLength)
     Json.toJson(await(documentsF))
   }

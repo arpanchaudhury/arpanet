@@ -32,7 +32,7 @@ class PhotographyController @Inject()(cache: CacheApi,
     implicit request =>
       async {
         val pageStart = request.getQueryString("page-start").getOrElse("0").toInt
-        val pageLength = request.getQueryString("page-length").getOrElse("10").toInt
+        val pageLength = request.getQueryString("page-length").getOrElse("9").toInt
         val imageDetails = await(imageService.getPhotographDetails(pageStart, pageLength))
         Ok(imageDetails)
       }
