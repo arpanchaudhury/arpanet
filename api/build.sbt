@@ -25,6 +25,7 @@ javaOptions ++= Seq(
 )
 
 lazy val libraries = Seq(
+  ws,
   cache,
   "org.reactivemongo" %% "reactivemongo" % "0.11.9",
   "org.scala-lang.modules" %% "scala-async" % "0.9.3",
