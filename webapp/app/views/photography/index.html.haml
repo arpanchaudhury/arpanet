@@ -1,7 +1,25 @@
 %section
   .two-column-layout.container-fluid
     .row
-      .column.column-one.col-lg-12
+      .column.column-one.col-lg-9
         - for i in 0..(@image_details.size - 1)
-          = image_tag(get_photography_url(@image_details[i]), {:class => 'img-thumbnail photo-small', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => i})
+          .column.col-lg-4
+            .card
+              = image_tag(get_photograph_url(@image_details[i]), {:class => 'card-img-top img-thumbnail photo-small', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => i})
+              .card-block
+                %h4.card-title= get_photograph_title(@image_details[i])
+                %p.card-text= get_photograph_description(@image_details[i])
+      .column.column-two.col-lg-3.gearbox
+        .drawer
+          .drawer-item
+            .jumbotron
+              %h4.display-4 Drawer
+              %hr
+              %img.center-block{:src => "#{image_path('nikkon-3300.jpg')}", :alt => '...', :class => 'img-fluid img-thumbnail'}
+              %hr.m-y-2
+                %p this is some text which is a filler to test the drawer behavior.
+              %a.btn.btn-primary.btn-lg{:href => '#', :role => 'button'} Specification
+          .fa-stack.fa-lg.center-block.drawer-button
+            %i.fa.fa-circle-o.fa-stack-2x
+            %i.fa.fa-stack-1x.drawer-icon
   = render partial: 'partials/photography_modal', :locals => {:alternative_text => 'photograph'}

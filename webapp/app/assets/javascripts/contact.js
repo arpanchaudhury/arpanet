@@ -3,7 +3,6 @@ var init = function init() {
 };
 
 function reset_form($form) {
-    debugger;
     $form.find('input:text, input:password, input:file, select, textarea').val('');
     $form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }

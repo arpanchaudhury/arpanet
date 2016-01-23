@@ -2,7 +2,7 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import url(https://fonts.googleapis.com/css?family=Calligraffitti|Tangerine|Hind+Siliguri:300&subset=bengali);
+@import url(https://fonts.googleapis.com/css?family=Calligraffitti|Tangerine|Indie+Flower|Josefin+Sans:600|Hind+Siliguri:300&subset=bengali);
 
 body {
   padding-top: 55px;
@@ -14,14 +14,18 @@ section {
   padding-bottom: 15px;
 }
 
+.hidden {
+  display: none;
+}
+
 .modal {
   .modal-body {
     &.no-padding {
       padding: 0;
 
       .close {
-        top: 14px;
-        left: 20px;
+        top: 3%;
+        left: 3%;
         z-index: 999;
         position: absolute;
       }

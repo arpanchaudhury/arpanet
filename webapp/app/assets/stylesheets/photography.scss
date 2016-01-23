@@ -1,21 +1,71 @@
-.photo-small {
-  margin: 10px;
-  max-height: 300px;
-  cursor: pointer;
+.card {
+  margin-top: 15px;
+  .card-block {
+    background-color: #ECEEEF;
+    .card-title {
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .card-text {
+      font-size: 18px;
+      font-family: 'Indie Flower', cursive;
+    }
+  }
+  .photo-small {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    line-height: 1px;
+    max-height: 218px;
+  }
 }
 
 #photograph-modal {
-  .modal-lg {
-    width: 1080px;
-  }
-
-  .close {
-    opacity: 0.5;
-    color: #F7F7F7;
-    font-size: 1.2rem;
-
-    &:hover{
-      opacity: 1.0;
+    .modal-lg {
+      width: 1080px;
     }
+
+    .close {
+      opacity: 0.5;
+      color: #F7F7F7;
+      font-size: 1.2rem;
+
+      &:hover {
+        opacity: 1.0;
+      }
+    }
+
+    .carousel-additional-controls {
+      position: absolute;
+      left: 48%;
+      right: 48%;
+      bottom: 20%;
+      z-index: 999;
+      opacity: 0.5;
+      color: #F7F7F7;
+
+      &:hover {
+        opacity: 1.0;
+      }
+
+      .play-btn, .pause-btn {
+        cursor: pointer;
+      }
+    }
+}
+
+.gearbox {
+  margin-top: 15px;
+}
+
+.jumbotron {
+  img {
+    width: 50%;
+  }
+}
+
+.drawer {
+  .drawer-button {
+    display: block;
+    color: rgba(120,125,127,0.80);
   }
 }
