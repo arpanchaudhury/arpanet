@@ -1,6 +1,6 @@
 package api.services
 
-import api.models.PdfDocument
+import api.models.Pdf
 import api.services.helpers.{MongoConnectionApi, QueryBuilder, ResourceFinder}
 import com.google.inject.{Inject, Singleton}
 import play.api.Logger
@@ -21,10 +21,10 @@ class PdfService @Inject()(resourceFinder: ResourceFinder,
 
   private lazy val pdfCollectionF = mongoConnectionApi.getCollection(pdfCollectionName)
 
-  private implicit val documentFormat = Macros.handler[PdfDocument]
+  private implicit val documentFormat = Macros.handler[Pdf]
 
   def getDocument(documentName: String) = async {
-    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByNameQuery(documentName)).one[PdfDocument]
+    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByNameQuery(documentName)).one[Pdf]
     await(eventualDocument) match {
       case Some(document) => await(resourceFinder.find(document.uri, document.extension))
       case None =>
