@@ -3,22 +3,21 @@
     .row
       .column.column-one.col-md-3
         %a.profile-picture-lightbox{'data-target' => '#image-modal', 'data-toggle' => 'modal'}
-          %img.img-thumbnail.profile-picture.center-block{:src => @profile_image, :alt => 'profile picture'}
+          %img.img-thumbnail.profile-picture.center-block{:src => @profile_image_url, :alt => 'profile picture'}
         .social-media-links
           %ul.nav.nav-inline
-            = render partial: 'partials/social_media_link', :locals => {:media => 'linkedin', :url => 'https://in.linkedin.com/in/arpanc', :target => "_blank"}
-            = render partial: 'partials/social_media_link', :locals => {:media => 'github', :url => 'https://github.com/arpanchaudhury', :target => "_blank"}
-            = render partial: 'partials/social_media_link', :locals => {:media => 'twitter', :url => 'https://twitter.com/arpanchaudhury', :target => "_blank"}
-            = render partial: 'partials/social_media_link', :locals => {:media => '500px', :url => 'https://500px.com/arpanchaudhury', :target => "_blank"}
-            = render partial: 'partials/social_media_link', :locals => {:media => 'slideshare', :url => 'http://www.slideshare.net/ArpanChaudhury', :target => "_blank"}
+            = render partial: 'partials/social_media_link', :locals => {:media => 'linkedin', :url => 'https://in.linkedin.com/in/arpanc', :target => '_blank'}
+            = render partial: 'partials/social_media_link', :locals => {:media => 'github', :url => 'https://github.com/arpanchaudhury', :target => '_blank'}
+            = render partial: 'partials/social_media_link', :locals => {:media => 'twitter', :url => 'https://twitter.com/arpanchaudhury', :target => '_blank'}
+            = render partial: 'partials/social_media_link', :locals => {:media => '500px', :url => 'https://500px.com/arpanchaudhury', :target => '_blank'}
+            = render partial: 'partials/social_media_link', :locals => {:media => 'slideshare', :url => 'http://www.slideshare.net/ArpanChaudhury', :target => '_blank'}
       .column.column-two.col-md-9
         %h1.about-me.heading
           Arpan Chaudhury
           %span.bengali
             ( অর্পণ চৌধূরী )
         .about-me.body
-          %p.paragraph-1.col-md-11
-            = @body_paragraph_one
-          %p.paragraph-2.col-md-11
-            = @body_paragraph_two
-  = render partial: 'partials/profile_picture_modal', :locals => {:image_url => @profile_image, :alternative_text => 'profile picture'}
+          - for paragraph in @body_paragraphs
+            %p.paragraph.col-md-11
+              = paragraph
+  = render partial: 'partials/profile_picture_modal', :locals => {:image_url => @profile_image_url, :alternative_text => 'profile picture'}

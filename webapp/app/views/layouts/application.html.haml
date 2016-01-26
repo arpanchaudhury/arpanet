@@ -6,9 +6,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render partial: "partials/header"
+    = render partial: 'partials/header'
     = yield
-    = render partial: "partials/footer"
+    = render partial: 'partials/footer'
 
-    = render partial: "partials/resume_modal"
-    = render partial: "partials/contact_modal"
+    = render partial: 'partials/resume_modal'
+    = render partial: 'partials/contact_modal'

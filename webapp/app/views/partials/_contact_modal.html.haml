@@ -12,10 +12,10 @@
             %label{:for => 'visitor-email'} Your E-mail
             %input#visitor-email.form-control{:type => 'email'}
               %small.text-muted I'll never share your email with anyone else.
-            %label.validation-text
+            .validation-text
           %fieldset.form-group
             %label{:for => 'visitor-message-body'} Leave a Message
             %textarea#visitor-message-body.form-control{:rows => '5'}
       .modal-footer
         %button.btn.btn-secondary{:type => 'button', 'data-dismiss' => 'modal'} Close
-        %button.btn.btn-primary#send-email{:type => 'button', 'data-dismiss' => 'modal'} Send
+        %button.btn.btn-primary#send-email{:type => 'submit'} Send
