@@ -12,6 +12,7 @@ class PhotographyController < ApplicationController
       req.params['tags'] = tags
     end
 
+    @tags = tags
     @image_details = JSON.parse(api_response.body)
   end
 end

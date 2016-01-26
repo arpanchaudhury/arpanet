@@ -2,6 +2,11 @@
   .two-column-layout.container-fluid
     .row
       .column.column-one.col-lg-9
+        .filters.column.col-lg-12
+          - for tag in @tags
+            %a.label.label-danger.remove-tag
+              = tag
+              %i.fa.fa-times
         - for i in 0..(@image_details.size - 1)
           .column.col-lg-4
             .card
