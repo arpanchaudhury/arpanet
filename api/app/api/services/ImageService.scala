@@ -44,9 +44,10 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
     }
   }
 
-  def getPhotographDetails(pageStart: Int, pageLength: Int) = async {
+  def getPhotographDetails(pageStart: Int, pageLength: Int, tags: List[String]) = async {
+    val query = if(tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTags(tags)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
-    val documentsF = await(photographCollectionF).find(queryBuilder.emptyQuery).options(queryOptions).cursor[Photograph]().collect[List](pageLength)
+    val documentsF = await(photographCollectionF).find(query).options(queryOptions).cursor[Photograph]().collect[List](pageLength)
     Json.toJson(await(documentsF))
   }
 }

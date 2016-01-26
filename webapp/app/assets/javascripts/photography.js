@@ -1,9 +1,10 @@
 var init = function init() {
     activate_carousel(0);
     image_click_handler();
-    initialize_drawer($('.drawer'));
     slide_show_key_controls();
     slide_show_additional_controls();
+    populate_tag_links();
+    initialize_drawer($('.drawer'));
 };
 
 function image_click_handler() {
@@ -39,26 +40,58 @@ function slide_show_additional_controls() {
     var play_button = carousel_additional_controls.find('.play-btn');
     var pause_button = carousel_additional_controls.find('.pause-btn');
 
-    play_button.click(function() {
+    play_button.click(function () {
         pause_button.removeClass('hidden');
         play_button.addClass('hidden');
         carousel.carousel('cycle');
     });
 
-    pause_button.click(function() {
+    pause_button.click(function () {
         play_button.removeClass('hidden');
         pause_button.addClass('hidden');
         carousel.carousel('pause');
     });
 }
 
+function populate_tag_links() {
+    $('.tag').each(function () {
+        var tag = $(this);
+        var url = location.href;
+        var param = "tags[]=" + tag.text();
+        if(url.indexOf(param) < 0) {
+            var _url = add_parameter_to_URL(param);
+            tag.attr('href', _url);
+        }
+    })
+}
+
+function add_parameter_to_URL(param) {
+    var _url = location.href;
+    _url += (_url.split('?')[1] ? '&' : '?') + param;
+    return _url;
+}
+
 // drawer component - can be extracted into a separate js file
 
 function initialize_drawer(drawer) {
-    drawer.addClass('opening');
     drawer.find('.drawer-item:not(:last)').addClass('hidden');
-    if(drawer.find('.drawer-item').size() == 1) drawer.find('.drawer-icon').addClass('fa-angle-double-up');
-    else drawer.find('.drawer-icon').addClass('fa-angle-double-down');
+
+    var areItemsHidden = drawer.find(".drawer-item.hidden").length == drawer.find(".drawer-item").length;
+    var areItemsDisplayed = drawer.find(".drawer-item").not('.hidden').length == drawer.find(".drawer-item").length;
+
+    if (areItemsHidden) {
+        drawer.addClass('opening');
+        drawer.find('.drawer-icon').addClass('fa-angle-double-down');
+    }
+    else if (areItemsDisplayed) {
+        drawer.addClass('closing');
+        drawer.find('.drawer-icon').addClass('fa-angle-double-up');
+    }
+    else {
+        drawer.addClass('opening');
+        drawer.find('.drawer-icon').addClass('fa-angle-double-down');
+    }
+
     initialize_drawer_interactions(drawer);
 }
 

@@ -17,6 +17,9 @@
     line-height: 1px;
     max-height: 218px;
   }
+  .tag {
+    background-color: rgb(58, 85, 134);
+  }
 }
 
 #photograph-modal {
@@ -59,13 +62,15 @@
 
 .jumbotron {
   img {
-    width: 50%;
+    width: 60%;
+    border: solid 2px rgba(125,125,125,0.5);
   }
 }
 
 .drawer {
   .drawer-button {
     display: block;
-    color: rgba(120,125,127,0.80);
+    cursor: pointer;
+    color: rgba(125,125,125,0.8);
   }
 }

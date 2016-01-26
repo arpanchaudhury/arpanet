@@ -28,12 +28,10 @@ class PhotographyController @Inject()(cache: CacheApi,
       }
   }
 
-  def getImageDetails = Action.async {
+  def getImageDetails(pageStart: Int, pageLength: Int, tags: List[String]) = Action.async {
     implicit request =>
       async {
-        val pageStart = request.getQueryString("page-start").getOrElse("0").toInt
-        val pageLength = request.getQueryString("page-length").getOrElse("9").toInt
-        val imageDetails = await(imageService.getPhotographDetails(pageStart, pageLength))
+        val imageDetails = await(imageService.getPhotographDetails(pageStart, pageLength, tags))
         Ok(imageDetails)
       }
   }

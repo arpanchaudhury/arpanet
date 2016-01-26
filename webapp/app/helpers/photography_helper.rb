@@ -12,5 +12,6 @@ module PhotographyHelper
   end
 
   def get_photograph_tags(image_detail)
+    image_detail['tags']
   end
 end

@@ -9,6 +9,8 @@
               .card-block
                 %h4.card-title= get_photograph_title(@image_details[i])
                 %p.card-text= get_photograph_description(@image_details[i])
+                -for tag in get_photograph_tags(@image_details[i])
+                  %a.label.label-pill.label-default.tag= tag
       .column.column-two.col-lg-3.gearbox
         .drawer
           .drawer-item
