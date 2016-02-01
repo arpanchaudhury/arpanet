@@ -1,0 +1,25 @@
+%section
+  .two-column-layout.container-fluid
+    .row
+      .column.column-one.col-lg-3.index
+        %nav.navbar.navbar-light.bg-faded.filters
+          %h5 Filter by Topic(s)
+          %hr
+          .input-group.topic-search
+            %input.form-control.autosuggest-search-text{:type => 'text', :placeholder => 'Search for...'}
+            %span.input-group-btn
+              %button.btn.btn-secondary.autosuggest-search-btn{:type => 'button'} Go!
+          .topics
+            - for topic in @selected_topics
+              .topic
+                %label.c-input.c-checkbox
+                  %input{:type => 'checkbox', :value => topic, :checked => 'checked'}
+                  %span.c-indicator
+                  = topic
+            - for topic in @topics
+              .topic
+                %label.c-input.c-checkbox
+                  %input{:type => 'checkbox', :value => topic}
+                  %span.c-indicator
+                  = topic
+      .column.column-two.col-lg-9

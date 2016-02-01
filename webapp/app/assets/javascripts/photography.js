@@ -70,7 +70,7 @@ function initiate_tag_removal_links() {
     $('.remove-tag').each(function () {
         var tag = $(this);
         var url = location.href;
-        var param = "tags[]=" + tag.text().trim();
+        var param = "tags[]=" + encodeURIComponent(tag.text().trim());
         if (url.indexOf(param) > 0) {
             var _url = remove_parameter_from_URL(param);
             tag.attr('href', _url);

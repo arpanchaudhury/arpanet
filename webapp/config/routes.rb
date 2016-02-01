@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   get 'photography' => 'photography#index'
 
+  get 'good_reads' => 'good_reads#index'
+
   post 'contact' => 'home#contact'
+
+  get 'topics' => 'good_reads#topics'
 
   root 'home#index'
 

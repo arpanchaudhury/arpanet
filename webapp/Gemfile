@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'jquery-rails', '~> 4.0.5'
 
+gem 'jquery-ui-rails', '~> 5.0.4'
+
 gem 'react-rails', '~> 1.5.0'
 
 gem 'turbolinks'
