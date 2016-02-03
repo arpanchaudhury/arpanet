@@ -33,8 +33,7 @@ class GoodReadsController < ApplicationController
                   diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
                   Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
                   morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        image_url: 'http://docs.jboss.org/xnio/3.0.4.GA/api/org/xnio/IoFuture.png',
-        slide_url: ''
+        slide_url: '//www.slideshare.net/slideshow/embed_code/key/gh64xuiQ5CVsOz'
       },
       {
         type: 'text-video',
@@ -45,8 +44,7 @@ class GoodReadsController < ApplicationController
                   diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
                   Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
                   morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        image_url: 'http://docs.jboss.org/xnio/3.0.4.GA/api/org/xnio/IoFuture.png',
-        video_url: 'https://www.youtube.com/watch?v=YykjpeuMNEk'
+        video_url: 'https://www.youtube.com/embed/tHFRAZcBuz0'
       }
     ]
   end

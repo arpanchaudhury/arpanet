@@ -1,7 +1,7 @@
 .row.text-video
   .column.col-lg-6.video-container
-    %iframe.video.center-block{:src => 'https://www.youtube.com/embed/tHFRAZcBuz0', :frameborder => '0'}
+    %iframe.video.center-block{:src => blog_post[:video_url], :allowfullscreen => '', :frameborder => '0'}
   .column.col-lg-6
     %h3.card-title= blog_post[:title]
     %p.card-text= truncate(blog_post[:content], :length => 500, :separator => ' ')
-    .btn.btn-primary{:href => '#'} Read More
+    .btn.btn-primary.pull-right{:href => '#'} Read More

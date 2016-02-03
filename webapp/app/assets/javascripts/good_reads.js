@@ -1,5 +1,6 @@
 function init() {
     initialize_videos();
+    initialize_slides();
     initialize_topics_search_button();
     initialize_filters();
     initialize_autocomplete();
@@ -52,6 +53,15 @@ function initialize_videos() {
     var calculated_container_height = container_width * 9.0 / 16.0;
     videos.attr('height', calculated_container_height);
     videos.attr('width', container_width);
+}
+
+function initialize_slides() {
+    var slides = $('.slide');
+    var slide_container = $('.slide-container').first();
+    var container_width = slide_container.width();
+    var calculated_container_height = container_width * 9.0 / 16.0;
+    slides.attr('height', calculated_container_height);
+    slides.attr('width', container_width);
 }
 
 $(document).ready(init);
