@@ -23,3 +23,13 @@
                   %span.c-indicator
                   = topic
       .column.column-two.col-lg-9
+        - for blog_post in @blog_posts
+          .card.card-block
+            - if blog_post[:type] == 'text'
+              = render partial: 'partials/text_card', :locals => {:blog_post => blog_post}
+            - if blog_post[:type] == 'text-image'
+              = render partial: 'partials/text_image_card', :locals => {:blog_post => blog_post}
+            - if blog_post[:type] == 'text-video'
+              = render partial: 'partials/text_video_card', :locals => {:blog_post => blog_post}
+            - if blog_post[:type] == 'text-slide'
+              = render partial: 'partials/text_slide_card', :locals => {:blog_post => blog_post}

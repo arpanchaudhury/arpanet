@@ -1,0 +1,5 @@
+.row.text
+  .column.col-lg-12
+    %h3.card-title= blog_post[:title]
+    %p.card-text= truncate(blog_post[:content], :length => 500, :separator => ' ')
+    .btn.btn-primary{:href => '#'} Read More

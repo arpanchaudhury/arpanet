@@ -1,4 +1,5 @@
 function init() {
+    initialize_videos();
     initialize_topics_search_button();
     initialize_filters();
     initialize_autocomplete();
@@ -42,6 +43,15 @@ function autocomplete_select() {
     $(".topic-search input").on("autocompleteselect", function (event, ui) {
         location.href = add_parameter_to_URL('topics[]=' + ui.item.value);
     });
+}
+
+function initialize_videos() {
+    var videos = $('.video');
+    var video_container = $('.video-container').first();
+    var container_width = video_container.width();
+    var calculated_container_height = container_width * 9.0 / 16.0;
+    videos.attr('height', calculated_container_height);
+    videos.attr('width', container_width);
 }
 
 $(document).ready(init);

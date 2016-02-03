@@ -15,6 +15,7 @@
 }
 
 .profile-picture {
+  margin-top: 20px;
   &.img-thumbnail {
     border: 2px solid #96C425;
   }
@@ -28,7 +29,7 @@
     color: #1CD4D1;
     font-size: 72px;
     font-family: 'Tangerine', serif;
-    margin-top: 40px;
+    margin-top: 20px;
     .bengali {
       color: #B775B0;
       font-size: 30px;
@@ -37,7 +38,7 @@
   }
 
   &.body .paragraph {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: justify;
     color: #666666;
     font-size: 20px;
