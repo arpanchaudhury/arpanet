@@ -7,4 +7,5 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require markdown
 //= require_tree .
