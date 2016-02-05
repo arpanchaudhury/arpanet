@@ -71,7 +71,7 @@ object WriteUp {
           topics = doc.getAs[List[String]]("topics").get
         )
       }
-      else if (doc.getAsTry[String]("video_url").isSuccess) {
+      else if (doc.getAsTry[String]("slide_url").isSuccess) {
         WriteUpWithSlide(
           contentType = doc.getAs[String]("type").get,
           title = doc.getAs[String]("title").get,
