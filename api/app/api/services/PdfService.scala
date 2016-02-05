@@ -21,8 +21,6 @@ class PdfService @Inject()(resourceFinder: ResourceFinder,
 
   private lazy val pdfCollectionF = mongoConnectionApi.getCollection(pdfCollectionName)
 
-  private implicit val documentFormat = Macros.handler[Pdf]
-
   def getDocument(documentName: String) = async {
     val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByNameQuery(documentName)).one[Pdf]
     await(eventualDocument) match {

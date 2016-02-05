@@ -12,4 +12,6 @@ class QueryBuilder {
   def findByNameQuery(name: String) = BSONDocument("name" -> name)
 
   def findDocumentByTags(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$all" -> tags))
+
+  def findDocumentByTopics(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$all" -> topics))
 }
