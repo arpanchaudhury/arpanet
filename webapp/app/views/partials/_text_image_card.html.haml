@@ -1,7 +1,7 @@
 .row.text-image
   .column.col-lg-4
-    %img.img-fluid.center-block{:src => blog_post[:image_url]}
+    %img.img-fluid.center-block{:src => blog_post['imageUrl']}
   .column.col-lg-8
-    %h3.card-title= blog_post[:title]
-    %p.card-text= truncate(blog_post[:content], :length => 500, :separator => ' ')
+    %h3.card-title= blog_post['title']
+    %p.card-text= truncate(blog_post['content'], :length => 500, :separator => ' ')
     .btn.btn-primary.pull-right{:href => '#'} Read More

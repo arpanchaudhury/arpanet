@@ -1,10 +1,18 @@
 function init() {
-    initialize_videos();
-    initialize_slides();
+    resize_videos();
+    resize_slides();
     initialize_topics_search_button();
     initialize_filters();
     initialize_autocomplete();
     autocomplete_select();
+    window_resize_handler();
+}
+
+function window_resize_handler() {
+    $(window).resize(function () {
+        resize_videos();
+        resize_slides();
+    })
 }
 
 function initialize_topics_search_button() {
@@ -46,7 +54,7 @@ function autocomplete_select() {
     });
 }
 
-function initialize_videos() {
+function resize_videos() {
     var videos = $('.video');
     var video_container = $('.video-container').first();
     var container_width = video_container.width();
@@ -55,7 +63,7 @@ function initialize_videos() {
     videos.attr('width', container_width);
 }
 
-function initialize_slides() {
+function resize_slides() {
     var slides = $('.slide');
     var slide_container = $('.slide-container').first();
     var container_width = slide_container.width();

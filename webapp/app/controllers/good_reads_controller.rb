@@ -1,52 +1,19 @@
 class GoodReadsController < ApplicationController
   def index
+    page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : 0
+    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : 10
     @selected_topics = request.query_parameters['topics'] ? request.query_parameters['topics'].uniq : []
+
+    conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups"
+
+    api_response = conn.get do |req|
+      req.params['pageStart'] = page_start
+      req.params['pageLength'] = page_length
+      req.params['topics'] = @selected_topics
+    end
+
     @topics = fetch_topics(@selected_topics, 5)
-    @blog_posts = [
-      {
-        type: 'text',
-        title: 'Lorem ipsum dolor sit amet',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a interdum velit.
-                  Quisque sit amet justo porta, varius mauris in, rutrum dui. Pellentesque eu est nec
-                  ante convallis auctor. Fusce semper, justo a efficitur condimentum, orci erat cursus
-                  diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
-                  Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
-                  morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
-      },
-      {
-        type: 'text-image',
-        title: 'Lorem ipsum dolor sit amet',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a interdum velit.
-                  Quisque sit amet justo porta, varius mauris in, rutrum dui. Pellentesque eu est nec
-                  ante convallis auctor. Fusce semper, justo a efficitur condimentum, orci erat cursus
-                  diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
-                  Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
-                  morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        image_url: 'http://docs.jboss.org/xnio/3.0.4.GA/api/org/xnio/IoFuture.png'
-      },
-      {
-        type: 'text-slide',
-        title: 'Lorem ipsum dolor sit amet',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a interdum velit.
-                  Quisque sit amet justo porta, varius mauris in, rutrum dui. Pellentesque eu est nec
-                  ante convallis auctor. Fusce semper, justo a efficitur condimentum, orci erat cursus
-                  diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
-                  Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
-                  morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        slide_url: '//www.slideshare.net/slideshow/embed_code/key/gh64xuiQ5CVsOz'
-      },
-      {
-        type: 'text-video',
-        title: 'Lorem ipsum dolor sit amet',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a interdum velit.
-                  Quisque sit amet justo porta, varius mauris in, rutrum dui. Pellentesque eu est nec
-                  ante convallis auctor. Fusce semper, justo a efficitur condimentum, orci erat cursus
-                  diam, eu maximus neque velit in erat. Fusce at diam nisl. In feugiat luctus lacinia.
-                  Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant
-                  morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        video_url: 'https://www.youtube.com/embed/tHFRAZcBuz0'
-      }
-    ]
+    @blog_posts = JSON.parse(api_response.body)
   end
 
   def topics

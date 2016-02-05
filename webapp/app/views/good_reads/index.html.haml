@@ -25,11 +25,11 @@
       .column.column-two.col-lg-9
         - for blog_post in @blog_posts
           .card.card-block
-            - if blog_post[:type] == 'text'
+            - if blog_post['contentType'] == 'text'
               = render partial: 'partials/text_card', :locals => {:blog_post => blog_post}
-            - if blog_post[:type] == 'text-image'
+            - if blog_post['contentType'] == 'text-image'
               = render partial: 'partials/text_image_card', :locals => {:blog_post => blog_post}
-            - if blog_post[:type] == 'text-video'
+            - if blog_post['contentType'] == 'text-video'
               = render partial: 'partials/text_video_card', :locals => {:blog_post => blog_post}
-            - if blog_post[:type] == 'text-slide'
+            - if blog_post['contentType'] == 'text-slide'
               = render partial: 'partials/text_slide_card', :locals => {:blog_post => blog_post}
