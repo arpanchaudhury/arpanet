@@ -18,4 +18,12 @@ class BlogPostController @Inject()(cache: CacheApi, blogPostService: BlogPostSer
         Ok(writeUpDetails)
       }
   }
+
+  def getTopics = Action.async {
+    implicit request =>
+      async {
+        val topics = await(blogPostService.getTopics)
+        Ok(topics)
+      }
+  }
 }

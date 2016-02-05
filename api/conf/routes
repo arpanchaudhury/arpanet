@@ -1,5 +1,7 @@
 GET     /write-ups                          @api.controllers.BlogPostController.getWriteUps(pageStart: Int ?= 0, pageLength: Int ?= 10, topics: List[String] ?= List.empty)
 
+GET     /write-ups/topics                   @api.controllers.BlogPostController.getTopics
+
 GET     /images/photography                 @api.controllers.PhotographyController.getImageDetails(pageStart: Int ?= 0, pageLength: Int ?= 9, tags: List[String] ?= List.empty)
 
 GET     /images/photography/:imageId        @api.controllers.PhotographyController.getImage(imageId: String)

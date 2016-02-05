@@ -9,6 +9,8 @@ GET     /resume                                             Get resume as 'appli
 
 GET     /write-ups                                          Get paginated list of blog posts filtered by topics <Query Parameters - pageStart, pageLength, topics>
 
+GET     /write-ups/topics                                   Get all topics from blog post collection
+
 GET     /images/photography                                 Get paginated details of photographs filtered by tags <Query Parameters - pageStart, pageLength, tags>
 
 GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided
