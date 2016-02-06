@@ -1,5 +1,6 @@
 .social-media-links {
   padding: 10px;
+  text-align: center;
   a {
     color: #666666;
     &:visited {
@@ -8,9 +9,6 @@
     &:hover {
       color: #0E11AC;
     }
-  }
-  .nav {
-    padding-left: 6px;
   }
 }
 

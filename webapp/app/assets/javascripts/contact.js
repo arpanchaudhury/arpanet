@@ -1,11 +1,21 @@
 var init = function init() {
     send_message_handler();
+    model_close_handler();
     messsage_preview_handler();
 };
 
 function reset_form(form) {
     form.find('input:text, input:password, input:file, select, textarea').val('');
     form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+}
+
+function model_close_handler() {
+    $('.modal-close').click(function () {
+        var $form = $('#contact'),
+            validation_message = $(".validation-text");
+        reset_form($form);
+        validation_message.empty();
+    })
 }
 
 function send_message_handler() {

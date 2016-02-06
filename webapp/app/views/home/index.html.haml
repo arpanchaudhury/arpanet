@@ -18,6 +18,6 @@
             ( অর্পণ চৌধূরী )
         .about-me.body.column.col-lg-12
           - for paragraph in @body_paragraphs
-            %p.paragraph
+            %p.paragraph.column.col-lg-4
               = paragraph
   = render partial: 'partials/profile_picture_modal', :locals => {:image_url => @profile_image_url, :alternative_text => 'profile picture'}

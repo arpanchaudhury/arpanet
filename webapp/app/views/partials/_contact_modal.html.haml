@@ -2,7 +2,7 @@
   .modal-dialog{:role => 'document'}
     .modal-content
       .modal-header
-        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+        %button.close.modal-close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
           %i.fa.fa-times-circle
         .h6
           Yeah! finally we can chat.
@@ -23,10 +23,10 @@
               %fieldset.form-group
                 %label{:for => 'visitor-message-body'} Leave a Message
                 %small.text-muted (Can you write MarkDown?)
-                %textarea#visitor-message-body.form-control.markdown-data{:rows => '5'}
+                %textarea#visitor-message-body.form-control.markdown-data{:rows => '8'}
             #preview.tab-pane{:role => 'tabpanel'}
               %small.text-muted This is how your message looks
               #visitor-message-preview.markdown-body
       .modal-footer
-        %button.btn.btn-secondary{:type => 'button', 'data-dismiss' => 'modal'} Close
+        %button.btn.btn-secondary.modal-close{:type => 'button', 'data-dismiss' => 'modal'} Close
         %button.btn.btn-primary#send-email{:type => 'submit'} Send
