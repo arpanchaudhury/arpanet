@@ -13,9 +13,20 @@
             %input#visitor-email.form-control{:type => 'email'}
               %small.text-muted I'll never share your email with anyone else.
             .validation-text
-          %fieldset.form-group
-            %label{:for => 'visitor-message-body'} Leave a Message
-            %textarea#visitor-message-body.form-control{:rows => '5'}
+          %ul.nav.nav-tabs{:role => 'tablist'}
+            %li.nav-item
+              %a.nav-link.active{'data-toggle' => 'tab', :href => '#message', :role => 'tab'} Message
+            %li#preview-btn.nav-item
+              %a.nav-link{'data-toggle' => 'tab', :href => '#preview', :role => 'tab'} Preview
+          .tab-content.markdown
+            #message.tab-pane.active{:role => 'tabpanel'}
+              %fieldset.form-group
+                %label{:for => 'visitor-message-body'} Leave a Message
+                %small.text-muted (Can you write MarkDown?)
+                %textarea#visitor-message-body.form-control.markdown-data{:rows => '5'}
+            #preview.tab-pane{:role => 'tabpanel'}
+              %small.text-muted This is how your message looks
+              #visitor-message-preview.markdown-body
       .modal-footer
         %button.btn.btn-secondary{:type => 'button', 'data-dismiss' => 'modal'} Close
         %button.btn.btn-primary#send-email{:type => 'submit'} Send

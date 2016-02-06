@@ -1,5 +1,6 @@
 var init = function init() {
-    contact_form_init();
+    send_message_handler();
+    messsage_preview_handler();
 };
 
 function reset_form(form) {
@@ -7,14 +8,16 @@ function reset_form(form) {
     form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
-function contact_form_init() {
+function send_message_handler() {
     $('#send-email').click(function (event) {
         event.preventDefault();
+
+        compile_markdown();
 
         var $form = $('#contact'),
             url = $form.attr('action'),
             email = $form.find('#visitor-email').val(),
-            content = $form.find("#visitor-message-body").val();
+            content = $form.find("#visitor-message-preview").prop('outerHTML');
 
         if (email.trim() != '' && is_email(email) && content.trim() != '')
             $.post(url, {user_email: email, email_content: content});
@@ -27,4 +30,11 @@ function contact_form_init() {
     });
 }
 
+function messsage_preview_handler() {
+    $('#preview-btn').click(function () {
+        compile_markdown();
+    })
+}
+
 $(document).ready(init);
+$(document).on('page:load', init);
