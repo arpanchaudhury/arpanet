@@ -19,7 +19,7 @@ function send_message_handler() {
             email = $form.find('#visitor-email').val(),
             content = $form.find("#visitor-message-preview").prop('outerHTML');
 
-        if (email.trim() != '' && is_email(email) && content.trim() != '')
+        if (email.trim() != '' && is_email(email) && $($.parseHTML(content)).text().trim() != '')
             $.post(url, {user_email: email, email_content: content});
         else {
             $form.find('.validation-text').text("E-mail should be valid and Message can't be blank");
