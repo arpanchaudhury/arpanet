@@ -36,6 +36,6 @@
         %nav
           %ul.pager
             %li.pager-prev
-              %a{:href => get_previous_page_url(@pager, good_reads_path)} Prev
+              %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Prev
             %li.pager-next
-              %a{:href => get_next_page_url(@pager, good_reads_path)} Next
+              %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Next

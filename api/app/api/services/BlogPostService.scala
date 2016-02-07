@@ -26,8 +26,9 @@ class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBui
     Json.toJson(await(documentsF))
   }
 
-  def getWriteUpsCount = async {
-    val countF = await(writeUpsCollectionF).count()
+  def getWriteUpsCount(topics: List[String]) = async {
+    val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTopics(topics)
+    val countF = await(writeUpsCollectionF).count(Some(query))
     Json.toJson(await(countF))
   }
 

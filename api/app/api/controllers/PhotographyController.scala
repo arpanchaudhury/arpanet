@@ -33,7 +33,7 @@ class PhotographyController @Inject()(cache: CacheApi,
     implicit request =>
       async {
         val imageDetails = await(imageService.getPhotographDetails(pageStart, pageLength, tags))
-        val imagesCount = await(imageService.getPhotographsCount)
+        val imagesCount = await(imageService.getPhotographsCount(tags))
         Ok(Json.obj("count" -> imagesCount, "photographs" -> imageDetails))
       }
   }

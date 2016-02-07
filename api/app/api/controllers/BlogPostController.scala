@@ -15,7 +15,7 @@ class BlogPostController @Inject()(cache: CacheApi, blogPostService: BlogPostSer
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = Action.async {
     implicit request =>
       async {
-        val writeUpsCount = await(blogPostService.getWriteUpsCount)
+        val writeUpsCount = await(blogPostService.getWriteUpsCount(topics))
         val writeUpDetails = await(blogPostService.getWriteUps(pageStart, pageLength, topics))
         Ok(Json.obj("count" -> writeUpsCount, "writeUps" -> writeUpDetails))
       }
