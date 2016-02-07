@@ -16,6 +16,12 @@
                 %p.card-text= get_photograph_description(@image_details[i])
                 -for tag in get_photograph_tags(@image_details[i])
                   %a.label.label-pill.label-default.tag= tag
+        %nav.column.col-lg-12
+          %ul.pager
+            %li.pager-prev
+              %a{:href => get_previous_page_url(@pager, photography_path)} Prev
+            %li.pager-next
+              %a{:href => get_next_page_url(@pager, photography_path)} Next
       .column.column-two.col-lg-3.gearbox
         .drawer
           - for drawer_item in @drawer_items

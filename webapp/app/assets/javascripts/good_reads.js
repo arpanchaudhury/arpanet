@@ -1,3 +1,5 @@
+//= require pager
+
 function init() {
     resize_videos();
     resize_slides();
@@ -6,6 +8,7 @@ function init() {
     initialize_autocomplete();
     autocomplete_select();
     window_resize_handler();
+    disable_pager_buttons();
 }
 
 function window_resize_handler() {

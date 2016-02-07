@@ -4,6 +4,7 @@ import api.services.ImageService
 import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 
 import scala.async.Async._
@@ -32,7 +33,8 @@ class PhotographyController @Inject()(cache: CacheApi,
     implicit request =>
       async {
         val imageDetails = await(imageService.getPhotographDetails(pageStart, pageLength, tags))
-        Ok(imageDetails)
+        val imagesCount = await(imageService.getPhotographsCount)
+        Ok(Json.obj("count" -> imagesCount, "photographs" -> imageDetails))
       }
   }
 }

@@ -33,3 +33,9 @@
               = render partial: 'partials/text_video_card', :locals => {:blog_post => blog_post}
             - if blog_post['contentType'] == 'text-slide'
               = render partial: 'partials/text_slide_card', :locals => {:blog_post => blog_post}
+        %nav
+          %ul.pager
+            %li.pager-prev
+              %a{:href => get_previous_page_url(@pager, good_reads_path)} Prev
+            %li.pager-next
+              %a{:href => get_next_page_url(@pager, good_reads_path)} Next

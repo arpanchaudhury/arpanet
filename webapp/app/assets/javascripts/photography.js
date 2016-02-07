@@ -1,3 +1,5 @@
+//= require pager
+
 var init = function init() {
     activate_carousel(0);
     image_click_handler();
@@ -6,6 +8,7 @@ var init = function init() {
     populate_tag_links();
     initiate_tag_removal_links();
     initialize_drawer($('.drawer'));
+    disable_pager_buttons();
 };
 
 function image_click_handler() {

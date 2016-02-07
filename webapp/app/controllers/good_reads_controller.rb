@@ -1,8 +1,8 @@
 class GoodReadsController < ApplicationController
 
   def index
-    page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : 0
-    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : 10
+    page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : '0'
+    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : '5'
     @selected_topics = request.query_parameters['topics'] ? request.query_parameters['topics'].uniq : []
 
     conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups"
@@ -14,7 +14,11 @@ class GoodReadsController < ApplicationController
     end
 
     @topics = fetch_topics(@selected_topics, 5)
-    @blog_posts = JSON.parse(api_response.body)
+    api_response = JSON.parse(api_response.body)
+    blog_post_count = api_response['count']
+    @blog_posts = api_response['writeUps']
+
+    @pager = {:count => blog_post_count, :page_start => page_start, :page_length => page_length}
   end
 
   def topics

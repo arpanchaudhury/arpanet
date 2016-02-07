@@ -26,6 +26,11 @@ class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBui
     Json.toJson(await(documentsF))
   }
 
+  def getWriteUpsCount = async {
+    val countF = await(writeUpsCollectionF).count()
+    Json.toJson(await(countF))
+  }
+
   def getTopics = async {
     val topicsF = await(writeUpsCollectionF).distinct("topics")
     val topics = await(topicsF).map { case topic: BSONString => topic.value }

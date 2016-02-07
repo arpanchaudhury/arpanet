@@ -50,4 +50,9 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
     val documentsF = await(photographCollectionF).find(query).options(queryOptions).cursor[Photograph]().collect[List](pageLength)
     Json.toJson(await(documentsF))
   }
+
+  def getPhotographsCount = async {
+    val countF = await(photographCollectionF).count()
+    Json.toJson(await(countF))
+  }
 }
