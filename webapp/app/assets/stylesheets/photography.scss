@@ -76,5 +76,8 @@
     display: block;
     cursor: pointer;
     color: rgba(125,125,125,0.8);
+    &:hover {
+      color: rgba(39,83,131,1);
+    }
   }
 }

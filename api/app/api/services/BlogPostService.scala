@@ -1,6 +1,7 @@
 package api.services
 
 import api.models.WriteUp
+import api.services.constants.MongoConstants
 import api.services.helpers.{MongoConnectionApi, QueryBuilder}
 import com.google.inject.{Inject, Singleton}
 import play.api.libs.concurrent.Execution.Implicits._
@@ -11,13 +12,12 @@ import reactivemongo.bson.BSONString
 import scala.async.Async._
 
 @Singleton
-class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi, queryBuilder: QueryBuilder) {
+class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi,
+                                mongoConstants: MongoConstants,
+                                queryBuilder: QueryBuilder) {
 
-  private implicit lazy val writeUpsDatabaseF = mongoConnectionApi.getDatabase("arpa(n)2et")
-
-  private val writeUpsCollectionName = "write_ups"
-
-  private lazy val writeUpsCollectionF = mongoConnectionApi.getCollection(writeUpsCollectionName)
+  private implicit lazy val writeUpsDatabaseF = mongoConnectionApi.getDatabase(mongoConstants.applicationDatabaseName)
+  private lazy val writeUpsCollectionF = mongoConnectionApi.getCollection(mongoConstants.writeUpsCollectionName)
 
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = async {
     val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTopics(topics)

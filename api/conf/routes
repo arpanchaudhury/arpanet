@@ -10,6 +10,8 @@ GET     /images/public-image/:imageId       @api.controllers.StaticAssetsControl
 
 GET     /resume                             @api.controllers.StaticAssetsController.getResume
 
+GET     /search                             @api.controllers.SearchController.search(searchTerm: String)
+
 GET     /*whatever                          @api.controllers.ApplicationController.other(whatever: String)
 
 GET     /                                   @api.controllers.ApplicationController.home

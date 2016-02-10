@@ -14,4 +14,6 @@ class QueryBuilder {
   def findDocumentByTags(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$in" -> tags))
 
   def findDocumentByTopics(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$in" -> topics))
+
+  def fullTextSearchQuery(searchTerm: String) = BSONDocument("$text" -> BSONDocument("$search" -> searchTerm))
 }
