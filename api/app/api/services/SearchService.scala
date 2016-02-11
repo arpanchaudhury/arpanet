@@ -19,10 +19,17 @@ class SearchService @Inject()(mongoConnectionApi: MongoConnectionApi,
   private lazy val writeUpsCollectionF = mongoConnectionApi.getCollection(mongoConstants.writeUpsCollectionName)
   private lazy val photographyCollectionF = mongoConnectionApi.getCollection(mongoConstants.photographyCollectionName)
 
-  def search(searchTerm: String) = async {
+  def searchWriteUps(searchTerm: String, pageStart: Int, pageLength: Int) = async {
     val query = if (searchTerm.isEmpty) queryBuilder.emptyQuery else queryBuilder.fullTextSearchQuery(searchTerm)
-    val writeUpSearchResultsF = await(writeUpsCollectionF).find(query).cursor[WriteUp]().collect[List]()
-    val photographySearchResultsF = await(photographyCollectionF).find(query).cursor[Photograph]().collect[List]()
-    Json.toJson(await(writeUpSearchResultsF)).as[JsArray] ++ Json.toJson(await(photographySearchResultsF)).as[JsArray]
+    val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
+    val writeUpSearchResultsF = await(writeUpsCollectionF).find(query).options(queryOptions).cursor[WriteUp]().collect[List](pageLength)
+    Json.toJson(await(writeUpSearchResultsF))
+  }
+
+  def searchPhotographs(searchTerm: String, pageStart: Int, pageLength: Int) = async {
+    val query = if (searchTerm.isEmpty) queryBuilder.emptyQuery else queryBuilder.fullTextSearchQuery(searchTerm)
+    val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
+    val photographySearchResultsF = await(photographyCollectionF).find(query).options(queryOptions).cursor[Photograph]().collect[List](pageLength)
+    Json.toJson(await(photographySearchResultsF))
   }
 }

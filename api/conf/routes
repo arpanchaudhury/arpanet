@@ -10,7 +10,9 @@ GET     /images/public-image/:imageId       @api.controllers.StaticAssetsControl
 
 GET     /resume                             @api.controllers.StaticAssetsController.getResume
 
-GET     /search                             @api.controllers.SearchController.search(searchTerm: String)
+GET     /search/write-ups                   @api.controllers.SearchController.searchWriteUps(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
+
+GET     /search/photographs                 @api.controllers.SearchController.searchPhotographs(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
 
 GET     /*whatever                          @api.controllers.ApplicationController.other(whatever: String)
 

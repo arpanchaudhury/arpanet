@@ -10,10 +10,17 @@ import scala.async.Async._
 @Singleton
 class SearchController @Inject()(searchService: SearchService) extends Controller {
 
-  def search(searchTerm: String) = Action.async {
+  def searchWriteUps(searchTerm: String, pageStart: Int, pageLength: Int) = Action.async {
     implicit request =>
       async {
-        Ok(await(searchService.search(searchTerm)))
+        Ok(await(searchService.searchWriteUps(searchTerm, pageStart, pageLength)))
+      }
+  }
+
+  def searchPhotographs(searchTerm: String, pageStart: Int, pageLength: Int) = Action.async {
+    implicit request =>
+      async {
+        Ok(await(searchService.searchPhotographs(searchTerm, pageStart, pageLength)))
       }
   }
 }

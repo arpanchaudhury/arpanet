@@ -17,4 +17,6 @@ GET     /images/photography/:imageId                        Get a photograph as 
 
 GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided
 
-GET     /search                                             Get set of search results with different content
+GET     /search/write-ups                                   Get set of paginated search results for blog posts
+
+GET     /search/photographs                                 Get set of paginated search results for photographs
