@@ -12,8 +12,16 @@
       %a.nav-link{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
     %li.nav-item
       %a.nav-link{'data-target' => '#contact-modal', 'data-toggle' => 'modal'} Contact
-  %form.form-inline.pull-xs-right
+  %form#search-form.form-inline.pull-xs-right{'accept-charset' => 'UTF-8', :action => '/search', :method => 'post'}
     .input-group
-      %input.form-control{:placeholder => 'looking for something?', :type => 'text'}
-        %span.input-group-btn
-          %button.btn.btn-success-outline{:type => 'submit'} Search
+      %span.input-group-btn
+        .drop-down.input-group
+          %button#search-dropdown.btn.btn-secondary.dropdown-toggle{:value => 'write-ups', 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :type => 'button'}
+            Write Ups
+          .dropdown-menu{'aria-labelledby' => 'dropdown'}
+            %a.dropdown-item.search-toggle{:value => 'write-ups'  } Write Ups
+            %a.dropdown-item.search-toggle{:value => 'photographs'} Photographs
+      %span.input-group-btn
+        %input#search-term.form-control{:placeholder => 'looking for something?', :type => 'text'}
+      %span.input-group-btn
+        %button#search.btn.btn-success-outline{:type => 'submit'} Search

@@ -22,14 +22,22 @@ class SearchService @Inject()(mongoConnectionApi: MongoConnectionApi,
   def searchWriteUps(searchTerm: String, pageStart: Int, pageLength: Int) = async {
     val query = if (searchTerm.isEmpty) queryBuilder.emptyQuery else queryBuilder.fullTextSearchQuery(searchTerm)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
+    val countF = await(writeUpsCollectionF).count(Some(query))
     val writeUpSearchResultsF = await(writeUpsCollectionF).find(query).options(queryOptions).cursor[WriteUp]().collect[List](pageLength)
-    Json.toJson(await(writeUpSearchResultsF))
+    Json.obj(
+      "total" -> Json.toJson(await(countF)),
+      "results" -> Json.toJson(await(writeUpSearchResultsF))
+    )
   }
 
   def searchPhotographs(searchTerm: String, pageStart: Int, pageLength: Int) = async {
     val query = if (searchTerm.isEmpty) queryBuilder.emptyQuery else queryBuilder.fullTextSearchQuery(searchTerm)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
+    val countF = await(photographyCollectionF).count(Some(query))
     val photographySearchResultsF = await(photographyCollectionF).find(query).options(queryOptions).cursor[Photograph]().collect[List](pageLength)
-    Json.toJson(await(photographySearchResultsF))
+    Json.obj(
+      "total" -> Json.toJson(await(countF)),
+      "results" -> Json.toJson(await(photographySearchResultsF))
+    )
   }
 }
