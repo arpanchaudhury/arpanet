@@ -1,0 +1,9 @@
+%section#search-results
+  .column.column-two.col-lg-12
+    - if @search_results.size == 0
+      .column.col-lg-12
+        %h1 No Results found
+    - elsif @content == 'write-ups'
+      = render partial: 'partials/good_reads_view', :locals => {:blog_posts => @search_results, :pager => @pager, :selected_topics => []}
+    - elsif @content == 'photographs'
+      = render partial: 'partials/photographs_view', :locals => {:image_details => @search_results, :pager => @pager, :tags => []}

@@ -1,11 +1,11 @@
 class SearchController < ApplicationController
   def search
-    content = params[:content]
+    @content = params[:content]
     query = request.query_parameters['query']
     page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : '0'
-    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : '10'
+    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : '8'
 
-    conn = Faraday.new "#{Rails.configuration.x.api.url}/search/#{content}"
+    conn = Faraday.new "#{Rails.configuration.x.api.url}/search/#{@content}"
 
     api_response = conn.get do |req|
       req.params['searchTerm'] = query
@@ -13,8 +13,11 @@ class SearchController < ApplicationController
       req.params['pageLength'] = page_length
     end
 
-    search_results = api_response.body
+    response = JSON.parse(api_response.body)
+    search_results_count = response['count']
+    @search_results = response['results']
+    @pager = {:count => search_results_count, :page_start => page_start, :page_length => page_length}
 
-    render json: {:results => search_results}
+    render :layout => false
   end
 end

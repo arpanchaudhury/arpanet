@@ -1,5 +1,8 @@
+//= require good_reads
+//= require pager
+
 function initialize_search_toggle_dropdown() {
-    $('.search-toggle').click( function () {
+    $('.search-toggle').click(function () {
         var toggle_button = $(this),
             dropdown_button = $('#search-dropdown');
         dropdown_button.text(toggle_button.text());
@@ -14,20 +17,36 @@ function user_search_handler() {
         var $form = $('#search-form'),
             dropdown = $('#search-dropdown'),
             content = dropdown.attr('value'),
-            url = $form.attr('action') + '/' + content,
+            search_url = $form.attr('action') + '/' + content,
             query = $form.find('#search-term').val().trim();
 
         if (query != '') {
-            $.get(url, {'query' : query}).done(populate_search_data);
+            $.get(search_url, {query: query}).done(populate_search_data);
         }
     });
 }
 
 function populate_search_data(data) {
     var sections = $('section'),
-        search_section = $('section#search-section');
-    search_section.empty();
-    search_section.append("<h1>" + JSON.stringify(data.results) + "</h1>");
+        search_section = $('#search-results');
+
     sections.addClass('hidden');
-    search_section.removeClass('hidden');
+    search_section.replaceWith(data);
+
+    after_timout(100, function () {
+        resize_videos();
+        resize_slides();
+        disable_pager_buttons();
+
+        recompute_height($('#search-results'));
+    });
+}
+
+function recompute_height(search_section) {
+    var recomputed_height = search_section.children().height();
+    search_section.height(recomputed_height);
+}
+
+function after_timout(delay, f) {
+    setTimeout(f, delay);
 }
