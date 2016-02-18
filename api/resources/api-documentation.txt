@@ -11,6 +11,8 @@ GET     /write-ups                                          Get paginated list o
 
 GET     /write-ups/topics                                   Get all topics from blog post collection
 
+GET     /write-ups/:id                                      Get a write up when valid id is provided
+
 GET     /images/photography                                 Get paginated details of photographs filtered by tags <Query Parameters - pageStart, pageLength, tags>
 
 GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided

@@ -12,6 +12,14 @@ import scala.language.postfixOps
 
 @Singleton
 class BlogPostController @Inject()(cache: CacheApi, blogPostService: BlogPostService) extends Controller {
+  def getWriteUp(id: String) = Action.async {
+    implicit request =>
+      async {
+        val writeUp = await(blogPostService.getWriteUp(id))
+        Ok(writeUp)
+      }
+  }
+
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = Action.async {
     implicit request =>
       async {

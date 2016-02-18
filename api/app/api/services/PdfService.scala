@@ -6,7 +6,6 @@ import api.services.helpers.{MongoConnectionApi, QueryBuilder, ResourceFinder}
 import com.google.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
-import reactivemongo.bson.Macros
 
 import scala.async.Async._
 

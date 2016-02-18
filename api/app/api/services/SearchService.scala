@@ -5,7 +5,7 @@ import api.services.constants.MongoConstants
 import api.services.helpers.{MongoConnectionApi, QueryBuilder}
 import com.google.inject.{Inject, Singleton}
 import play.api.libs.concurrent.Execution.Implicits._
-import play.api.libs.json.{JsArray, Json}
+import play.api.libs.json.Json
 import reactivemongo.api.QueryOpts
 
 import scala.async.Async._

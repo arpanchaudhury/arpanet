@@ -1,6 +1,6 @@
 package api.services
 
-import api.models.{Image, Photograph}
+import api.models.{Photograph, PublicImage}
 import api.services.constants.MongoConstants
 import api.services.helpers.{MongoConnectionApi, QueryBuilder, ResourceFinder}
 import com.google.inject.{Inject, Singleton}
@@ -23,7 +23,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
   private lazy val photographyCollectionF = mongoConnectionApi.getCollection(mongoConstants.photographyCollectionName)
 
   def getPublicImage(imageId: String) = async {
-    val eventualImageFile = await(publicImagesCollectionF).find(queryBuilder.findByIdQuery(imageId)).one[Image]
+    val eventualImageFile = await(publicImagesCollectionF).find(queryBuilder.findByIdQuery(imageId)).one[PublicImage]
     await(eventualImageFile) match {
       case Some(document) => await(resourceFinder.find(document.uri, document.extension))
       case None =>
