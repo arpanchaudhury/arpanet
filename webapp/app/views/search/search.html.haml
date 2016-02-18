@@ -1,9 +1,28 @@
-%section#search-results
-  .column.column-two.col-lg-12
+%section#search-results{'data-total-results' => @pager[:count]}
+  .column.column-two.col-lg-12.results-container
     - if @search_results.size == 0
-      .column.col-lg-12
-        %h1 No Results found
+      %h4.text-muted No result(s) found
     - elsif @content == 'write-ups'
-      = render partial: 'partials/good_reads_view', :locals => {:blog_posts => @search_results, :pager => @pager, :selected_topics => []}
+      %h4.text-muted Total #{@pager[:count]} matching write up(s) found
+      - for blog_post in @search_results
+        .card.card-block.snippet
+          - if blog_post['contentType'] == 'text'
+            = render partial: 'partials/text_card', :locals => {:blog_post => blog_post}
+          - if blog_post['contentType'] == 'text-image'
+            = render partial: 'partials/text_image_card', :locals => {:blog_post => blog_post}
+          - if blog_post['contentType'] == 'text-video'
+            = render partial: 'partials/text_video_card', :locals => {:blog_post => blog_post}
+          - if blog_post['contentType'] == 'text-slide'
+            = render partial: 'partials/text_slide_card', :locals => {:blog_post => blog_post}
     - elsif @content == 'photographs'
-      = render partial: 'partials/photographs_view', :locals => {:image_details => @search_results, :pager => @pager, :tags => []}
+      %h4.text-muted Total #{@pager[:count]} matching photograph(s) found
+      - for i in 0..(@search_results.size - 1)
+        .column.col-lg-3.snippet
+          .card
+            = image_tag(get_photograph_url(@search_results[i]), {:class => 'card-img-top img-thumbnail'})
+            .card-block
+              %h4.card-title= get_photograph_title(@search_results[i])
+              %p.card-text= get_photograph_description(@search_results[i])
+  - if @search_results.size != 0
+    .column.col-lg-12
+      %button.btn.btn-lg.btn-primary.loader.centered Load More
