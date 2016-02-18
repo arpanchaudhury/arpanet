@@ -4,4 +4,4 @@
   .column.col-lg-6
     %h3.card-title= blog_post['title']
     %p.card-text= truncate(blog_post['content'], :length => 500, :separator => ' ')
-    .btn.btn-primary.pull-right{:href => '#'} Read More
+    %a.btn.btn-primary.pull-right{:href => "/good_reads/#{blog_post['_id']}"} Read More

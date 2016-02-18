@@ -1,3 +1,5 @@
+//= require markdown
+
 var init = function init() {
     send_message_handler();
     model_close_handler();

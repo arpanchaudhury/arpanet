@@ -1,4 +1,5 @@
 //= require pager
+//= require markdown
 
 function init() {
     resize_videos();
@@ -9,6 +10,7 @@ function init() {
     autocomplete_select();
     window_resize_handler();
     disable_pager_buttons();
+    compile_markdown();
 }
 
 function window_resize_handler() {

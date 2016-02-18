@@ -1,0 +1,10 @@
+%section
+  .container-fluid
+    .row
+      .column.col-lg-12
+        #write-up.card
+          .card-header.text-xs-center
+            %b= @writeup['title']
+          .card-block.markdown
+            %textarea.card-markdown.markdown-data.hidden= @writeup['markdown']
+            .card-markdown.markdown-body
