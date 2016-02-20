@@ -38,16 +38,15 @@ function populate_search_data(data) {
     var updated_search_section = $('#search-results');
     total_results = updated_search_section.data('total-results');
 
-    if(total_results == updated_search_section.find('.card').length) {
+    if(total_results == updated_search_section.find('.snippet').length) {
         remove_load_more_button();
         page_start = 0;
     }
 
+    handle_photograph_snippet_click();
     load_more_button_handler();
 
-    after_timout(200, function () {
-        resize_videos();
-        resize_slides();
+    after_timout(500, function () {
         recompute_section_height(updated_search_section);
     });
 }
@@ -65,9 +64,7 @@ function append_search_data(data) {
         page_start = 0;
     }
 
-    after_timout(200, function () {
-        resize_videos();
-        resize_slides();
+    after_timout(500, function () {
         recompute_section_height(updated_search_section);
     });
 }
@@ -99,4 +96,13 @@ function recompute_section_height(search_section) {
 
 function after_timout(delay, f) {
     setTimeout(f, delay);
+}
+
+function handle_photograph_snippet_click() {
+    $('.photograph').click(function() {
+        var image_url = $(this).find('img').attr('src'),
+            modal = $('#photograph-view-modal');
+        modal.find('img').attr('src', image_url);
+        modal.modal('show');
+    })
 }

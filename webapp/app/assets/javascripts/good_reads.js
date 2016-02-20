@@ -10,7 +10,7 @@ function init() {
     autocomplete_select();
     window_resize_handler();
     disable_pager_buttons();
-    compile_markdown();
+    compile_markdown($('#write-up'));
 }
 
 function window_resize_handler() {

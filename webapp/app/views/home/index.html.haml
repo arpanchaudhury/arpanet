@@ -11,6 +11,9 @@
             = render partial: 'partials/social_media_link', :locals => {:media => 'twitter', :url => 'https://twitter.com/arpanchaudhury', :target => '_blank'}
             = render partial: 'partials/social_media_link', :locals => {:media => '500px', :url => 'https://500px.com/arpanchaudhury', :target => '_blank'}
             = render partial: 'partials/social_media_link', :locals => {:media => 'slideshare', :url => 'http://www.slideshare.net/ArpanChaudhury', :target => '_blank'}
+        %ul.profile-summary
+          - for line in @profile_summary
+            %li= line
       .column.column-two.col-lg-9
         %h1.about-me.heading
           Arpan Chaudhury

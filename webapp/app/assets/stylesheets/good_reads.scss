@@ -58,6 +58,13 @@
     font-size: 2.0rem;
     font-family: 'Indie Flower', cursive;
   }
+
+  .card-image, .card-video, .card-slide {
+    max-width: 90%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .card-block {
     background-color: #FFFFFF;
   }

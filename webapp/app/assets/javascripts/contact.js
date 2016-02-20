@@ -24,7 +24,7 @@ function send_message_handler() {
     $('#send-email').click(function (event) {
         event.preventDefault();
 
-        compile_markdown();
+        compile_markdown($('#contact-modal'));
 
         var $form = $('#contact'),
             url = $form.attr('action'),
@@ -44,7 +44,7 @@ function send_message_handler() {
 
 function messsage_preview_handler() {
     $('#preview-btn').click(function () {
-        compile_markdown();
+        compile_markdown($('#contact-modal'));
     })
 }
 
