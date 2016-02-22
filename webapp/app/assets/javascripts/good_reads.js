@@ -1,5 +1,7 @@
 //= require pager
 //= require markdown
+//= require main
+//= require modernizr
 
 function init() {
     resize_videos();
@@ -10,14 +12,8 @@ function init() {
     autocomplete_select();
     window_resize_handler();
     disable_pager_buttons();
-    compile_markdown($('#write-up'));
-}
-
-function window_resize_handler() {
-    $(window).resize(function () {
-        resize_videos();
-        resize_slides();
-    })
+    compile_markdown($('.events-content li'));
+    initiate_timeline();
 }
 
 function initialize_topics_search_button() {
@@ -75,6 +71,13 @@ function resize_slides() {
     var calculated_container_height = container_width * 9.0 / 16.0;
     slides.attr('height', calculated_container_height);
     slides.attr('width', container_width);
+}
+
+function window_resize_handler() {
+    $(window).resize(function () {
+        resize_videos();
+        resize_slides();
+    })
 }
 
 $(document).ready(init);

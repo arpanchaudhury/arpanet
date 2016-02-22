@@ -21,16 +21,6 @@ class GoodReadsController < ApplicationController
     @pager = {:count => blog_post_count, :page_start => page_start, :page_length => page_length}
   end
 
-  def show
-    write_up_id = params[:id]
-
-    conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups/#{write_up_id}"
-
-    api_response = conn.get
-
-    @writeup = JSON.parse(api_response.body)
-  end
-
   def topics
     @selected_topics = request.query_parameters['topics'] ? request.query_parameters['topics'].uniq : []
     render json: {:topics => fetch_topics(@selected_topics, 10000)}

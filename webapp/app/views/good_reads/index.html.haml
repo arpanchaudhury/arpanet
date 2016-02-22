@@ -22,20 +22,48 @@
                   %input{:type => 'checkbox', :value => topic}
                   %span.c-indicator
                   = topic
-      .column.column-two.col-lg-9
-        - for blog_post in @blog_posts
-          .card.card-block
-            - if blog_post['contentType'] == 'text'
-              = render partial: 'partials/text_card', :locals => {:blog_post => blog_post}
-            - if blog_post['contentType'] == 'text-image'
-              = render partial: 'partials/text_image_card', :locals => {:blog_post => blog_post}
-            - if blog_post['contentType'] == 'text-video'
-              = render partial: 'partials/text_video_card', :locals => {:blog_post => blog_post}
-            - if blog_post['contentType'] == 'text-slide'
-              = render partial: 'partials/text_slide_card', :locals => {:blog_post => blog_post}
-        %nav
-          %ul.pager
-            %li.pager-prev
-              %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Prev
-            %li.pager-next
-              %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Next
+      .cd-horizontal-timeline.column.col-lg-9
+        .timeline
+          .events-wrapper
+            .events
+              %ol
+                - for blog_post in @blog_posts
+                  - date = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S').to_date
+                  %li
+                    %a{'data-date' => date.strftime('%d/%m/%Y'), :href => '#0'}= date.strftime('%d %b')
+              %span.filling-line{'aria-hidden' => 'true'}
+          %ul.cd-timeline-navigation
+            %li
+              %a.prev.inactive{:href => '#0'} Prev
+            %li
+              %a.next{:href => '#0'} Next
+        .events-content
+          %ol
+            - for blog_post in @blog_posts
+              - date = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S').to_date
+              %li{'data-date' => date.strftime('%d/%m/%Y')}
+                %h2= blog_post['title']
+                %em= date.strftime('%d %B %Y')
+                %p= blog_post['content']
+                - if blog_post['contentType'] == 'text-image'
+                  %img{:src => blog_post['imageUrl'], :alt => 'write-up image'}
+                - if blog_post['contentType'] == 'text-video'
+                  .video-container
+                    %iframe.video.center-block{:src => blog_post['videoUrl'], :allowfullscreen => '', :frameborder => '0'}
+                - if blog_post['contentType'] == 'text-slide'
+                  .slide-container
+                    %iframe.slide.center-block{:src => blog_post['slideUrl'], :allowfullscreen => '', :frameborder => '0'}
+                .markdown
+                  %textarea.markdown-data.hidden= blog_post['markdown']
+                  .markdown-body
+        %script
+          var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
+          first_event.addClass('selected');
+          first_event_content.addClass('selected');
+        /
+          %nav
+            %ul.pager
+              %li.pager-prev
+                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Prev
+              %li.pager-next
+                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Next

@@ -34,7 +34,7 @@ class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi,
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = async {
     val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTopics(topics)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
-    val documentsF = await(writeUpsCollectionF).find(query).options(queryOptions).cursor[WriteUp]().collect[List](pageLength)
+    val documentsF = await(writeUpsCollectionF).find(query).sort(queryBuilder.sortByQuery("timestamp", queryBuilder.Descending)).options(queryOptions).cursor[WriteUp]().collect[List](pageLength)
     Json.toJson(await(documentsF))
   }
 
