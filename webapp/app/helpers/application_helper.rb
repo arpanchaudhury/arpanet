@@ -17,7 +17,7 @@ module ApplicationHelper
         "#{path}?page-start=#{page_start + 1}&page-length=#{page_length}&#{others}"
       end
     else
-      '#'
+      ''
     end
   end
 
@@ -34,7 +34,7 @@ module ApplicationHelper
         "#{path}?page-start=#{page_start - 1}&page-length=#{page_length}&#{others}"
       end
     else
-      '#'
+      ''
     end
   end
 end

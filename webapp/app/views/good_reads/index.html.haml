@@ -60,10 +60,9 @@
           var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
           first_event.addClass('selected');
           first_event_content.addClass('selected');
-        /
-          %nav
-            %ul.pager
-              %li.pager-prev
-                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Prev
-              %li.pager-next
-                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Next
+        %nav
+          %ul.pager
+            %li.pager-prev
+              %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Prev
+            %li.pager-next
+              %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Next
