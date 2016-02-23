@@ -11,9 +11,9 @@ function init() {
     initialize_autocomplete();
     autocomplete_select();
     window_resize_handler();
-    disable_pager_buttons();
-    compile_markdown($('.events-content li'));
+    remove_unused_pager_buttons();
     initiate_timeline();
+    compile_markdown($('#write-up'));
 }
 
 function initialize_topics_search_button() {

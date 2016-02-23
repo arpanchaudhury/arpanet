@@ -37,38 +37,32 @@
   }
 }
 
-.card {
-  .column {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+#write-up {
+  h2 {
+    color: #3E5077;
+    font-weight: 700;
+    font-size: 3.6rem;
+    font-family: "Playfair Display", serif;
+    line-height: 1.2;
+    text-align: center;
+    margin: 1.5rem auto;
   }
 
-  .card-title {
-    text-align: center;
-  }
-  .card-text {
+  p.content {
+    color: #3E5077;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Indie Flower', cursive;
     text-align: justify;
   }
 
-  video {
-    width: 100%;
-  }
-}
-
-#write-up {
-  .card-header {
-    color: #3D802E;
-    font-size: 2.0rem;
-    font-family: 'Indie Flower', cursive;
+  .image, .video, .slide {
+    display: block;
+    margin: 1.5rem auto;
   }
 
-  .card-image, .card-video, .card-slide {
-    max-width: 90%;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-block {
-    background-color: #FFFFFF;
+  .markdown {
+    display: block;
+    margin: 1.5rem auto;
   }
 }

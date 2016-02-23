@@ -1,2 +1,18 @@
-%section
-  = @writeup['content']
+%section.container-fluid#write-up
+  .column.column-one.col-lg-5
+    - if @blog_post['contentType'] == 'text'
+      %img.img-fluid.image{:src => 'http://blog.jetbrains.com/idea/files/2012/12/spring-frameworks-1.png'}
+    - if @blog_post['contentType'] == 'text-image'
+      %img.img-fluid.image{:src => @blog_post['imageUrl']}
+    - if @blog_post['contentType'] == 'text-video'
+      .video-container
+        %iframe.video.center-block{:src => @blog_post['videoUrl'], :allowfullscreen => '', :frameborder => '0'}
+    - if @blog_post['contentType'] == 'text-slide'
+      .slide-container
+        %iframe.slide.center-block{:src => @blog_post['slideUrl'], :allowfullscreen => '', :frameborder => '0'}
+    %p.content= @blog_post['content']
+  .column.column-one.col-lg-7
+    %h2= @blog_post['title']
+    .markdown
+      %textarea.markdown-data.hidden= @blog_post['markdown']
+      .markdown-body

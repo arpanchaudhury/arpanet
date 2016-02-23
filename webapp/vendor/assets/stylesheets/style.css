@@ -296,8 +296,11 @@ Main Components
   max-width: 800px;
   margin: 0 auto;
 }
+.cd-horizontal-timeline .events-content a {
+  text-align: center;
+  text-decoration: none !important;
+}
 .cd-horizontal-timeline .events-content h2 {
-  font-weight: bold;
   font-size: 2.6rem;
   font-family: "Playfair Display", serif;
   font-weight: 700;
@@ -314,6 +317,7 @@ Main Components
 .cd-horizontal-timeline .events-content p {
   font-size: 1.4rem;
   color: #959595;
+  text-align: justify;
 }
 .cd-horizontal-timeline .events-content img {
   display: block;
@@ -324,9 +328,12 @@ Main Components
 .cd-horizontal-timeline .events-content iframe {
   margin-top: 40px;
 }
-.cd-horizontal-timeline .events-content .markdown {
+.cd-horizontal-timeline .events-content .btn {
   display: block;
+  max-width: 250px;
   margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cd-horizontal-timeline .events-content em, .cd-horizontal-timeline .events-content p {
   line-height: 1.6;

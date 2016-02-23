@@ -8,7 +8,7 @@ var init = function init() {
     populate_tag_links();
     initiate_tag_removal_links();
     initialize_drawer($('.drawer'));
-    disable_pager_buttons();
+    remove_unused_pager_buttons();
 };
 
 function image_click_handler() {

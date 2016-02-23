@@ -28,7 +28,7 @@ class GoodReadsController < ApplicationController
 
     api_response = conn.get
 
-    @writeup = JSON.parse(api_response.body)
+    @blog_post = JSON.parse(api_response.body)
   end
 
   def topics
