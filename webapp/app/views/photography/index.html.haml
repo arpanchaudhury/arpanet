@@ -29,7 +29,7 @@
               .jumbotron
                 %h4.display-4= drawer_item[:title]
                 %hr
-                %img.center-block{:src => drawer_item[:img_src], :alt => drawer_item[:img_alt_txt], :class => 'img-fluid img-thumbnail'}
+                = image_tag(drawer_item[:img_src], {:alt => drawer_item[:img_alt_txt], :class => 'center-block img-fluid img-thumbnail'})
                 %hr.m-y-2
                   %p= drawer_item[:description]
                 %a.btn.btn-primary.btn-lg{:href => drawer_item[:spec_url], :role => 'button'} Specification

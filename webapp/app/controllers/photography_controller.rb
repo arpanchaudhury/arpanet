@@ -19,14 +19,14 @@ class PhotographyController < ApplicationController
     @drawer_items = [
         {
             :title => 'Drawer',
-            :img_src => '/assets/nikkon-3300.jpg',
+            :img_src => 'nikkon-3300.jpg',
             :img_alt_txt => '...',
             :description => 'this is some text which is a filler to test the drawer behavior',
             :spec_url => '#'
         },
         {
             :title => 'Drawer',
-            :img_src => '/assets/nikkon-3300.jpg',
+            :img_src => 'nikkon-3300.jpg',
             :img_alt_txt => '...',
             :description => 'this is some text which is a filler to test the drawer behavior',
             :spec_url => '#'
