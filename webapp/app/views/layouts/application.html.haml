@@ -8,8 +8,7 @@
   %body
     = render partial: 'partials/header'
     = yield
-    #search-results
+    %section.search-results.hidden
     = render partial: 'partials/footer'
-
     = render partial: 'partials/resume_modal'
     = render partial: 'partials/contact_modal'

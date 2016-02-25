@@ -4,5 +4,4 @@
 //= require jquery-ui/autocomplete
 //= require tether
 //= require bootstrap
-//= require markdown
 //= require_tree .

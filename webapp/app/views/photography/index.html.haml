@@ -23,16 +23,17 @@
             %li.pager-next
               %a{:href => get_next_page_url(@pager, photography_path, {:tags => @tags})} Next
       .column.column-two.col-lg-3.gearbox
+        %h3.text-muted Equipments
         .drawer
           - for drawer_item in @drawer_items
             .drawer-item
-              .jumbotron
-                %h4.display-4= drawer_item[:title]
-                %hr
-                = image_tag(drawer_item[:img_src], {:alt => drawer_item[:img_alt_txt], :class => 'center-block img-fluid img-thumbnail'})
-                %hr.m-y-2
-                  %p= drawer_item[:description]
-                %a.btn.btn-primary.btn-lg{:href => drawer_item[:spec_url], :role => 'button'} Specification
+              .card
+                .card-block
+                  %h4.card-title= drawer_item[:title]
+                = image_tag(drawer_item[:img_src], {:alt => drawer_item[:img_alt_txt], :class => 'center-block img-fluid'})
+                .card-block
+                  %p.card-text= drawer_item[:description]
+                  %a.card-link{:href => drawer_item[:spec_url]} Specification
           .fa-stack.fa-lg.center-block.drawer-button
             %i.fa.fa-circle-o.fa-stack-2x
             %i.fa.fa-stack-1x.drawer-icon

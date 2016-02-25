@@ -5,7 +5,7 @@
   margin-top: 15px;
   font-family: "Comic Sans MS", sans-serif;
 
-  .topics {
+  .topic-filter {
     margin-top: 40px;
     margin-bottom: 20px;
 
@@ -33,7 +33,17 @@
   .ui-menu-item {
     padding: 5px 20px;
     font-family: "Comic Sans MS", sans-serif;
-    @extend .dropdown-item;
+    &:hover {
+      background-color: #F7F7F7;
+    }
+  }
+
+  .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
+  .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    color: #FFF;
+    border: none;
+    border-radius:0;
+    background: #959595;
   }
 }
 
@@ -49,10 +59,8 @@
   }
 
   .content {
-    color: #3E5077;
-    font-size: 1.2rem;
-    font-weight: 700;
-    font-family: 'Indie Flower', cursive;
+    color: #959595;
+    font-size: 1.0rem;
     text-align: justify;
   }
 

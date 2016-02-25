@@ -1,9 +1,10 @@
 //= require markdown
+//= require validators
 
 var init = function init() {
-    send_message_handler();
-    model_close_handler();
-    messsage_preview_handler();
+    send_message_event_handler();
+    model_close_event_handler();
+    preview_messsage_event_handler();
 };
 
 function reset_form(form) {
@@ -11,7 +12,7 @@ function reset_form(form) {
     form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
-function model_close_handler() {
+function model_close_event_handler() {
     $('.modal-close').click(function () {
         var $form = $('#contact'),
             validation_message = $(".validation-text");
@@ -20,11 +21,9 @@ function model_close_handler() {
     })
 }
 
-function send_message_handler() {
-    $('#send-email').click(function (event) {
-        event.preventDefault();
-
-        compile_markdown($('#contact-modal'));
+function send_message_event_handler() {
+    $('#send-email').click(function () {
+        compile_markdown($('#contact'));
 
         var $form = $('#contact'),
             url = $form.attr('action'),
@@ -42,9 +41,9 @@ function send_message_handler() {
     });
 }
 
-function messsage_preview_handler() {
+function preview_messsage_event_handler() {
     $('#preview-btn').click(function () {
-        compile_markdown($('#contact-modal'));
+        compile_markdown($('#contact'));
     })
 }
 

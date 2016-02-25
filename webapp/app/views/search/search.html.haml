@@ -1,58 +1,57 @@
-%section#search-results{'data-total-results' => @search_results['total']}
-  .container
-    %hgroup.mb20
-      %h1 Search Results
-      %h2.lead
-        %strong.text-danger= @search_results['total']
-        result(s) were found for the search for
-        %strong.text-danger= @query
-    - if @content == 'write-ups'
-      .col-xs-12.col-sm-6.col-md-12.results-container
-        - for blog_post in @search_results['results']
-          - timestamp = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S')
-          %article.search-result.row.snippet
-            .col-xs-12.col-sm-12.col-md-3
-              %a.thumbnail{:href => "/good_reads/#{blog_post['_id']}"}
-                - if blog_post['contentType'] == 'text-image'
-                  %img.img-thumbnail{:alt => 'write up image', :src => blog_post['imageUrl']}
-                - elsif blog_post['contentType'] == 'text-slide' or blog_post['contentType'] == 'text-video'
-                  %img.img-thumbnail{:alt => 'write up image', :src => blog_post['posterImageUrl']}
-                - else
-                  %img.img-thumbnail{:alt => 'write up image', :src => 'http://blog.jetbrains.com/idea/files/2012/12/spring-frameworks-1.png'}
-            .col-xs-12.col-sm-12.col-md-2
-              %ul.meta-search
-                %li
-                  %i.fa.fa-calendar
-                  %span= timestamp.to_date.to_s
-                %li
-                  %i.fa.fa-clock-o
-                  %span= timestamp.to_s(:time)
-                %li
-                  %i.fa.fa-tags
-                  %span= blog_post['topics'].join(', ')
-            .col-xs-12.col-sm-12.col-md-7.excerpet
-              %h3
-                %a{:href => "/good_reads/#{blog_post['_id']}"}= blog_post['title']
-              %p= truncate(blog_post['content'], :length => 250)
-              %span.plus
-                %a{:href => "/good_reads/#{blog_post['_id']}"}
-                  %i.fa.fa-plus
-    - elsif @content == 'photographs'
-      .results-container
-        - for photograph in @search_results['results']
-          .column.col-lg-3.snippet
-            .card.photograph
-              = image_tag(get_photograph_url(photograph), {:class => 'card-img-top img-thumbnail', :alt => 'photograph'})
-              .card-block
-                %h4.card-title= get_photograph_title(photograph)
-                %p.card-text= get_photograph_description(photograph)
-      #photograph-view-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
-        .modal-dialog.modal-lg{:role => 'document'}
-          .modal-content
-            .modal-body.no-padding
-              %img.img-thumbnail{:alt => 'write up image', :src => '#'}
-              %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
-                %i.fa.fa-inverse.fa-times-circle
-    - if @search_results.size != 0
-      .column.col-lg-12
-        %button.btn.btn-lg.btn-primary.loader.centered Load More
+.container
+  %hgroup.mb20
+    %h1 Search Results
+    %h2.lead
+      %strong.text-danger= @search_results['total']
+      result(s) were found for the search for
+      %strong.text-danger= @query
+  - if @content == 'write-ups'
+    .col-xs-12.col-sm-6.col-md-12.results-container{'data-total-results' => @search_results['total']}
+      - for blog_post in @search_results['results']
+        - timestamp = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S')
+        %article.search-result.row.snippet
+          .col-xs-12.col-sm-12.col-md-3
+            %a.thumbnail{:href => "/good_reads/#{blog_post['_id']}"}
+              - if blog_post['contentType'] == 'text-image'
+                %img.img-thumbnail{:alt => 'write up image', :src => blog_post['imageUrl']}
+              - elsif blog_post['contentType'] == 'text-slide' or blog_post['contentType'] == 'text-video'
+                %img.img-thumbnail{:alt => 'write up image', :src => blog_post['posterImageUrl']}
+              - else
+                %img.img-thumbnail{:alt => 'write up image', :src => 'http://blog.jetbrains.com/idea/files/2012/12/spring-frameworks-1.png'}
+          .col-xs-12.col-sm-12.col-md-2
+            %ul.meta-search
+              %li
+                %i.fa.fa-calendar
+                %span= timestamp.to_date.to_s
+              %li
+                %i.fa.fa-clock-o
+                %span= timestamp.to_s(:time)
+              %li
+                %i.fa.fa-tags
+                %span= blog_post['topics'].join(', ')
+          .col-xs-12.col-sm-12.col-md-7.excerpet
+            %h3
+              %a{:href => "/good_reads/#{blog_post['_id']}"}= blog_post['title']
+            %p= truncate(blog_post['content'], :length => 300)
+            %span.plus
+              %a{:href => "/good_reads/#{blog_post['_id']}"}
+                %i.fa.fa-plus
+  - elsif @content == 'photographs'
+    .results-container{'data-total-results' => @search_results['total']}
+      - for photograph in @search_results['results']
+        .column.col-lg-3.snippet
+          .card.photograph
+            = image_tag(get_photograph_url(photograph), {:class => 'card-img-top img-thumbnail', :alt => 'photograph'})
+            .card-block
+              %h4.card-title= get_photograph_title(photograph)
+              %p.card-text= get_photograph_description(photograph)
+    #photograph-view-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
+      .modal-dialog.modal-lg{:role => 'document'}
+        .modal-content
+          .modal-body.no-padding
+            %img.img-thumbnail{:alt => 'write up image', :src => '#'}
+            %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+              %i.fa.fa-inverse.fa-times-circle
+  - if @search_results.size != 0
+    .column.col-lg-12
+      %button.btn.btn-lg.btn-primary.loader.centered Load More

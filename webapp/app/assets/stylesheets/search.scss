@@ -1,19 +1,10 @@
-#search-results {
+.search-results {
   margin-top: 1rem;
   text-align: center;
-
-  button.loader {
-    padding: 1rem;
-    width: 200px;
-  }
 }
 
 .photograph:hover {
   cursor: pointer;
-}
-
-.container {
-  margin-top: 20px;
 }
 
 .mb20 {
@@ -67,6 +58,7 @@ hgroup h2.lead {
   }
 
   ul li i {
+    color: #368D8E;
     padding-right: 5px;
   }
 
@@ -85,7 +77,9 @@ hgroup h2.lead {
   }
 
   p {
-    font: normal normal 1.125em "Roboto", Arial, Verdana, sans-serif;
+    color: #959595;
+    font-size: 1.0rem;
+    text-align: justify;
   }
 
   span.plus {

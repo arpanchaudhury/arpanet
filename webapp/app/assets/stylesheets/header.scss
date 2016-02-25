@@ -1,8 +1,9 @@
 .navbar {
   background-color: #12365A;
+
   .navbar-brand {
-    font-size: 15px;
     padding-top: 0;
+    font-size: 15px;
   }
 
   .navbar-brand, .nav-link {
@@ -11,10 +12,4 @@
       color: #FFFFFF;
     }
   }
-}
-
-.btn-secondary-outline.no-hover:hover {
-  color: #ccc;
-  border-color: #ccc;
-  background-color: transparent;
 }
