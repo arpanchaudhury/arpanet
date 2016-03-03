@@ -1,7 +1,4 @@
-//= require markdown
-//= require validators
-
-var init = function init() {
+function init_contact() {
     send_message_event_handler();
     model_close_event_handler();
     preview_messsage_event_handler();
@@ -46,6 +43,3 @@ function preview_messsage_event_handler() {
         compile_markdown($('#contact'));
     })
 }
-
-$(document).ready(init);
-$(document).on('page:load', init);

@@ -98,6 +98,9 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    passenger (5.0.26)
+      rack
+      rake (>= 0.8.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -168,6 +171,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)!
   jquery-rails (~> 4.0.5)!
   jquery-ui-rails (~> 5.0.4)!
+  passenger (>= 5.0.25)!
   rails (= 4.2.5)!
   rails-assets-tether (>= 1.1.0)!
   sass-rails (~> 5.0)!

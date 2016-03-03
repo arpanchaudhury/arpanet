@@ -30,7 +30,7 @@
               .card
                 .card-block
                   %h4.card-title= drawer_item[:title]
-                = image_tag(drawer_item[:img_src], {:alt => drawer_item[:img_alt_txt], :class => 'center-block img-fluid'})
+                = image_tag(drawer_item[:img_src], {:alt => 'equipment', :class => 'center-block img-fluid'})
                 .card-block
                   %p.card-text= drawer_item[:description]
                   %a.card-link{:href => drawer_item[:spec_url]} Specification
@@ -38,3 +38,5 @@
             %i.fa.fa-circle-o.fa-stack-2x
             %i.fa.fa-stack-1x.drawer-icon
   = render partial: 'partials/photography_modal', :locals => {:image_details => @image_details}
+%script
+  init_photography();

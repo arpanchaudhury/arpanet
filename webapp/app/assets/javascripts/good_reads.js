@@ -1,10 +1,7 @@
-//= require pager
-//= require markdown
-//= require url_helpers
 //= require main
 //= require modernizr
 
-function init() {
+function init_good_reads() {
     initiate_timeline();
     remove_unused_pagination_buttons();
     initialize_autocomplete();
@@ -15,7 +12,7 @@ function init() {
     resize_slides();
     window_resize_handler();
     compile_markdown($('#write-up'));
-}
+};
 
 function initialize_autocomplete() {
     var topic_search_box = $('.topic-search'),
@@ -81,6 +78,3 @@ function window_resize_handler() {
         resize_slides();
     })
 }
-
-$(document).ready(init);
-$(document).on('page:load', init);

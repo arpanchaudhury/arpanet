@@ -1,7 +1,4 @@
-//= require url_helpers
-//= require drawer
-
-var init = function init() {
+function init_photography() {
     initialize_carousel();
     generate_tag_links();
     generate_tag_removal_links();
@@ -83,6 +80,3 @@ function generate_tag_removal_links() {
         }
     })
 }
-
-$(document).ready(init);
-$(document).on('page:load', init);

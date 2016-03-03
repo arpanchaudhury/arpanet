@@ -57,3 +57,5 @@
               %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Newer Posts
             %li.pager-next
               %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})} Older Posts
+%script
+  init_good_reads();

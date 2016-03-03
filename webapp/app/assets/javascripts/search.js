@@ -1,10 +1,10 @@
 var page_start = 0;
 
-function init() {
+function init_search() {
     var search_form = $('#search-form');
     toggle_search_event_handler(search_form);
     user_event_search_handler(search_form);
-}
+};
 
 function toggle_search_event_handler(search_form) {
     search_form.find('.dropdown-item').click(function () {
@@ -21,7 +21,9 @@ function user_event_search_handler(search_form) {
             search(search_form)
         }
     });
-    search_form.find('.search-btn').click(search(search_form));
+    search_form.find('.search-btn').click(function () {
+        search(search_form)
+    });
 }
 
 function load_more_event_handler() {
@@ -93,6 +95,3 @@ function append_search_data(data) {
 function remove_load_more_button() {
     $('.loader').remove();
 }
-
-$(document).ready(init);
-$(document).on('page:load', init);

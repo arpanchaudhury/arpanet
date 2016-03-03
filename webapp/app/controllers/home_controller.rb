@@ -16,7 +16,6 @@ class HomeController < ApplicationController
           Fusce at diam nisl. In feugiat luctus lacinia. Nullam sagittis aliquet nibh id tempor. Aliquam erat volutpat. Pellentesque habitant morbi tristique
           senectus et netus et malesuada fames ac turpis egestas. Duis sed lacinia nulla. Maecenas molestie urna nibh, eu imperdiet magna facilisis ut.'
         ]
-
   end
 
   def contact
