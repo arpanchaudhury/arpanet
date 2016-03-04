@@ -34,18 +34,31 @@ class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi,
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = async {
     val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTopics(topics)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
-    val documentsF = await(writeUpsCollectionF).find(query).sort(queryBuilder.sortByQuery("timestamp", queryBuilder.Descending)).options(queryOptions).cursor[WriteUp]().collect[List](pageLength)
+    val documentsF = await(writeUpsCollectionF).find(query).sort(queryBuilder.sortByQuery("timestamp", queryBuilder.Descending)).
+        options(queryOptions).cursor[WriteUp]().collect[List](pageLength).transform(identity, e => {
+        logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+        sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+      }
+    )
     Json.toJson(await(documentsF))
   }
 
   def getWriteUpsCount(topics: List[String]) = async {
     val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTopics(topics)
-    val countF = await(writeUpsCollectionF).count(Some(query))
+    val countF = await(writeUpsCollectionF).count(Some(query)).transform(identity, e => {
+        logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+        sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+      }
+    )
     Json.toJson(await(countF))
   }
 
   def getTopics = async {
-    val topicsF = await(writeUpsCollectionF).distinct("topics")
+    val topicsF = await(writeUpsCollectionF).distinct("topics").transform(identity, e => {
+        logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+        sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
+      }
+    )
     val topics = await(topicsF).map { case topic: BSONString => topic.value }
     Json.toJson(topics)
   }
