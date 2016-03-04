@@ -19,13 +19,13 @@ class PdfService @Inject()(resourceFinder: ResourceFinder,
   private implicit lazy val pdfDatabaseF = mongoConnectionApi.getDatabase(mongoConstants.applicationDatabaseName)
   private lazy val pdfCollectionF = mongoConnectionApi.getCollection(mongoConstants.pdfCollectionName)
 
-  def getDocument(documentName: String) = async {
-    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByNameQuery(documentName)).one[Pdf]
+  def getDocument(documentId: String) = async {
+    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByIdQuery(documentId)).one[Pdf]
     await(eventualDocument) match {
       case Some(document) => await(resourceFinder.find(document.uri, document.extension))
       case None =>
-        logger.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentName")
-        sys.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentName")
+        logger.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentId")
+        sys.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentId")
     }
   }
 }
