@@ -21,7 +21,6 @@ class StaticAssetsController @Inject()(cache: CacheApi,
       async {
         Ok.sendFile(
           cache.getOrElse(s"public-images-$imageId") {
-            // async - await does not help here (by-name argument)
             val image = Await.result(imageService.getPublicImage(imageId), 10.seconds)
             cache.set(s"public-images-$imageId", image, 6.hours)
             image
@@ -32,8 +31,13 @@ class StaticAssetsController @Inject()(cache: CacheApi,
 
   def getResume = Action.async {
     implicit request =>
-      pdfService.getDocument("resume").map {
-        resume => Result(
+      async {
+        val resume = cache.getOrElse("resume") {
+          val resume = Await.result(pdfService.getDocument("resume"), 30.seconds)
+          cache.set("resume", resume, 7.days)
+          resume
+        }
+        Result(
           header = ResponseHeader(200, Map(CONTENT_LENGTH -> resume.length.toString, CONTENT_TYPE -> "application/pdf")),
           body = Enumerator.fromFile(resume)
         )
