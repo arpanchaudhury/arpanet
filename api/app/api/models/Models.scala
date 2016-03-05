@@ -1,13 +1,28 @@
 package api.models
 
-import play.api.libs.json.{Json, Writes}
-import reactivemongo.bson.{BSONDocument, BSONDocumentReader, Macros}
+import api.RichBSONValue
+import play.api.libs.json.{JsObject, Json, Writes}
+import reactivemongo.bson.{Macros, BSONDocument, BSONDocumentReader}
+
+sealed trait Document {
+  def underlying: BSONDocument
+}
+
+object Document {
+  implicit object DocumentReader extends BSONDocumentReader[Document] {
+    def read(doc: BSONDocument) = new Document { override def underlying: BSONDocument = doc }
+  }
+
+  implicit val writes = Writes[Document] {
+    case document: Document => document.underlying.toJson.as[JsObject]
+  }
+}
 
 case class Pdf(_id: String, uri: String, extension: String, title: String)
 
 object Pdf {
   implicit val format = Json.format[Pdf]
-  implicit val documentFormat = Macros.handler[Pdf]
+  implicit val pdfFormat = Macros.handler[Pdf]
 }
 
 case class PublicImage(_id: String, uri: String, extension: String, title: String, description: String)
@@ -54,7 +69,7 @@ object WriteUp {
           imageUrl = doc.getAs[String]("image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp =  doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get
         )
       }
       else if (doc.getAsTry[String]("video_url").isSuccess) {
@@ -67,7 +82,7 @@ object WriteUp {
           posterImageUrl = doc.getAs[String]("poster_image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp =  doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get
         )
       }
       else if (doc.getAsTry[String]("slide_url").isSuccess) {
@@ -80,7 +95,7 @@ object WriteUp {
           posterImageUrl = doc.getAs[String]("poster_image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp =  doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get
         )
       }
       else {
@@ -91,7 +106,7 @@ object WriteUp {
           content = doc.getAs[String]("content").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp =  doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get
         )
       }
     }

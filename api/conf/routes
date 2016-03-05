@@ -12,6 +12,8 @@ GET     /images/public-image/:imageId       @api.controllers.StaticAssetsControl
 
 GET     /resume                             @api.controllers.StaticAssetsController.getResume
 
+GET     /profile                            @api.controllers.StaticAssetsController.getProfile
+
 GET     /search/write-ups                   @api.controllers.SearchController.searchWriteUps(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
 
 GET     /search/photographs                 @api.controllers.SearchController.searchPhotographs(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
