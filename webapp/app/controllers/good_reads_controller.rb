@@ -6,29 +6,22 @@ class GoodReadsController < ApplicationController
     @selected_topics = request.query_parameters['topics'] ? request.query_parameters['topics'].uniq : []
 
     conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups"
-
     api_response = conn.get do |req|
       req.params['pageStart'] = page_start
       req.params['pageLength'] = page_length
       req.params['topics'] = @selected_topics
     end
+    response_body = JSON.parse(api_response.body)
+    @blog_posts = response_body['writeUps']
 
     @topics = fetch_topics(@selected_topics, 5)
-    api_response = JSON.parse(api_response.body)
-    blog_post_count = api_response['count']
-    @blog_posts = api_response['writeUps']
-
-    @pager = {:count => blog_post_count, :page_start => page_start, :page_length => page_length}
+    @pager = {:count => response_body['count'], :page_start => page_start, :page_length => page_length}
   end
 
   def show
     write_up_id = params[:id]
-
     conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups/#{write_up_id}"
-
-    api_response = conn.get
-
-    @blog_post = JSON.parse(api_response.body)
+    @blog_post = JSON.parse(conn.get.body)
   end
 
   def topics
@@ -37,11 +30,8 @@ class GoodReadsController < ApplicationController
   end
 
   private def fetch_topics(selected_topics, count)
-    conn = Faraday.new Rails.configuration.x.api.url
-
-    api_response = conn.get '/write-ups/topics'
-
-    all_topics = JSON.parse(api_response.body)
+    conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups/topics"
+    all_topics = JSON.parse(conn.get.body)
     topics = all_topics - selected_topics
     topics.take(count)
   end
