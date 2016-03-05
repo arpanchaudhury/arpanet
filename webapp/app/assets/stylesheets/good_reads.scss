@@ -5,6 +5,21 @@
   margin-top: 15px;
   font-family: "Comic Sans MS", sans-serif;
 
+  hr {
+    color: #BD4D1E;
+    border-color: #BD4D1E;
+    background-color: #BD4D1E;
+  }
+
+  .title {
+    color: #BD4D1E;
+    text-align: center;
+  }
+
+  .search-query {
+    border: 1px solid #5CB85C;
+  }
+
   .topic-filter {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -13,7 +28,7 @@
       margin-top: 10px;
 
       .c-indicator {
-        top: 4px;
+        top: 5px;
         border: 1px solid #CCCCCC;
       }
     }

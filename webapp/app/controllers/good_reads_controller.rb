@@ -14,7 +14,7 @@ class GoodReadsController < ApplicationController
     response_body = JSON.parse(api_response.body)
     @blog_posts = response_body['writeUps']
 
-    @topics = fetch_topics(@selected_topics, 5)
+    @topics = fetch_topics(@selected_topics, 10)
     @pager = {:count => response_body['count'], :page_start => page_start, :page_length => page_length}
   end
 
