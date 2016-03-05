@@ -6,7 +6,7 @@ import com.google.inject.Singleton
 class MongoConstants {
   val applicationDatabaseName = "arpa(n)2et"
 
-  val documentsCollection = "documents"
+  val documentsCollectionName = "documents"
   val pdfCollectionName = "pdfs"
   val writeUpsCollectionName = "write_ups"
   val publicImagesCollectionName = "public_images"

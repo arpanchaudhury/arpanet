@@ -13,9 +13,11 @@ class QueryBuilder {
 
   def findByIdQuery(id: String) = BSONDocument("_id" -> id)
 
-  def findDocumentByTags(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$in" -> tags))
+  def findByTags(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$in" -> tags))
 
-  def findDocumentByTopics(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$in" -> topics))
+  def findByType(docType: String) = BSONDocument("type" -> docType)
+
+  def findByTopics(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$in" -> topics))
 
   def fullTextSearchQuery(searchTerm: String) = BSONDocument("$text" -> BSONDocument("$search" -> searchTerm))
 

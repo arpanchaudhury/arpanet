@@ -5,6 +5,7 @@ import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.iteratee.Enumerator
+import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller, ResponseHeader, Result}
 
 import scala.async.Async._
@@ -48,5 +49,12 @@ class StaticAssetsController @Inject()(cache: CacheApi,
   def getProfile = Action.async {
     implicit request =>
       async (Ok(await(documentService.getDocument("profile"))))
+  }
+
+  def getPhotographyEquipments = Action.async {
+    implicit request =>
+      async {
+        Ok(await(documentService.getDocumentsByType("equipment")))
+      }
   }
 }

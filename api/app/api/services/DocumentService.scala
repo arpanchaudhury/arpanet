@@ -6,10 +6,9 @@ import api.services.helpers.{MongoConnectionApi, QueryBuilder}
 import com.google.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
-import play.api.libs.json.{Json, JsValue}
+import play.api.libs.json.Json
 
 import scala.async.Async._
-import scala.concurrent.Future
 
 
 @Singleton
@@ -19,15 +18,25 @@ class DocumentService @Inject()(mongoConnectionApi: MongoConnectionApi,
 
   private val logger = Logger(this.getClass)
   private implicit lazy val documentDatabaseF = mongoConnectionApi.getDatabase(mongoConstants.applicationDatabaseName)
-  private lazy val documentsCollectionF = mongoConnectionApi.getCollection(mongoConstants.documentsCollection)
+  private lazy val documentsCollectionF = mongoConnectionApi.getCollection(mongoConstants.documentsCollectionName)
 
   def getDocument(id: String) = async {
     val eventualDocument = await(documentsCollectionF).find(queryBuilder.findByIdQuery(id)).one[Document]
     await(eventualDocument) match {
       case Some(document) => Json.toJson(document)
       case None =>
-        logger.error(s"Error: No document found in ${mongoConstants.documentsCollection} with ID : $id")
-        sys.error(s"Error: No document found in ${mongoConstants.documentsCollection} with ID : $id")
+        logger.error(s"Error: No document found in ${mongoConstants.documentsCollectionName} with ID : $id")
+        sys.error(s"Error: No document found in ${mongoConstants.documentsCollectionName} with ID : $id")
     }
+  }
+
+  def getDocumentsByType(docType: String) = async {
+    val documentsF = await(documentsCollectionF).find(queryBuilder.findByType(docType))
+      .cursor[Document]().collect[List]().transform(identity, e => {
+        logger.error(s"Error: Can not fetch data from ${mongoConstants.documentsCollectionName}")
+        sys.error(s"Error: Can not fetch data from ${mongoConstants.documentsCollectionName}")
+      }
+    )
+    Json.toJson(await(documentsF))
   }
 }

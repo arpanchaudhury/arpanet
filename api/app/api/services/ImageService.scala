@@ -43,7 +43,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
   }
 
   def getPhotographDetails(pageStart: Int, pageLength: Int, tags: List[String]) = async {
-    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTags(tags)
+    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTags(tags)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
     val documentsF = await(photographyCollectionF).find(query)
       .options(queryOptions).cursor[Photograph]().collect[List](pageLength).transform(identity, e => {
@@ -55,7 +55,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
   }
 
   def getPhotographsCount(tags: List[String]) = async {
-    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findDocumentByTags(tags)
+    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTags(tags)
     val countF = await(photographyCollectionF).count(Some(query)).transform(identity, e => {
         logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
         sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")

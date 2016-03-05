@@ -5,7 +5,11 @@
 Routes                                                      Description
 ======                                                      ===========
 
+GET     /profile                                            Get profile details
+
 GET     /resume                                             Get resume as 'application/pdf'
+
+GET     /photography/equipments                             Get details of equipments used for photography
 
 GET     /write-ups                                          Get paginated list of blog posts filtered by topics <Query Parameters - pageStart, pageLength, topics>
 
