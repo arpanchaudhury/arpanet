@@ -40,7 +40,10 @@ class ResourceFinder @Inject()(ws: WSClient) {
             outputStream.close()
             result.get
         }.map(_ => desiredFile)
-    }
+    } transform (identity, e => {
+      logger.error(s"Error: file $resourceUri not found")
+      sys.error(s"Error: file $resourceUri not found")
+    })
     await(eventualFile)
   }
 
