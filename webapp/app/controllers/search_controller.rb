@@ -4,13 +4,13 @@ class SearchController < ApplicationController
     @query = request.query_parameters['query']
     page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : '0'
 
-    page_length_default =
+    default_page_length =
       if @content == 'write-ups'
         '10'
       elsif @content == 'photographs'
         '16'
       end
-    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : page_length_default
+    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : default_page_length
 
     conn = Faraday.new "#{Rails.configuration.x.api.url}/search/#{@content}"
 

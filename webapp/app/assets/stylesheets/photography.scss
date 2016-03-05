@@ -27,52 +27,57 @@
 }
 
 #photograph-modal {
-    .modal-lg {
-      width: 1080px;
+  .modal-lg {
+    width: 1080px;
+  }
+
+  .close {
+    opacity: 0.5;
+    color: #F7F7F7;
+    font-size: 1.2rem;
+
+    &:hover {
+      opacity: 1.0;
+    }
+  }
+
+  .carousel-additional-controls {
+    position: absolute;
+    left: 48%;
+    right: 48%;
+    bottom: 20%;
+    z-index: 999;
+    opacity: 0.5;
+    color: #F7F7F7;
+
+    &:hover {
+      opacity: 1.0;
     }
 
-    .close {
-      opacity: 0.5;
-      color: #F7F7F7;
-      font-size: 1.2rem;
-
-      &:hover {
-        opacity: 1.0;
-      }
+    .play-btn, .pause-btn {
+      cursor: pointer;
     }
-
-    .carousel-additional-controls {
-      position: absolute;
-      left: 48%;
-      right: 48%;
-      bottom: 20%;
-      z-index: 999;
-      opacity: 0.5;
-      color: #F7F7F7;
-
-      &:hover {
-        opacity: 1.0;
-      }
-
-      .play-btn, .pause-btn {
-        cursor: pointer;
-      }
-    }
+  }
 }
 
 .gearbox {
   margin-top: 15px;
+
   h3 {
     text-align: center;
+  }
+
+  .equipment_image {
+    border: 1rem solid rgba(0, 0, 0, 0) !important;
   }
 
   .drawer {
     .drawer-button {
       display: block;
       cursor: pointer;
-      color: rgba(125,125,125,0.8);
+      color: rgba(125, 125, 125, 0.8);
       &:hover {
-        color: rgba(39,83,131,1);
+        color: rgba(39, 83, 131, 1);
       }
     }
   }

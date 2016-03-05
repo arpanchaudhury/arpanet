@@ -7,14 +7,14 @@
             %a.label.label-danger.remove-tag
               = tag
               %i.fa.fa-times
-        - for i in 0..(@image_details.size - 1)
+        - @image_details.each_with_index do |image_detail, index|
           .column.col-lg-4
             .card
-              = image_tag(get_photograph_url(@image_details[i]), {:class => 'card-img-top img-thumbnail photo-small', :alt => 'photograph', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => i})
+              = image_tag(get_photograph_url(image_detail), {:class => 'card-img-top img-thumbnail photo-small', :alt => 'photograph', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => index})
               .card-block
-                %h4.card-title= get_photograph_title(@image_details[i])
-                %p.card-text= get_photograph_description(@image_details[i])
-                -for tag in get_photograph_tags(@image_details[i])
+                %h4.card-title= get_photograph_title(image_detail)
+                %p.card-text= get_photograph_description(image_detail)
+                -for tag in get_photograph_tags(image_detail)
                   %a.label.label-pill.label-default.tag= tag
         %nav.column.col-lg-12
           %ul.pager
@@ -25,15 +25,15 @@
       .column.column-two.col-lg-3.gearbox
         %h3.text-muted Equipments
         .drawer
-          - for drawer_item in @drawer_items
+          - for drawer_item in @photography_equipments
             .drawer-item
               .card
                 .card-block
-                  %h4.card-title= drawer_item[:title]
-                = image_tag(drawer_item[:img_src], {:alt => 'equipment', :class => 'center-block img-fluid'})
+                  %h4.card-title= get_equipment_title(drawer_item)
+                = image_tag(get_equipment_image_url(drawer_item), {:alt => 'equipment', :class => 'equipment_image center-block img-fluid'})
                 .card-block
-                  %p.card-text= drawer_item[:description]
-                  %a.card-link{:href => drawer_item[:spec_url]} Specification
+                  %p.card-text= get_equipment_description(drawer_item)
+                  %a.card-link{:href => get_equipment_specification_url(drawer_item)} Specification
           .fa-stack.fa-lg.center-block.drawer-button
             %i.fa.fa-circle-o.fa-stack-2x
             %i.fa.fa-stack-1x.drawer-icon
