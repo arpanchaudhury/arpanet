@@ -3,7 +3,7 @@
     .row
       .column.column-one.col-lg-3
         %a.profile-picture-lightbox{'data-target' => '#image-modal', 'data-toggle' => 'modal'}
-          %img.img-thumbnail.profile-picture.center-block{:src => @profile_image_url, :alt => 'profile picture'}
+          %img.img-thumbnail.profile-picture.center-block{:src => get_profile_image_url(@profile), :alt => 'profile picture'}
         .social-media-links
           .nav.nav-inline
             = render partial: 'partials/social_media_link', :locals => {:media => 'linkedin', :url => 'https://in.linkedin.com/in/arpanc', :target => '_blank'}
@@ -12,7 +12,7 @@
             = render partial: 'partials/social_media_link', :locals => {:media => '500px', :url => 'https://500px.com/arpanchaudhury', :target => '_blank'}
             = render partial: 'partials/social_media_link', :locals => {:media => 'slideshare', :url => 'http://www.slideshare.net/ArpanChaudhury', :target => '_blank'}
         %ul.profile-summary
-          - for line in @profile_summary
+          - for line in get_profile_summary(@profile)
             %li= line
       .column.column-two.col-lg-9
         %h1.about-me.heading
@@ -20,7 +20,7 @@
           %span.bengali
             ( অর্পণ চৌধূরী )
         .about-me.body.column.col-lg-12
-          - for paragraph in @body_paragraphs
+          - for paragraph in get_profile_description(@profile)
             %p.paragraph.column.col-lg-4
               = paragraph
-  = render partial: 'partials/profile_picture_modal', :locals => {:image_url => @profile_image_url, :alternative_text => 'profile picture'}
+  = render partial: 'partials/profile_picture_modal', :locals => {:image_url => get_profile_image_url(@profile), :alternative_text => 'profile picture'}
