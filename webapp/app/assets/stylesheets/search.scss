@@ -3,8 +3,13 @@
   text-align: center;
 }
 
-.photograph:hover {
-  cursor: pointer;
+.photograph {
+  .card-block {
+    min-height: 150px;
+  }
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .mb20 {

@@ -24,6 +24,10 @@ section {
 }
 
 .modal {
+  .modal-lg {
+    width: 1080px;
+  }
+
   .modal-body {
     &.no-padding {
       padding: 0;
