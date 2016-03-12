@@ -33,7 +33,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
       case Some(document) =>
         val image = await(resourceFinder.find(document.uri, document.extension))
         dimensions.map { d =>
-          val resizedImageOutput = new File(applicationConstants.TEMP_DIRECTORY + image.getName)
+          val resizedImageOutput = new File(s"${applicationConstants.TEMP_DIRECTORY}/$d-${image.getName}")
           Image.fromFile(image).max(d.maxWidth, d.maxHeight).output(resizedImageOutput)
         }.getOrElse(image)
       case None =>
@@ -48,7 +48,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
       case Some(document) =>
         val image = await(resourceFinder.find(document.uri, document.extension))
         dimensions.map { d =>
-          val resizedImageOutput = new File(applicationConstants.TEMP_DIRECTORY + image.getName)
+          val resizedImageOutput = new File(s"${applicationConstants.TEMP_DIRECTORY}/$d-${image.getName}")
           Image.fromFile(image).max(d.maxWidth, d.maxHeight).output(resizedImageOutput)
         }.getOrElse(image)
       case None =>

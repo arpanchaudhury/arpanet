@@ -4,5 +4,5 @@ import com.google.inject.Singleton
 
 @Singleton
 class ApplicationConstants {
-  val TEMP_DIRECTORY = "/tmp/"
+  val TEMP_DIRECTORY = "/tmp"
 }
