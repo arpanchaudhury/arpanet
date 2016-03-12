@@ -4,7 +4,7 @@ function init_search() {
     var search_form = $('#search-form');
     toggle_search_event_handler(search_form);
     user_event_search_handler(search_form);
-};
+}
 
 function toggle_search_event_handler(search_form) {
     search_form.find('.dropdown-item').click(function () {
@@ -44,7 +44,7 @@ function photograph_click_event_handler() {
     $('.photograph').click(function () {
         var image_url = $(this).find('img').attr('src'),
             modal = $('#photograph-view-modal');
-        modal.find('img').attr('src', image_url);
+        modal.find('img').attr('src', remove_all_params(image_url));
         modal.modal('show');
     })
 }

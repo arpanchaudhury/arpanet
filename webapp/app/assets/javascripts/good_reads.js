@@ -12,7 +12,7 @@ function init_good_reads() {
     resize_slides();
     window_resize_handler();
     compile_markdown($('#write-up'));
-};
+}
 
 function initialize_autocomplete() {
     var topic_search_box = $('.topic-search'),

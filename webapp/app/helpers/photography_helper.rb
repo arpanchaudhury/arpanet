@@ -3,6 +3,10 @@ module PhotographyHelper
     "#{Rails.configuration.x.api.url}/images/photography/#{image_detail['_id']}"
   end
 
+  def get_resized_photograph_url(image_detail, max_width, max_height)
+    "#{Rails.configuration.x.api.url}/images/photography/#{image_detail['_id']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+  end
+
   def get_photograph_title(image_detail)
     image_detail['title']
   end
@@ -19,8 +23,8 @@ module PhotographyHelper
     equipment['title']
   end
 
-  def get_equipment_image_url(equipment)
-    equipment['img_src']
+  def get_equipment_image_url(equipment, max_width, max_height)
+    "#{Rails.configuration.x.api.url}/images/public-image/#{equipment['img_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
   end
 
   def get_equipment_description(equipment)

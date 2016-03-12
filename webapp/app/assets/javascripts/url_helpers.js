@@ -17,3 +17,7 @@ function remove_parameter_from_URL(param) {
         else return url_parts[0] + '?' + updated_query_params.join('&');
     }
 }
+
+function remove_all_params(url) {
+    return url.split('?')[0];
+}

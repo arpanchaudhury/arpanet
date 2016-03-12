@@ -11,7 +11,7 @@
           - @image_details.each_with_index do |image_detail, index|
             .column.col-lg-4
               .card
-                = image_tag(get_photograph_url(image_detail), {:class => 'card-img-top img-thumbnail photo-small', :alt => 'photograph', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => index})
+                = image_tag(get_resized_photograph_url(image_detail, 600, 400), {:class => 'card-img-top img-thumbnail photo-small', :alt => 'photograph', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => index})
                 .card-block
                   %h4.card-title= get_photograph_title(image_detail)
                   %p.card-text= get_photograph_description(image_detail)
@@ -31,7 +31,7 @@
               .card
                 .card-block
                   %h4.card-title= get_equipment_title(drawer_item)
-                = image_tag(get_equipment_image_url(drawer_item), {:alt => 'equipment', :class => 'equipment_image center-block img-fluid'})
+                = image_tag(get_equipment_image_url(drawer_item, 600, 400), {:alt => 'equipment', :class => 'equipment_image center-block img-fluid'})
                 .card-block
                   %p.card-text= get_equipment_description(drawer_item)
                   %a.card-link{:href => get_equipment_specification_url(drawer_item), :target => 'blank'} Specification
