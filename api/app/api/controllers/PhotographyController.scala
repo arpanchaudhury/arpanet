@@ -1,6 +1,7 @@
 package api.controllers
 
 import api.services.ImageService
+import api.utils.Dimensions
 import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
@@ -15,13 +16,13 @@ import scala.language.postfixOps
 @Singleton
 class PhotographyController @Inject()(cache: CacheApi,
                                       imageService: ImageService) extends Controller {
-  def getImage(imageId: String) = Action.async {
+  def getImage(imageId: String, dimensions: Option[Dimensions]) = Action.async {
     implicit request =>
       async {
         Ok.sendFile(
-          cache.getOrElse(s"photography-$imageId") {
-            val image = Await.result(imageService.getPhotograph(imageId), 20.seconds)
-            cache.set(s"photography-$imageId", image, 6.hours)
+          cache.getOrElse(s"photography-$imageId-${dimensions.getOrElse("default")}") {
+            val image = Await.result(imageService.getPhotograph(imageId, dimensions), 20.seconds)
+            cache.set(s"photography-$imageId-${dimensions.getOrElse("default")}", image, 6.hours)
             image
           }
         ).as("image/png")

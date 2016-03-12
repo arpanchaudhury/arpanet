@@ -1,9 +1,13 @@
 package api.services
 
+import java.io.File
+
 import api.models.{Photograph, PublicImage}
-import api.services.constants.MongoConstants
+import api.services.constants.{ApplicationConstants, MongoConstants}
 import api.services.helpers.{MongoConnectionApi, QueryBuilder, ResourceFinder}
+import api.utils.Dimensions
 import com.google.inject.{Inject, Singleton}
+import com.sksamuel.scrimage.Image
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json.Json
@@ -13,6 +17,7 @@ import scala.async.Async._
 
 @Singleton
 class ImageService @Inject()(resourceFinder: ResourceFinder,
+                             applicationConstants: ApplicationConstants,
                              mongoConnectionApi: MongoConnectionApi,
                              mongoConstants: MongoConstants,
                              queryBuilder: QueryBuilder) {
@@ -22,20 +27,30 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
   private lazy val publicImagesCollectionF = mongoConnectionApi.getCollection(mongoConstants.publicImagesCollectionName)
   private lazy val photographyCollectionF = mongoConnectionApi.getCollection(mongoConstants.photographyCollectionName)
 
-  def getPublicImage(imageId: String) = async {
+  def getPublicImage(imageId: String, dimensions: Option[Dimensions]) = async {
     val eventualImageFile = await(publicImagesCollectionF).find(queryBuilder.findByIdQuery(imageId)).one[PublicImage]
     await(eventualImageFile) match {
-      case Some(document) => await(resourceFinder.find(document.uri, document.extension))
+      case Some(document) =>
+        val image = await(resourceFinder.find(document.uri, document.extension))
+        dimensions.map { d =>
+          val resizedImageOutput = new File(applicationConstants.TEMP_DIRECTORY + image.getName)
+          Image.fromFile(image).max(d.maxWidth, d.maxHeight).output(resizedImageOutput)
+        }.getOrElse(image)
       case None =>
         logger.error(s"Error: No image found in ${mongoConstants.publicImagesCollectionName} with ID : $imageId")
         sys.error(s"Error: No image found in ${mongoConstants.publicImagesCollectionName} with ID : $imageId")
     }
   }
 
-  def getPhotograph(imageId: String) = async {
+  def getPhotograph(imageId: String, dimensions: Option[Dimensions]) = async {
     val eventualImageFile = await(photographyCollectionF).find(queryBuilder.findByIdQuery(imageId)).one[Photograph]
     await(eventualImageFile) match {
-      case Some(document) => await(resourceFinder.find(document.uri, document.extension))
+      case Some(document) =>
+        val image = await(resourceFinder.find(document.uri, document.extension))
+        dimensions.map { d =>
+          val resizedImageOutput = new File(applicationConstants.TEMP_DIRECTORY + image.getName)
+          Image.fromFile(image).max(d.maxWidth, d.maxHeight).output(resizedImageOutput)
+        }.getOrElse(image)
       case None =>
         logger.error(s"Error: No image found in ${mongoConstants.photographyCollectionName} with ID : $imageId")
         sys.error(s"Error: No image found in ${mongoConstants.photographyCollectionName} with ID : $imageId")

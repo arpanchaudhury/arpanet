@@ -1,11 +1,11 @@
 package api.controllers
 
 import api.services.{DocumentService, ImageService, PdfService}
+import api.utils.Dimensions
 import com.google.inject.{Inject, Singleton}
 import play.api.cache.CacheApi
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.iteratee.Enumerator
-import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller, ResponseHeader, Result}
 
 import scala.async.Async._
@@ -18,13 +18,13 @@ class StaticAssetsController @Inject()(cache: CacheApi,
                                        imageService: ImageService,
                                        pdfService: PdfService,
                                        documentService: DocumentService) extends Controller {
-  def getImage(imageId: String) = Action.async {
+  def getImage(imageId: String, dimensions: Option[Dimensions]) = Action.async {
     implicit request =>
       async {
         Ok.sendFile(
-          cache.getOrElse(s"public-images-$imageId") {
-            val image = Await.result(imageService.getPublicImage(imageId), 10.seconds)
-            cache.set(s"public-images-$imageId", image, 6.hours)
+          cache.getOrElse(s"public-images-$imageId-${dimensions.getOrElse("default")}") {
+            val image = Await.result(imageService.getPublicImage(imageId, dimensions), 10.seconds)
+            cache.set(s"public-images-$imageId-${dimensions.getOrElse("default")}", image, 6.hours)
             image
           }
         ).as("image/jpeg")
@@ -35,7 +35,7 @@ class StaticAssetsController @Inject()(cache: CacheApi,
     implicit request =>
       async {
         val resume = cache.getOrElse("resume") {
-          val resume = Await.result(pdfService.getDocument("resume"), 30.seconds)
+          val resume = Await.result(pdfService.getDocumentByType("resume"), 30.seconds)
           cache.set("resume", resume, 7.days)
           resume
         }

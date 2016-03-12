@@ -24,8 +24,18 @@ class PdfService @Inject()(resourceFinder: ResourceFinder,
     await(eventualDocument) match {
       case Some(document) => await(resourceFinder.find(document.uri, document.extension))
       case None =>
-        logger.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentId")
-        sys.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with name : $documentId")
+        logger.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with Id : $documentId")
+        sys.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with Id : $documentId")
+    }
+  }
+
+  def getDocumentByType(documentType: String) = async {
+    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByType(documentType)).one[Pdf]
+    await(eventualDocument) match {
+      case Some(document) => await(resourceFinder.find(document.uri, document.extension))
+      case None =>
+        logger.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with type : $documentType")
+        sys.error(s"Error: No pdf found in ${mongoConstants.pdfCollectionName} with type : $documentType")
     }
   }
 }

@@ -19,9 +19,11 @@ GET     /write-ups/:id                                      Get a write up when 
 
 GET     /images/photography                                 Get paginated details of photographs filtered by tags <Query Parameters - pageStart, pageLength, tags>
 
-GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided
+GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided.
+                                                            Optionally pass maxHeight and maxWidth query parameters to get resized image.
 
-GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided
+GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided.
+                                                            Optionally pass maxHeight and maxWidth query parameters to get resized image.
 
 GET     /search/write-ups                                   Get set of paginated search results for blog posts
 

@@ -6,9 +6,9 @@ GET     /write-ups/:id                      @api.controllers.BlogPostController.
 
 GET     /images/photography                 @api.controllers.PhotographyController.getImageDetails(pageStart: Int ?= 0, pageLength: Int ?= 9, tags: List[String] ?= List.empty)
 
-GET     /images/photography/:imageId        @api.controllers.PhotographyController.getImage(imageId: String)
+GET     /images/photography/:imageId        @api.controllers.PhotographyController.getImage(imageId: String, dimensions: Option[api.utils.Dimensions])
 
-GET     /images/public-image/:imageId       @api.controllers.StaticAssetsController.getImage(imageId: String)
+GET     /images/public-image/:imageId       @api.controllers.StaticAssetsController.getImage(imageId: String, dimensions: Option[api.utils.Dimensions])
 
 GET     /resume                             @api.controllers.StaticAssetsController.getResume
 
