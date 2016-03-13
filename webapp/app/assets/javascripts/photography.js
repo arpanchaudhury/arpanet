@@ -59,11 +59,13 @@ function image_click_event_handler(carousel) {
 
 function generate_tag_links() {
     $('.tag').each(function () {
-        var tag = $(this);
-        var url = location.href;
-        var param = "tags[]=" + tag.text();
-        if (url.indexOf(param) < 0) {
-            var _url = add_parameter_to_URL(param);
+        var tag = $(this),
+            url = location.href,
+            page_start_param = /page-start=\d+/.exec(url),
+            sanitized_url = remove_parameter_from_URL(url, page_start_param),
+            param = "tags[]=" + tag.text();
+        if (sanitized_url.indexOf(param) < 0) {
+            var _url = add_parameter_to_URL(sanitized_url, param);
             tag.attr('href', _url);
         }
     })
@@ -71,11 +73,13 @@ function generate_tag_links() {
 
 function generate_tag_removal_links() {
     $('.remove-tag').each(function () {
-        var tag = $(this);
-        var url = location.href;
-        var param = "tags[]=" + encodeURIComponent(tag.text().trim());
-        if (url.indexOf(param) > 0) {
-            var _url = remove_parameter_from_URL(param);
+        var tag = $(this),
+            url = location.href,
+            page_start_param = /page-start=\d+/.exec(url),
+            sanitized_url = remove_parameter_from_URL(url, page_start_param),
+            param = "tags[]=" + encodeURIComponent(tag.text().trim());
+        if (sanitized_url.indexOf(param) > 0) {
+            var _url = remove_parameter_from_URL(sanitized_url, param);
             tag.attr('href', _url);
         }
     })

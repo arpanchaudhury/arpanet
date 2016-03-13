@@ -33,24 +33,33 @@ function initialize_autocomplete() {
 function topic_search_event_handler() {
     var topic_search_box = $('.topic-search');
     topic_search_box.find('.search-btn').click(function () {
-        var topic = topic_search_box.find('.search-query').val().trim();
-        location.href = add_parameter_to_URL('topics[]=' + topic);
+        var url = location.href,
+            topic = topic_search_box.find('.search-query').val().trim(),
+            page_start_param = /page-start=\d+/.exec(url),
+            sanitized_url = remove_parameter_from_URL(url, page_start_param);
+        location.href = add_parameter_to_URL(sanitized_url, 'topics[]=' + topic);
     })
 }
 
 function topic_selection_event_handler() {
     var topic_filter_box = $('.topic-filter');
     topic_filter_box.find('.topic').click(function () {
-        var topic = $(this).attr('value');
-        if ($(this).find('input').is(':checked')) location.href = add_parameter_to_URL('topics[]=' + topic);
-        else location.href = remove_parameter_from_URL('topics[]=' + encodeURIComponent(topic));
+        var url = location.href,
+            topic = $(this).attr('value'),
+            page_start_param = /page-start=\d+/.exec(url),
+            sanitized_url = remove_parameter_from_URL(url, page_start_param);
+        if ($(this).find('input').is(':checked')) location.href = add_parameter_to_URL(sanitized_url, 'topics[]=' + topic);
+        else location.href = remove_parameter_from_URL(sanitized_url, 'topics[]=' + encodeURIComponent(topic));
     })
 }
 
 function suggestion_selection_event_handler() {
     var topic_search_box = $('.topic-search');
     topic_search_box.find('.search-query').on("autocompleteselect", function (event, ui) {
-        location.href = add_parameter_to_URL('topics[]=' + ui.item.value);
+        var url = location.href,
+            page_start_param = /page-start=\d+/.exec(url),
+            sanitized_url = remove_parameter_from_URL(url, page_start_param);
+        location.href = add_parameter_to_URL(sanitized_url, 'topics[]=' + ui.item.value);
     });
 }
 

@@ -17,7 +17,7 @@
               - elsif blog_post['contentType'] == 'text-slide' or blog_post['contentType'] == 'text-video'
                 %img.img-thumbnail{:alt => 'write up image', :src => blog_post['posterImageUrl']}
               - else
-                %img.img-thumbnail{:alt => 'write up image', :src => 'http://blog.jetbrains.com/idea/files/2012/12/spring-frameworks-1.png'}
+                = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:60%'})
           .col-xs-12.col-sm-12.col-md-2
             %ul.meta-search
               %li

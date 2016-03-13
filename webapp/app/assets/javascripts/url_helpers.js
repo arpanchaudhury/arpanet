@@ -1,11 +1,9 @@
-function add_parameter_to_URL(param) {
-    var _url = location.href;
+function add_parameter_to_URL(_url, param) {
     _url += (_url.split('?')[1] ? '&' : '?') + param;
     return _url;
 }
 
-function remove_parameter_from_URL(param) {
-    var _url = location.href;
+function remove_parameter_from_URL(_url, param) {
     var url_parts = _url.split('?');
     if (url_parts.length == 1) return _url;
     else {
