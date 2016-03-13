@@ -38,13 +38,16 @@
                 %i.fa.fa-plus
   - elsif @content == 'photographs'
     .results-container{'data-total-results' => @search_results['total']}
-      - for photograph in @search_results['results']
-        .column.col-lg-3.snippet
-          .card.photograph
-            = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'card-img-top img-thumbnail', :alt => 'photograph'})
-            .card-block
-              %h4.card-title= get_photograph_title(photograph)
-              %p.card-text= get_photograph_description(photograph)
+      - @search_results['results'].in_groups_of(4) do |group|
+        .row
+          - for photograph in group
+            - if photograph
+              .column.col-lg-3.snippet
+                .card.photograph
+                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'card-img-top img-thumbnail', :alt => 'photograph'})
+                  .card-block
+                    %h4.card-title= get_photograph_title(photograph)
+                    %p.card-text= get_photograph_description(photograph)
     #photograph-view-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
       .modal-dialog.modal-lg{:role => 'document'}
         .modal-content
