@@ -1,5 +1,6 @@
 function init_photography() {
     initialize_carousel();
+    hide_spinner_on_photographs_load_event_handler();
     generate_tag_links();
     generate_tag_removal_links();
     initialize_drawer($('.drawer'));
@@ -82,5 +83,15 @@ function generate_tag_removal_links() {
             var _url = remove_parameter_from_URL(sanitized_url, param);
             tag.attr('href', _url);
         }
+    })
+}
+
+function hide_spinner_on_photographs_load_event_handler() {
+    $(window).load(function() {
+        var photograph_modal = $("#photograph-modal"),
+            modal_content = photograph_modal.find(".modal-content"),
+            loader = modal_content.siblings('.loader');
+        loader.addClass('hidden');
+        modal_content.removeClass('hidden');
     })
 }
