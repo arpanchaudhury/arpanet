@@ -24,6 +24,12 @@ section {
 }
 
 .modal {
+  text-align: center;
+
+  .loader {
+    margin-top: 5rem;
+  }
+
   .modal-lg {
     width: 1080px;
   }

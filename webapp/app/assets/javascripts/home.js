@@ -1,4 +1,5 @@
 function init_homepage() {
+    hide_spinner_on_image_load_event_handler();
     profile_image_click_event_handler();
 }
 
@@ -8,5 +9,14 @@ function profile_image_click_event_handler() {
             modal = $('#profile-image-modal');
         modal.find('img').attr('src', remove_all_params(image_url));
         modal.modal('show');
+    })
+}
+
+function hide_spinner_on_image_load_event_handler() {
+    $('#profile-image-modal').find('img').load(function() {
+        var modal_content = $(this).closest('.modal-content'),
+            loader = modal_content.siblings('.loader');
+        loader.addClass('hidden');
+        modal_content.removeClass('hidden');
     })
 }
