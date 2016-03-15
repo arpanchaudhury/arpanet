@@ -9,7 +9,6 @@ function init_photography() {
 
 function initialize_carousel() {
     var carousel = $('#carousel');
-    carousel.carousel('pause');
     activate_carousel_from(carousel, 0);
     carousel_key_controls_event_handler(carousel);
     carousel_additional_controls_event_handler(carousel);
@@ -88,11 +87,17 @@ function generate_tag_removal_links() {
 }
 
 function hide_spinner_on_photographs_load_event_handler() {
+    var images_to_load = $('.cards .card').length, loaded_image_count = 0;
+
     $('#photograph-modal').find('img').load(function() {
-        var photograph_modal = $("#photograph-modal"),
-            modal_content = photograph_modal.find(".modal-content"),
-            loader = modal_content.siblings('.loader');
-        loader.addClass('hidden');
-        modal_content.removeClass('hidden');
+        loaded_image_count += 1;
+        if(loaded_image_count == images_to_load) {
+            var photograph_modal = $("#photograph-modal"),
+                modal_content = photograph_modal.find(".modal-content"),
+                loader = modal_content.siblings('.loader');
+            loader.addClass('hidden');
+            modal_content.removeClass('hidden');
+            loaded_image_count = 0;
+        }
     })
 }
