@@ -40,15 +40,6 @@ function load_more_event_handler() {
     })
 }
 
-function photograph_click_event_handler() {
-    $('.photograph').click(function () {
-        var image_url = $(this).find('img').attr('src'),
-            modal = $('#photograph-view-modal');
-        modal.find('img').attr('src', remove_all_params(image_url));
-        modal.modal('show');
-    })
-}
-
 function search(search_form) {
     var content_to_search = search_form.find('.dropdown .dropdown-toggle').attr('value'),
         search_url = search_form.attr('action') + '/' + content_to_search,
@@ -79,7 +70,7 @@ function populate_initial_search_results(data) {
 
 function append_search_data(data) {
     var html_data = $.parseHTML(data),
-        loaded_search_results = $(html_data).find('.snippet'),
+        loaded_search_results = $(html_data).find('.snippet-group'),
         search_section = $('section.search-results');
     search_section.find('.results-container').append(loaded_search_results);
 
@@ -90,6 +81,15 @@ function append_search_data(data) {
     }
 
     photograph_click_event_handler();
+}
+
+function photograph_click_event_handler() {
+    $('.photograph').click(function () {
+        var image_url = $(this).find('img').attr('src'),
+            modal = $('#photograph-view-modal');
+        modal.find('img').attr('src', remove_all_params(image_url));
+        modal.modal('show');
+    })
 }
 
 function remove_load_more_button() {
