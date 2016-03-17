@@ -47,15 +47,16 @@ sealed trait WriteUp {
   def topics: List[String]
   def markdown: String
   def timestamp: String
+  def code: Option[String]
 }
 
-case class WriteUpContentOnly(_id: String, contentType: String, title: String, content: String, topics: List[String], markdown: String, timestamp: String) extends WriteUp
+case class WriteUpContentOnly(_id: String, contentType: String, title: String, content: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
-case class WriteUpWithImage(_id: String, contentType: String, title: String, content: String, imageUrl: String, topics: List[String], markdown: String, timestamp: String) extends WriteUp
+case class WriteUpWithImage(_id: String, contentType: String, title: String, content: String, imageUrl: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
-case class WriteUpWithVideo(_id: String, contentType: String, title: String, content: String, videoUrl: String, posterImageUrl: String, topics: List[String], markdown: String, timestamp: String) extends WriteUp
+case class WriteUpWithVideo(_id: String, contentType: String, title: String, content: String, videoUrl: String, posterImageUrl: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
-case class WriteUpWithSlide(_id: String, contentType: String, title: String, content: String, slideUrl: String, posterImageUrl: String, topics: List[String], markdown: String, timestamp: String) extends WriteUp
+case class WriteUpWithSlide(_id: String, contentType: String, title: String, content: String, slideUrl: String, posterImageUrl: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
 object WriteUp {
   implicit object WriteUpReader extends BSONDocumentReader[WriteUp] {
@@ -69,7 +70,8 @@ object WriteUp {
           imageUrl = doc.getAs[String]("image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp = doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get,
+          code = doc.getAs[String]("code")
         )
       }
       else if (doc.getAsTry[String]("video_url").isSuccess) {
@@ -82,7 +84,8 @@ object WriteUp {
           posterImageUrl = doc.getAs[String]("poster_image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp = doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get,
+          code = doc.getAs[String]("code")
         )
       }
       else if (doc.getAsTry[String]("slide_url").isSuccess) {
@@ -95,7 +98,8 @@ object WriteUp {
           posterImageUrl = doc.getAs[String]("poster_image_url").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp = doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get,
+          code = doc.getAs[String]("code")
         )
       }
       else {
@@ -106,7 +110,8 @@ object WriteUp {
           content = doc.getAs[String]("content").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
-          timestamp = doc.getAs[String]("timestamp").get
+          timestamp = doc.getAs[String]("timestamp").get,
+          code = doc.getAs[String]("code")
         )
       }
     }
