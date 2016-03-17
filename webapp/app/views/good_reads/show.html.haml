@@ -2,9 +2,9 @@
   %h2.title= @blog_post['title']
   .column.column-one.col-lg-4
     - if @blog_post['contentType'] == 'text'
-      = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:60%'})
+      = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img-fluid', :style => 'width:40%; margin-top:3rem'})
     - if @blog_post['contentType'] == 'text-image'
-      %img.img-fluid.image{:src => @blog_post['imageUrl']}
+      %img.img-fluid.image-rounded.image{:src => @blog_post['imageUrl']}
     - if @blog_post['contentType'] == 'text-video'
       .video-container
         %iframe.video.center-block{:src => @blog_post['videoUrl'], :allowfullscreen => '', :frameborder => '0'}
@@ -17,8 +17,8 @@
           %span.input-group-addon
             %i.fa.fa-github
           %input#repo-url.form-control{:type => 'text', :value => @blog_post['code']}
-          %span.input-group-addon
-            %i.fa.fa-clipboard.copy
+          %span.input-group-addon.copy
+            %i.fa.fa-clipboard
   .column.column-two.col-lg-8
     .markdown
       %textarea.markdown-data.hidden= @blog_post['markdown']

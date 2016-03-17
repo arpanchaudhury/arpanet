@@ -78,6 +78,10 @@
   .code {
     width: 80%;
     margin-top: 3rem;
+
+    .copy {
+      cursor: pointer;
+    }
   }
 
   .markdown {
