@@ -1,5 +1,6 @@
 %section.container-fluid#write-up
-  .column.column-one.col-lg-5
+  %h2.title= @blog_post['title']
+  .column.column-one.col-lg-4
     - if @blog_post['contentType'] == 'text'
       = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:60%'})
     - if @blog_post['contentType'] == 'text-image'
@@ -10,9 +11,15 @@
     - if @blog_post['contentType'] == 'text-slide'
       .slide-container
         %iframe.slide.center-block{:src => @blog_post['slideUrl'], :allowfullscreen => '', :frameborder => '0'}
-    %p.content= @blog_post['content']
-  .column.column-two.col-lg-7
-    %h2.title= @blog_post['title']
+    - if @blog_post['code']
+      .code.center-block
+        .input-group
+          %span.input-group-addon
+            %i.fa.fa-github
+          %input#repo-url.form-control{:type => 'text', :value => @blog_post['code']}
+          %span.input-group-addon
+            %i.fa.fa-clipboard.copy
+  .column.column-two.col-lg-8
     .markdown
       %textarea.markdown-data.hidden= @blog_post['markdown']
       .markdown-body

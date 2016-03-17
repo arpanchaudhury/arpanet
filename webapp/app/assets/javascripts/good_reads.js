@@ -12,6 +12,7 @@ function init_good_reads() {
     resize_slides();
     window_resize_handler();
     compile_markdown($('#write-up'));
+    code_copy_event_handler();
 }
 
 function initialize_autocomplete() {
@@ -85,5 +86,15 @@ function window_resize_handler() {
     $(window).resize(function () {
         resize_videos();
         resize_slides();
+    })
+}
+
+function code_copy_event_handler() {
+    $('.code').find('.copy').click(function () {
+        var to_copy = document.querySelector('#repo-url');
+        to_copy.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {}
     })
 }

@@ -70,22 +70,19 @@
     margin: 1.5rem auto;
   }
 
-  .content {
-    color: #959595;
-    font-size: 1.0rem;
-    text-align: justify;
-    padding-top: 0.8rem;
-    border-top: 1px solid #EEE;
-  }
-
   .image, .video, .slide {
     display: block;
-    margin: 1.5rem auto;
+    margin: 0 auto;
+  }
+
+  .code {
+    width: 80%;
+    margin-top: 3rem;
   }
 
   .markdown {
     display: block;
-    padding: 0 1.5rem;
-    border-left: 1px solid #EEE;
+    padding: 1.5rem;
+    border: 1px solid #EEE;
   }
 }
