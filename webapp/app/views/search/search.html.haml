@@ -57,6 +57,9 @@
             %img.img-thumbnail{:src => '', :alt => 'photograph'}
             %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
               %i.fa.fa-inverse.fa-times-circle
-  - if @search_results.size != 0
+  - if @search_results['total'] != 0
     .column.col-lg-12
       %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More
+  - else
+    %h4 Try with most popular search terms
+    %p= get_popular_search_terms(@content)
