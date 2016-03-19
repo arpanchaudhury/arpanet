@@ -12,6 +12,7 @@ import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json.Json
 import reactivemongo.api.QueryOpts
+import reactivemongo.bson.BSONString
 
 import scala.async.Async._
 
@@ -77,5 +78,15 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
       }
     )
     Json.toJson(await(countF))
+  }
+
+  def getTags = async {
+    val tagsF = await(photographyCollectionF).distinct("tags").transform(identity, e => {
+      logger.error(s"Error: Can not fetch data from ${mongoConstants.photographyCollectionName}")
+      sys.error(s"Error: Can not fetch data from ${mongoConstants.photographyCollectionName}")
+    }
+    )
+    val tags = await(tagsF).map { case tag: BSONString => tag.value }
+    Json.toJson(tags)
   }
 }

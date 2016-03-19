@@ -37,4 +37,12 @@ class PhotographyController @Inject()(cache: CacheApi,
         Ok(Json.obj("count" -> imagesCount, "photographs" -> imageDetails))
       }
   }
+
+  def getTags = Action.async {
+    implicit request =>
+      async {
+        val tags = await(imageService.getTags)
+        Ok(tags)
+      }
+  }
 }
