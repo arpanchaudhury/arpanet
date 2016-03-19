@@ -14,4 +14,8 @@ module HomeHelper
   def get_profile_description(profile)
     profile['about']
   end
+
+  def get_social_medias(profile)
+    profile['social_medias']
+  end
 end

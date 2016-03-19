@@ -1,5 +1,6 @@
 .social-media-links {
-  padding: 10px;
+  padding: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   a {
     color: #666666;
@@ -25,6 +26,7 @@
 
 .about-me {
   &.heading {
+    text-align: center;
     color: #1CD4D1;
     font-size: 72px;
     font-family: 'Tangerine', serif;
@@ -50,8 +52,9 @@
   margin: 20px;
   color: #F18812;
   text-align: center;
-  font-size: 1.10rem;
+  font-size: 2rem;
   font-weight: bold;
-  font-family: "Andale Mono", monospace;
+  font-style: italic;
+  font-family: 'Josefin Slab', serif;
   list-style-type: none;
 }
