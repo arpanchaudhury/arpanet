@@ -2,17 +2,12 @@
 @import "reset";
 
 .filters {
-  margin-top: 15px;
+  margin-top: 1rem;
   font-family: "Comic Sans MS", sans-serif;
-
-  hr {
-    color: #BD4D1E;
-    border-color: #BD4D1E;
-    background-color: #BD4D1E;
-  }
 
   .title {
     color: #BD4D1E;
+    margin-top: 1rem;
     text-align: center;
   }
 
@@ -21,11 +16,11 @@
   }
 
   .topic-filter {
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
 
     .topic {
-      margin-top: 10px;
+      margin-top: 0.5rem;
 
       .c-indicator {
         top: 5px;
@@ -43,6 +38,7 @@
   padding-left: 0;
   margin-top: 2px;
   border: 1px solid #CCCCCC;
+  border-radius: 0.25rem;
   background-color: #FFFFFF;
 
   .ui-menu-item {
@@ -68,6 +64,10 @@
     line-height: 1.2;
     text-align: center;
     margin: 1.5rem auto;
+  }
+
+  .column {
+    margin-top: 1.5rem;
   }
 
   .image, .video, .slide {

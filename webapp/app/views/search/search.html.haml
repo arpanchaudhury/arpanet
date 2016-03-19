@@ -45,7 +45,7 @@
             - if photograph
               .column.col-lg-3.snippet
                 .card.photograph
-                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'card-img-top img-thumbnail', :alt => 'photograph'})
+                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'photo-small card-img-top img-thumbnail', :alt => 'photograph'})
                   .card-block
                     %h4.card-title= get_photograph_title(photograph)
                     %p.card-text= get_photograph_description(photograph)

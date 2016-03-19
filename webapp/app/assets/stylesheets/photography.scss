@@ -20,14 +20,21 @@
       font-family: 'Josefin Sans', sans-serif;
     }
     .card-text {
-      font-size: 18px;
+      font-size: 1.2rem;
       font-family: 'Indie Flower', cursive;
     }
   }
   .photo-small {
     border: 0;
     padding: 0;
+    width: 100%;
     cursor: pointer;
+    line-height: 1px;
+  }
+  .equipment_image {
+    border: 0;
+    padding: 0;
+    width: 100%;
     line-height: 1px;
   }
   .tag {
