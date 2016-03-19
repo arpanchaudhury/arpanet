@@ -55,6 +55,7 @@ function populate_initial_search_results(data) {
     photograph_click_event_handler();
     photograph_view_modal_close_event_handler();
     hide_spinner_on_searched_photograph_load_event_handler();
+    suggestion_click_event_handler();
 }
 
 function load_more_event_handler() {
@@ -117,3 +118,11 @@ function hide_spinner_on_searched_photograph_load_event_handler() {
     })
 }
 
+function suggestion_click_event_handler() {
+    $('.suggestion').click(function () {
+        var suggestion = $(this).text().trim();
+        var search_form = $('#search-form');
+        search_form.find('.search-query').val(suggestion);
+        search(search_form);
+    })
+}
