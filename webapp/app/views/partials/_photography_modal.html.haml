@@ -1,6 +1,8 @@
 #photograph-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
   .modal-dialog.modal-lg{:role => 'document'}
-    %i.loader.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
+    .loader
+      %h1 Loading quality images for you. Please wait.
+      %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
     .modal-content.hidden
       .modal-body.no-padding
         #carousel.carousel.slide{'data-ride' => 'carousel'}

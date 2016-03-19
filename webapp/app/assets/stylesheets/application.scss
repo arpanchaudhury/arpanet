@@ -27,7 +27,11 @@ section {
   text-align: center;
 
   .loader {
-    margin-top: 5rem;
+    margin-top: 10rem;
+    h1 {
+      color: #FFFFFF;
+      margin: 2rem;
+    }
   }
 
   .modal-lg {
