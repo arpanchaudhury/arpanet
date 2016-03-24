@@ -1,24 +1,28 @@
 .container
   %hgroup.mb20
     %h1 Search Results
+    - total_results = @search_results['total']
+    - results = @search_results['results']
     %h2.lead
-      %strong.text-danger= @search_results['total']
+      %strong.text-danger= total_results
       result(s) were found for the search for
       %strong.text-danger= @query
   - if @content == 'write-ups'
-    .col-xs-12.col-sm-6.col-md-12.results-container{'data-total-results' => @search_results['total']}
+    .col-xs-12.col-sm-6.col-md-12.results-container{'data-total-results' => total_results}
       .snippet-group
-        - for blog_post in @search_results['results']
-          - timestamp = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S')
+        - for blog_post in results
+          - blog_post_type = get_blog_post_type(blog_post)
+          - blog_post_url = get_blog_post_url(blog_post)
+          - timestamp = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S')
           %article.search-result.row.snippet
             .col-xs-12.col-sm-12.col-md-3
-              %a.thumbnail{:href => "/good_reads/#{blog_post['_id']}"}
-                - if blog_post['contentType'] == 'text-image'
-                  %img.img-thumbnail{:alt => 'write up image', :src => blog_post['imageUrl']}
-                - elsif blog_post['contentType'] == 'text-slide' or blog_post['contentType'] == 'text-video'
-                  %img.img-thumbnail{:alt => 'write up image', :src => blog_post['posterImageUrl']}
+              %a.thumbnail{:href => blog_post_url}
+                - if blog_post_type == 'text-image'
+                  %img.img-thumbnail{:alt => 'write up image', :src => get_blog_post_image_url(blog_post)}
+                - elsif blog_post_type == 'text-slide' or blog_post_type == 'text-video'
+                  %img.img-thumbnail{:alt => 'write up image', :src => get_blog_post_poster_image_url(blog_post)}
                 - else
-                  = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:60%'})
+                  = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:50%'})
             .col-xs-12.col-sm-12.col-md-2
               %ul.meta-search
                 %li
@@ -29,17 +33,17 @@
                   %span= timestamp.to_s(:time)
                 %li
                   %i.fa.fa-tags
-                  %span= blog_post['topics'].join(', ')
+                  %span= get_blog_post_topics(blog_post, 4)
             .col-xs-12.col-sm-12.col-md-7.excerpet
               %h3
-                %a{:href => "/good_reads/#{blog_post['_id']}"}= blog_post['title']
-              %p= truncate(blog_post['content'], :length => 300)
+                %a{:href => blog_post_url}= get_blog_post_title(blog_post)
+              %p= truncate(get_blog_post_content(blog_post), :length => 300)
               %span.plus
-                %a{:href => "/good_reads/#{blog_post['_id']}"}
+                %a{:href => blog_post_url}
                   %i.fa.fa-plus
   - elsif @content == 'photographs'
-    .results-container{'data-total-results' => @search_results['total']}
-      - @search_results['results'].in_groups_of(4) do |group|
+    .results-container{'data-total-results' => total_results}
+      - results.in_groups_of(4) do |group|
         .row.snippet-group
           - for photograph in group
             - if photograph
@@ -56,10 +60,10 @@
           %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
         .modal-content.hidden
           .modal-body.no-padding
-            %img.img-thumbnail{:src => '', :alt => 'photograph'}
+            %img{:src => '', :alt => 'photograph'}
             %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
               %i.fa.fa-inverse.fa-times-circle
-  - if @search_results['total'] != 0
+  - if total_results != 0
     .column.col-lg-12
       %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More
   - else

@@ -29,7 +29,7 @@
             .events
               %ol
                 - for blog_post in @blog_posts
-                  - date = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S').to_date
+                  - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
                   %li
                     %a{'data-date' => date.strftime('%d/%m/%Y'), :href => '#0'}= date.strftime('%d %b')
               %span.filling-line{'aria-hidden' => 'true'}
@@ -41,13 +41,14 @@
         .events-content
           %ol
             - for blog_post in @blog_posts
-              - date = DateTime.strptime(blog_post['timestamp'], '%Y-%m-%d %H:%M:%S').to_date
+              - blog_post_url = get_blog_post_url(blog_post)
+              - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
               %li{'data-date' => date.strftime('%d/%m/%Y')}
-                %a{:href => "/good_reads/#{blog_post['_id']}"}
-                  %h2= blog_post['title']
+                %a{:href => blog_post_url}
+                  %h2= get_blog_post_title(blog_post)
                 %em= date.strftime('%d %B %Y')
-                %p= blog_post['content']
-                %a.btn.btn-primary.btn-lg{:href => "/good_reads/#{blog_post['_id']}"} Continue Reading...
+                %p= get_blog_post_content(blog_post)
+                %a.btn.btn-primary.btn-lg{:href => blog_post_url} Continue Reading...
         %script
           var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
           first_event.addClass('selected');

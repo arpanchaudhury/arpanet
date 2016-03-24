@@ -1,14 +1,13 @@
 .tags .remove-tag {
   padding: 7px;
+  margin-top: 0.8rem;
+  margin-bottom: 0.3rem;
   background-color: #979797;
 }
 
 .cards {
   .card-block {
     min-height: 200px;
-    .card-title {
-      text-align: center;
-    }
   }
 }
 
@@ -17,6 +16,7 @@
   .card-block {
     background-color: #ECEEEF;
     .card-title {
+      text-align: center;
       font-family: 'Josefin Sans', sans-serif;
     }
     .card-text {
