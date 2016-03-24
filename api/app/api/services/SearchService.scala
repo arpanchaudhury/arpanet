@@ -29,8 +29,9 @@ class SearchService @Inject()(mongoConnectionApi: MongoConnectionApi,
         sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
       }
     )
-    val writeUpSearchResultsF = await(writeUpsCollectionF).find(query).
-      options(queryOptions).cursor[WriteUp]().collect[List](pageLength).transform(identity, e => {
+    val writeUpSearchResultsF = await(writeUpsCollectionF).find(query)
+    .sort(queryBuilder.sortByQuery("timestamp", queryBuilder.Descending)).options(queryOptions)
+    .cursor[WriteUp]().collect[List](pageLength).transform(identity, e => {
         logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
         sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
       }
