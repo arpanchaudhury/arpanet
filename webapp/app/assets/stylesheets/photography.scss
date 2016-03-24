@@ -12,7 +12,7 @@
 }
 
 .card {
-  margin-top: 15px;
+  margin-top: 1.5rem;
   .card-block {
     background-color: #ECEEEF;
     .card-title {
@@ -72,21 +72,19 @@
   }
 }
 
-.gearbox {
-  margin-top: 15px;
+h3 {
+  text-align: center;
+  margin-top: 1.5rem !important;
+}
 
-  h3 {
-    text-align: center;
-  }
-
-  .drawer {
-    .drawer-button {
-      display: block;
-      cursor: pointer;
-      color: rgba(125, 125, 125, 0.8);
-      &:hover {
-        color: rgba(39, 83, 131, 1);
-      }
+.drawer {
+  margin-top: 2rem;
+  .drawer-button {
+    display: block;
+    cursor: pointer;
+    color: rgba(125, 125, 125, 0.8);
+    &:hover {
+      color: rgba(39, 83, 131, 1);
     }
   }
 }

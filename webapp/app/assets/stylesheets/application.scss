@@ -60,3 +60,11 @@ section {
     }
   }
 }
+
+.pager li a {
+  border-color: #0275D8;
+}
+
+.pager li.disabled a {
+  border-color: #818a91;
+}

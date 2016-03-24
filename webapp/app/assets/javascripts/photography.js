@@ -4,7 +4,7 @@ function init_photography() {
     generate_tag_links();
     generate_tag_removal_links();
     initialize_drawer($('.drawer'));
-    remove_unused_pagination_buttons();
+    disable_unused_pagination_buttons();
 }
 
 function initialize_carousel() {

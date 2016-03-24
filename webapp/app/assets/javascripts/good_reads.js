@@ -3,7 +3,7 @@
 
 function init_good_reads() {
     initiate_timeline();
-    remove_unused_pagination_buttons();
+    disable_unused_pagination_buttons();
     initialize_autocomplete();
     topic_search_event_handler();
     topic_selection_event_handler();
