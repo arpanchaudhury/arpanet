@@ -40,7 +40,6 @@
               .card
                 .card-block
                   %h4.card-title= get_equipment_title(drawer_item)
-                = image_tag(get_equipment_image_url(drawer_item, 600, 400), {:alt => 'equipment', :class => 'equipment_image center-block'})
                 .card-block
                   %p.card-text= get_equipment_description(drawer_item)
                   %a.card-link{:href => get_equipment_specification_url(drawer_item), :target => 'blank'} Specification

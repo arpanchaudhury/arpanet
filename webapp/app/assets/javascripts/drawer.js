@@ -1,6 +1,4 @@
 function initialize_drawer(drawer) {
-    drawer.find('.drawer-item:not(:last)').addClass('hidden');
-
     var areItemsHidden = drawer.find(".drawer-item.hidden").length == drawer.find(".drawer-item").length;
     var areItemsDisplayed = drawer.find(".drawer-item").not('.hidden').length == drawer.find(".drawer-item").length;
 
