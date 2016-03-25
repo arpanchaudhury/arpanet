@@ -40,7 +40,7 @@ function populate_initial_search_results(data) {
     var html_data = $.parseHTML(data),
         other_sections = $('section:not(.search-results)'),
         search_section = $('section.search-results');
-    other_sections.addClass('hidden');
+    other_sections.remove();
     search_section.empty();
     search_section.append(html_data);
     search_section.removeClass('hidden');
@@ -103,8 +103,12 @@ function remove_load_more_button() {
 function photograph_click_event_handler() {
     $('.photograph').click(function () {
         var image_url = $(this).find('img').attr('src'),
+            image_title = $(this).closest('.card').find('.card-title').text(),
+            image_description = $(this).closest('.card').find('.card-text').text(),
             modal = $('#photograph-view-modal');
         modal.find('img').attr('src', remove_all_params(image_url));
+        modal.find('.title').text(image_title);
+        modal.find('.description').text(image_description);
         modal.modal('show');
     })
 }

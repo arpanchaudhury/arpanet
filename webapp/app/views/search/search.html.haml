@@ -53,16 +53,7 @@
                   .card-block
                     %h4.card-title= get_photograph_title(photograph)
                     %p.card-text= get_photograph_description(photograph)
-    #photograph-view-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
-      .modal-dialog.modal-lg{:role => 'document'}
-        .loader
-          %h1 Loading quality images for you. Please wait.
-          %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
-        .modal-content.hidden
-          .modal-body.no-padding
-            %img{:src => '', :alt => 'photograph'}
-            %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
-              %i.fa.fa-inverse.fa-times-circle
+    = render partial: 'partials/photography_view_modal'
   - if total_results != 0
     .column.col-lg-12
       %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More

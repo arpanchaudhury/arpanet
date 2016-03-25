@@ -1,0 +1,13 @@
+#photograph-view-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'PhotographModal', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-lg{:role => 'document'}
+    .loader
+      %h1 Loading quality images for you. Please wait.
+      %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
+    .modal-content.hidden
+      .modal-body.no-padding
+        %img{:src => '', :alt => 'photograph'}
+        .carousel-caption
+          %h3.title
+          %p.description
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %i.fa.fa-inverse.fa-times-circle

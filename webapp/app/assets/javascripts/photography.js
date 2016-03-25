@@ -1,4 +1,6 @@
 function init_photography() {
+    image_click_event_handler();
+    hide_spinner_on_photograph_load_event_handler();
     initialize_carousel();
     hide_spinner_on_photographs_load_event_handler();
     generate_tag_links();
@@ -12,7 +14,7 @@ function initialize_carousel() {
     activate_carousel_from(carousel, 0);
     carousel_key_controls_event_handler(carousel);
     carousel_additional_controls_event_handler(carousel);
-    image_click_event_handler(carousel);
+    slide_show_button_click_event_handler(carousel);
 }
 
 function activate_carousel_from(carousel, index) {
@@ -51,10 +53,31 @@ function carousel_additional_controls_event_handler(carousel) {
     });
 }
 
-function image_click_event_handler(carousel) {
+function image_click_event_handler() {
     $('.photo-small').click(function () {
-        var target_carousel_item = $(this).attr("target-carousel-item");
-        carousel.carousel(parseInt(target_carousel_item));
+        var image_url = $(this).attr('src'),
+            image_title = $(this).closest('.card').find('.card-title').text(),
+            image_description = $(this).closest('.card').find('.card-text').text(),
+            modal = $('#photograph-view-modal');
+        modal.find('img').attr('src', remove_all_params(image_url));
+        modal.find('.title').text(image_title);
+        modal.find('.description').text(image_description);
+        modal.modal('show');
+    })
+}
+
+function hide_spinner_on_photograph_load_event_handler() {
+    $('#photograph-view-modal').find('img').load(function () {
+        var modal_content = $(this).closest('.modal-content'),
+            loader = modal_content.siblings('.loader');
+        loader.addClass('hidden');
+        modal_content.removeClass('hidden');
+    })
+}
+
+function slide_show_button_click_event_handler(carousel) {
+    $('.slide-show').click(function () {
+        carousel.carousel(0);
     });
 }
 

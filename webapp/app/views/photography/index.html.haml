@@ -9,15 +9,13 @@
               = tag
               %i.fa.fa-times
         .cards
-          - @image_details.map.with_index(0).to_a.in_groups_of(3) do |group|
+          - @image_details.in_groups_of(3) do |group|
             .row
-              - group.each do |image_detail_with_index|
-                - if image_detail_with_index
-                  - image_detail = image_detail_with_index[0]
-                  - index = image_detail_with_index[1]
+              - group.each do |image_detail|
+                - if image_detail
                   .column.col-lg-4
                     .card
-                      = image_tag(get_resized_photograph_url(image_detail, 600, 400), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => 'photograph', 'data-target' => '#photograph-modal', 'data-toggle' => 'modal', 'target-carousel-item' => index})
+                      = image_tag(get_resized_photograph_url(image_detail, 450, 300), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => 'photograph'})
                       .card-block
                         %h4.card-title= get_photograph_title(image_detail)
                         %p.card-text= get_photograph_description(image_detail)
@@ -28,6 +26,9 @@
             %li
               %a.btn.btn-lg{:href => get_previous_page_url(@pager, photography_path, {:tags => @tags})}
                 %i.fa.fa-step-backward
+            %li
+              %a.btn.btn-lg.slide-show{'data-target' => '#photograph-modal', 'data-toggle' => 'modal'}
+                %i.fa.fa-film
             %li
               %a.btn.btn-lg{:href => get_next_page_url(@pager, photography_path, {:tags => @tags})}
                 %i.fa.fa-step-forward
@@ -46,6 +47,7 @@
           .fa-stack.fa-lg.center-block.drawer-button
             %i.fa.fa-circle-o.fa-stack-2x
             %i.fa.fa-stack-1x.drawer-icon
+  = render partial: 'partials/photography_view_modal'
   = render partial: 'partials/photography_modal', :locals => {:image_details => @image_details}
 %script
   init_photography();
