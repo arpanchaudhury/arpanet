@@ -61,10 +61,29 @@ section {
   }
 }
 
-.pager li a {
-  border-color: #0275D8;
+.pager {
+  li {
+    a {
+      border: none;
+      &.disabled {
+        cursor: default;
+        color: #6F7E8D;
+        &:hover {
+          background: none;
+        }
+      }
+      &:not(.disabled) {
+        color: #0275D8;
+        &:hover {
+          color: #FFFFFF;
+          background-color: #0275D8;
+        }
+      }
+    }
+  }
 }
 
-.pager li.disabled a {
-  border-color: #818a91;
+.centered {
+  text-align: center;
+  margin-top: 1.5rem !important;
 }

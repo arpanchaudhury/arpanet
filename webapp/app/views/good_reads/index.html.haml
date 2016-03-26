@@ -3,7 +3,7 @@
     .row
       .column.column-one.col-lg-3
         %nav.navbar.navbar-light.bg-faded.filters
-          %h5.title Filter by Topic(s)
+          %h5.title Filter by Topics
           %hr
           .input-group.topic-search
             %input.form-control.search-query{:type => 'text', :placeholder => 'Search for...'}
@@ -22,7 +22,7 @@
                   %input{:type => 'checkbox'}
                   %span.c-indicator
                   = topic
-      %h3.text-muted Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of #{@pager[:count]} Post(s)
+      %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of total #{@pager[:count]} Posts
       .cd-horizontal-timeline.column.col-lg-9
         .timeline
           .events-wrapper
@@ -56,10 +56,10 @@
         %nav
           %ul.pager
             %li
-              %a.btn.btn-lg{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                %i.fa.fa-step-backward
+              %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                %i.fa.fa-2x.fa-hand-o-left
             %li
-              %a.btn.btn-lg{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                %i.fa.fa-step-forward
+              %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                %i.fa.fa-2x.fa-hand-o-right
 %script
   init_good_reads();
