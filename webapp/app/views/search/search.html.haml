@@ -17,12 +17,10 @@
           %article.search-result.row.snippet
             .col-xs-12.col-sm-12.col-md-3
               %a.thumbnail{:href => blog_post_url}
-                - if blog_post_type == 'text-image'
-                  %img.img-thumbnail{:alt => 'write up image', :src => get_blog_post_image_url(blog_post)}
-                - elsif blog_post_type == 'text-slide' or blog_post_type == 'text-video'
+                - if blog_post_type == 'text-slide' or blog_post_type == 'text-video'
                   %img.img-thumbnail{:alt => 'write up image', :src => get_blog_post_poster_image_url(blog_post)}
                 - else
-                  = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img img-fluid center-block', :style => 'width:50%'})
+                  = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'center-block'})
             .col-xs-12.col-sm-12.col-md-2
               %ul.meta-search
                 %li

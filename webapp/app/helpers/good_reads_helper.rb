@@ -24,7 +24,8 @@ module GoodReadsHelper
   end
 
   def get_blog_post_markdown(blog_post)
-    blog_post['markdown']
+    conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups/#{blog_post['_id']}/markdown"
+    conn.get.body
   end
 
   def get_blog_post_code(blog_post)

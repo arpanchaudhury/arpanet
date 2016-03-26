@@ -1,29 +1,30 @@
 %section.container-fluid#write-up
-  %h2.title= get_blog_post_title(@blog_post)
-  - content_type = get_blog_post_type(@blog_post)
-  .column.column-one.col-lg-4
-    - if content_type == 'text'
-      = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image img-fluid', :style => 'width:40%; margin-top:3rem'})
-    - if content_type == 'text-image'
-      %img.img-fluid.image-rounded.image{:src => get_blog_post_image_url(@blog_post)}
-    - if content_type == 'text-video'
-      .video-container
-        %iframe.video.center-block{:src => get_blog_post_video_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
-    - if content_type == 'text-slide'
-      .slide-container
-        %iframe.slide.center-block{:src => get_blog_post_slide_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
-    - blog_post_code = get_blog_post_code(@blog_post)
-    - if blog_post_code
-      .code.center-block
-        .input-group
-          %span.input-group-addon
-            %i.fa.fa-github
-          %input#repo-url.form-control{:type => 'text', :value => blog_post_code}
-          %span.input-group-addon.copy
-            %i.fa.fa-clipboard
-  .column.column-two.col-lg-8
-    .markdown
-      %textarea.markdown-data.hidden= get_blog_post_markdown(@blog_post)
-      .markdown-body
+  .row
+    %h2.title= get_blog_post_title(@blog_post)
+    - content_type = get_blog_post_type(@blog_post)
+    .column.column-one.col-lg-4
+      - if content_type == 'text'
+        = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image'})
+      - if content_type == 'text-image'
+        %img.img-fluid.image-rounded.image{:src => get_blog_post_image_url(@blog_post)}
+      - if content_type == 'text-video'
+        .video-container
+          %iframe.video.center-block{:src => get_blog_post_video_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
+      - if content_type == 'text-slide'
+        .slide-container
+          %iframe.slide.center-block{:src => get_blog_post_slide_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
+      - blog_post_code = get_blog_post_code(@blog_post)
+      - if blog_post_code
+        .code.center-block
+          .input-group
+            %span.input-group-addon
+              %i.fa.fa-github
+            %input#repo-url.form-control{:type => 'text', :value => blog_post_code}
+            %span.input-group-addon.copy
+              %i.fa.fa-clipboard
+    .column.column-two.col-lg-8
+      .markdown
+        %textarea.markdown-data.hidden= get_blog_post_markdown(@blog_post)
+        .markdown-body
 %script
   init_good_reads();
