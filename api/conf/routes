@@ -4,6 +4,8 @@ GET     /write-ups/topics                   @api.controllers.BlogPostController.
 
 GET     /write-ups/:id                      @api.controllers.BlogPostController.getWriteUp(id: String)
 
+GET     /write-ups/:id/markdown             @api.controllers.BlogPostController.getMarkdown(id: String)
+
 GET     /images/photography                 @api.controllers.PhotographyController.getImageDetails(pageStart: Int ?= 0, pageLength: Int ?= 9, tags: List[String] ?= List.empty)
 
 GET     /images/photography/tags            @api.controllers.PhotographyController.getTags

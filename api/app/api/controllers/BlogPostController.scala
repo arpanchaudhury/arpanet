@@ -8,6 +8,8 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 
 import scala.async.Async._
+import scala.concurrent.Await
+import scala.concurrent.duration._
 import scala.language.postfixOps
 
 @Singleton
@@ -17,6 +19,19 @@ class BlogPostController @Inject()(cache: CacheApi, blogPostService: BlogPostSer
       async {
         val writeUp = await(blogPostService.getWriteUp(id))
         Ok(writeUp)
+      }
+  }
+
+  def getMarkdown(id: String) = Action.async {
+    implicit request =>
+      async {
+        Ok.sendFile(
+          cache.getOrElse(s"writeup-$id-markdown") {
+            val markdown = Await.result(blogPostService.getMarkdown(id), 10.seconds)
+            cache.set(s"writeup-$id-markdown", markdown, 6.hours)
+            markdown
+          }
+        )
       }
   }
 

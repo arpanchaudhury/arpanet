@@ -25,6 +25,13 @@ object Pdf {
   implicit val pdfFormat = Macros.handler[Pdf]
 }
 
+case class Markdown(_id: String, uri: String, extension: String, title: String)
+
+object Markdown {
+  implicit val format = Json.format[Markdown]
+  implicit val pdfFormat = Macros.handler[Markdown]
+}
+
 case class PublicImage(_id: String, uri: String, extension: String, title: String, description: String)
 
 case class Photograph(_id: String, uri: String, extension: String, title: String, description: String, tags: List[String])
@@ -52,7 +59,7 @@ sealed trait WriteUp {
 
 case class WriteUpContentOnly(_id: String, contentType: String, title: String, content: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
-case class WriteUpWithImage(_id: String, contentType: String, title: String, content: String, imageUrl: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
+case class WriteUpWithImage(_id: String, contentType: String, title: String, content: String, imageId: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
 case class WriteUpWithVideo(_id: String, contentType: String, title: String, content: String, videoUrl: String, posterImageUrl: String, topics: List[String], markdown: String, timestamp: String, code: Option[String]) extends WriteUp
 
@@ -61,13 +68,13 @@ case class WriteUpWithSlide(_id: String, contentType: String, title: String, con
 object WriteUp {
   implicit object WriteUpReader extends BSONDocumentReader[WriteUp] {
     def read(doc: BSONDocument) = {
-      if (doc.getAsTry[String]("image_url").isSuccess) {
+      if (doc.getAsTry[String]("image_id").isSuccess) {
         WriteUpWithImage(
           _id = doc.getAs[String]("_id").get,
           contentType = doc.getAs[String]("type").get,
           title = doc.getAs[String]("title").get,
           content = doc.getAs[String]("content").get,
-          imageUrl = doc.getAs[String]("image_url").get,
+          imageId = doc.getAs[String]("image_id").get,
           topics = doc.getAs[List[String]]("topics").get,
           markdown = doc.getAs[String]("markdown").get,
           timestamp = doc.getAs[String]("timestamp").get,

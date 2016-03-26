@@ -13,7 +13,8 @@ import reactivemongo.bson.BSONString
 import scala.async.Async._
 
 @Singleton
-class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi,
+class BlogPostService @Inject()(markdownService: MarkdownService,
+                                mongoConnectionApi: MongoConnectionApi,
                                 mongoConstants: MongoConstants,
                                 queryBuilder: QueryBuilder) {
 
@@ -22,9 +23,19 @@ class BlogPostService @Inject()(mongoConnectionApi: MongoConnectionApi,
   private lazy val writeUpsCollectionF = mongoConnectionApi.getCollection(mongoConstants.writeUpsCollectionName)
 
   def getWriteUp(id: String) = async {
-    val eventualImageFile = await(writeUpsCollectionF).find(queryBuilder.findByIdQuery(id)).one[WriteUp]
-    await(eventualImageFile) match {
+    val eventualWriteUpFile = await(writeUpsCollectionF).find(queryBuilder.findByIdQuery(id)).one[WriteUp]
+    await(eventualWriteUpFile) match {
       case Some(document) => Json.toJson(document)
+      case None =>
+        logger.error(s"Error: No writeup found in ${mongoConstants.writeUpsCollectionName} with ID : $id")
+        sys.error(s"Error: No writeup found in ${mongoConstants.writeUpsCollectionName} with ID : $id")
+    }
+  }
+
+  def getMarkdown(id: String) = async {
+    val eventualWriteUpFile = await(writeUpsCollectionF).find(queryBuilder.findByIdQuery(id)).one[WriteUp]
+    await(eventualWriteUpFile) match {
+      case Some(document) => await(markdownService.getMarkdown(document.markdown))
       case None =>
         logger.error(s"Error: No writeup found in ${mongoConstants.writeUpsCollectionName} with ID : $id")
         sys.error(s"Error: No writeup found in ${mongoConstants.writeUpsCollectionName} with ID : $id")
