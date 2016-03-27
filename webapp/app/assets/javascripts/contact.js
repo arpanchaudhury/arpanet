@@ -1,8 +1,12 @@
+//= require isMobile
+
 function init_contact() {
-    send_message_event_handler();
-    model_close_event_handler();
-    preview_messsage_event_handler();
-};
+    if(!(isMobile.tablet || isMobile.phone)) {
+        send_message_event_handler();
+        model_close_event_handler();
+        preview_messsage_event_handler();
+    }
+}
 
 function reset_form(form) {
     form.find('input:text, input:password, input:file, select, textarea').val('');

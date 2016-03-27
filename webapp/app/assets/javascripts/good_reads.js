@@ -1,18 +1,21 @@
 //= require main
 //= require modernizr
+//= require isMobile
 
 function init_good_reads() {
     initiate_timeline();
     disable_unused_pagination_buttons();
-    initialize_autocomplete();
-    topic_search_event_handler();
-    topic_selection_event_handler();
-    suggestion_selection_event_handler();
     resize_videos();
     resize_slides();
-    window_resize_handler();
     compile_markdown($('#write-up'));
     code_copy_event_handler();
+    if(!(isMobile.tablet || isMobile.phone)) {
+        initialize_autocomplete();
+        topic_search_event_handler();
+        topic_selection_event_handler();
+        suggestion_selection_event_handler();
+        window_resize_handler();
+    }
 }
 
 function initialize_autocomplete() {

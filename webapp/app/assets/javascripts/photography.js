@@ -1,12 +1,16 @@
+//= require isMobile
+
 function init_photography() {
-    image_click_event_handler();
-    hide_spinner_on_photograph_load_event_handler();
-    initialize_carousel();
-    hide_spinner_on_photographs_load_event_handler();
     generate_tag_links();
     generate_tag_removal_links();
-    initialize_drawer($('.drawer'));
     disable_unused_pagination_buttons();
+    if(!(isMobile.tablet || isMobile.phone)) {
+        image_click_event_handler();
+        hide_spinner_on_photograph_load_event_handler();
+        initialize_carousel();
+        hide_spinner_on_photographs_load_event_handler();
+        initialize_drawer($('.drawer'));
+    }
 }
 
 function initialize_carousel() {

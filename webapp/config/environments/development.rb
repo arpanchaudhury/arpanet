@@ -36,7 +36,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.x.api.url = 'http://localhost:9000'
+  config.x.api.url = 'http://arpanchaudhury.net:9000'
 
   config.x.owner.email = 'arpanchaudhury@gmail.com'
 

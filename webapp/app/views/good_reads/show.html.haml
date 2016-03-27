@@ -15,7 +15,7 @@
           %iframe.slide.center-block{:src => get_blog_post_slide_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
       - blog_post_code = get_blog_post_code(@blog_post)
       - if blog_post_code
-        .code.center-block
+        .code.center-block.hidden-md-down
           .input-group
             %span.input-group-addon
               %i.fa.fa-github

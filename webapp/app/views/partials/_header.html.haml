@@ -8,11 +8,15 @@
       %a.nav-link{:href => good_reads_path} GoodReads
     %li.nav-item
       %a.nav-link{:href => photography_path} Photography
-    %li.nav-item
-      %a.nav-link{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
-    %li.nav-item
-      %a.nav-link{'data-target' => '#contact-modal', 'data-toggle' => 'modal'} Contact
-  #search-form.form-inline.pull-xs-right{'accept-charset' => 'UTF-8', :action => '/search', :method => 'post'}
+    %li.nav-item.hidden-md-down
+      %a.nav-link.hidden-md-down{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
+    %li.nav-item.hidden-lg-up
+      %a.nav-link.hidden-lg-up{:href => get_resume_url, :download => true} Resume
+    %li.nav-item.hidden-md-down
+      %a.nav-link.hidden-md-down{'data-target' => '#contact-modal', 'data-toggle' => 'modal'} Contact
+    %li.nav-item.hidden-lg-up
+      %a.nav-link.hidden-lg-up{:href => 'mailto:arpanchaudhury@gmail.com'} Contact
+  #search-form.form-inline.pull-xs-right.hidden-md-down{'accept-charset' => 'UTF-8', :action => '/search', :method => 'post'}
     .input-group
       %span.input-group-btn
         .dropdown.btn-group
