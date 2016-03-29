@@ -24,43 +24,63 @@
                     %span.c-indicator
                     = topic
       %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of total #{@pager[:count]} Posts
-      .cd-horizontal-timeline.column.col-lg-9
-        .timeline
-          .events-wrapper
-            .events
-              %ol
-                - for blog_post in @blog_posts
-                  - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
-                  %li
-                    %a{'data-date' => date.strftime('%d/%m/%Y'), :href => '#0'}= date.strftime('%d %b')
-              %span.filling-line{'aria-hidden' => 'true'}
-          %ul.cd-timeline-navigation
-            %li
-              %a.prev.inactive{:href => '#0'} Prev
-            %li
-              %a.next{:href => '#0'} Next
-        .events-content
-          %ol
-            - for blog_post in @blog_posts
-              - blog_post_url = get_blog_post_url(blog_post)
-              - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
-              %li{'data-date' => date.strftime('%d/%m/%Y')}
-                %a{:href => blog_post_url}
-                  %h2= get_blog_post_title(blog_post)
-                %em= date.strftime('%d %B %Y')
-                %p= get_blog_post_content(blog_post)
-                %a.btn.btn-primary.btn-lg{:href => blog_post_url} Continue Reading...
-        %script
-          var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
-          first_event.addClass('selected');
-          first_event_content.addClass('selected');
-        %nav
-          %ul.pager
-            %li
-              %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                %i.fa.fa-2x.fa-hand-o-left
-            %li
-              %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                %i.fa.fa-2x.fa-hand-o-right
+      - if is_device
+        .blog-posts.column.col-lg-12
+          - for blog_post in @blog_posts
+            - blog_post_url = get_blog_post_url(blog_post)
+            - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
+            .blog-post
+              %a{:href => blog_post_url}
+                %h2= get_blog_post_title(blog_post)
+              %b= date.strftime('%d %B %Y')
+              %p= get_blog_post_content(blog_post)
+              %a.btn.btn-primary.btn-lg.pull-right{:href => blog_post_url} Continue Reading...
+          %nav
+            %ul.pager
+              %li
+                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                  %i.fa.fa-2x.fa-hand-o-left
+              %li
+                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                  %i.fa.fa-2x.fa-hand-o-right
+      - else
+        .cd-horizontal-timeline.column.col-lg-9
+          .timeline
+            .events-wrapper
+              .events
+                %ol
+                  - for blog_post in @blog_posts
+                    - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
+                    %li
+                      %a{'data-date' => date.strftime('%d/%m/%Y'), :href => '#0'}= date.strftime('%d %b')
+                %span.filling-line{'aria-hidden' => 'true'}
+            %ul.cd-timeline-navigation
+              %li
+                %a.prev.inactive{:href => '#0'} Prev
+              %li
+                %a.next{:href => '#0'} Next
+          .events-content
+            %ol
+              - for blog_post in @blog_posts
+                - blog_post_url = get_blog_post_url(blog_post)
+                - date = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S').to_date
+                %li{'data-date' => date.strftime('%d/%m/%Y')}
+                  %a{:href => blog_post_url}
+                    %h2= get_blog_post_title(blog_post)
+                  %em= date.strftime('%d %B %Y')
+                  %p= get_blog_post_content(blog_post)
+                  %a.btn.btn-primary.btn-lg{:href => blog_post_url} Continue Reading...
+          %script
+            var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
+            first_event.addClass('selected');
+            first_event_content.addClass('selected');
+          %nav
+            %ul.pager
+              %li
+                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                  %i.fa.fa-2x.fa-hand-o-left
+              %li
+                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
+                  %i.fa.fa-2x.fa-hand-o-right
 %script
   init_good_reads();
