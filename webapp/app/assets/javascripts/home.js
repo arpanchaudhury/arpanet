@@ -1,10 +1,6 @@
-//= require isMobile
-
 function init_homepage() {
-    if(!(isMobile.tablet || isMobile.phone)) {
-        profile_image_click_event_handler();
-        hide_spinner_on_profile_picture_load_event_handler();
-    }
+    profile_image_click_event_handler();
+    hide_spinner_on_profile_picture_load_event_handler();
 }
 
 function profile_image_click_event_handler() {

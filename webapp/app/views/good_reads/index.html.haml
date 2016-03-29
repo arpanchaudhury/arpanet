@@ -1,27 +1,28 @@
 %section
   .two-column-layout.container-fluid
     .row
-      .column.column-one.col-lg-3.hidden-md-down
-        %nav.navbar.navbar-light.bg-faded.filters
-          %h5.title Filter by Topics
-          %hr
-          .input-group.topic-search
-            %input.form-control.search-query{:type => 'text', :placeholder => 'Search for...'}
-            %span.input-group-btn
-              %button.btn.btn-success-outline.search-btn{:type => 'button'} Go!
-          .topic-filter
-            - for topic in @selected_topics
-              .topic{:value => topic}
-                %label.c-input.c-checkbox
-                  %input{:type => 'checkbox', :checked => 'checked'}
-                  %span.c-indicator
-                  = topic
-            - for topic in @topics
-              .topic{:value => topic}
-                %label.c-input.c-checkbox
-                  %input{:type => 'checkbox'}
-                  %span.c-indicator
-                  = topic
+      - if !is_device
+        .column.column-one.col-lg-3
+          %nav.navbar.navbar-light.bg-faded.filters
+            %h5.title Filter by Topics
+            %hr
+            .input-group.topic-search
+              %input.form-control.search-query{:type => 'text', :placeholder => 'Search for...'}
+              %span.input-group-btn
+                %button.btn.btn-success-outline.search-btn{:type => 'button'} Go!
+            .topic-filter
+              - for topic in @selected_topics
+                .topic{:value => topic}
+                  %label.c-input.c-checkbox
+                    %input{:type => 'checkbox', :checked => 'checked'}
+                    %span.c-indicator
+                    = topic
+              - for topic in @topics
+                .topic{:value => topic}
+                  %label.c-input.c-checkbox
+                    %input{:type => 'checkbox'}
+                    %span.c-indicator
+                    = topic
       %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of total #{@pager[:count]} Posts
       .cd-horizontal-timeline.column.col-lg-9
         .timeline

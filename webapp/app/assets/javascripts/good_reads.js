@@ -1,6 +1,5 @@
 //= require main
 //= require modernizr
-//= require isMobile
 
 function init_good_reads() {
     initiate_timeline();
@@ -9,13 +8,11 @@ function init_good_reads() {
     resize_slides();
     compile_markdown($('#write-up'));
     code_copy_event_handler();
-    if(!(isMobile.tablet || isMobile.phone)) {
-        initialize_autocomplete();
-        topic_search_event_handler();
-        topic_selection_event_handler();
-        suggestion_selection_event_handler();
-        window_resize_handler();
-    }
+    initialize_autocomplete();
+    topic_search_event_handler();
+    topic_selection_event_handler();
+    suggestion_selection_event_handler();
+    window_resize_handler();
 }
 
 function initialize_autocomplete() {

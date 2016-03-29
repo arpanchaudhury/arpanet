@@ -1,9 +1,10 @@
 .footer
-  .utility-links.col-sm-10.hidden-md-down
-    .link-column.col-sm-2.list-group
-      %a.list-group-item{:href => good_reads_path} GoodReads
-      %a.list-group-item{:href => photography_path} Photography
-    .link-column.col-sm-2.list-group
-      %a.list-group-item{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
-      %a.list-group-item{'data-target' => '#contact-modal', 'data-toggle' => 'modal'} Contact
+  - if !is_device
+    .utility-links.col-sm-10
+      .link-column.col-sm-2.list-group
+        %a.list-group-item{:href => good_reads_path} GoodReads
+        %a.list-group-item{:href => photography_path} Photography
+      .link-column.col-sm-2.list-group
+        %a.list-group-item{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
+        %a.list-group-item{'data-target' => '#contact-modal', 'data-toggle' => 'modal'} Contact
   .copy-right.pull-xs-right=icon('copyright', 'Arpan Chaudhury')

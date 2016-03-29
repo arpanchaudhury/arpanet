@@ -1,16 +1,12 @@
-//= require isMobile
-
 function init_photography() {
     generate_tag_links();
     generate_tag_removal_links();
     disable_unused_pagination_buttons();
-    if(!(isMobile.tablet || isMobile.phone)) {
-        image_click_event_handler();
-        hide_spinner_on_photograph_load_event_handler();
-        initialize_carousel();
-        hide_spinner_on_photographs_load_event_handler();
-        initialize_drawer($('.drawer'));
-    }
+    image_click_event_handler();
+    hide_spinner_on_photograph_load_event_handler();
+    initialize_carousel();
+    hide_spinner_on_photographs_load_event_handler();
+    initialize_drawer($('.drawer'));
 }
 
 function initialize_carousel() {

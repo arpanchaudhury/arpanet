@@ -1,11 +1,7 @@
-//= require isMobile
-
 function init_contact() {
-    if(!(isMobile.tablet || isMobile.phone)) {
-        send_message_event_handler();
-        model_close_event_handler();
-        preview_messsage_event_handler();
-    }
+    send_message_event_handler();
+    model_close_event_handler();
+    preview_messsage_event_handler();
 }
 
 function reset_form(form) {

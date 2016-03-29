@@ -1,13 +1,9 @@
-//= require isMobile
-
 var page_start = 0;
 
 function init_search() {
-    if(!(isMobile.tablet || isMobile.phone)) {
-        var search_form = $('#search-form');
-        toggle_search_event_handler(search_form);
-        user_search_event_handler(search_form);
-    }
+    var search_form = $('#search-form');
+    toggle_search_event_handler(search_form);
+    user_search_event_handler(search_form);
 }
 
 function toggle_search_event_handler(search_form) {

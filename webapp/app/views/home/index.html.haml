@@ -19,15 +19,16 @@
           - for paragraph in get_profile_description(@profile)
             %p.paragraph.column.col-lg-6
               = paragraph
-  #profile-image-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'ProfileImageModal', :role => 'dialog', :tabindex => '-1'}
-    .modal-dialog.modal-lg{:role => 'document'}
-      .loader
-        %h1 Loading quality images for you. Please wait.
-        %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
-      .modal-content.hidden
-        .modal-body.no-padding
-          %img{:src => '', :alt => 'profile picture'}
-          %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
-            %i.fa.fa-times-circle
+  - if !is_device
+    #profile-image-modal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'ProfileImageModal', :role => 'dialog', :tabindex => '-1'}
+      .modal-dialog.modal-lg{:role => 'document'}
+        .loader
+          %h1 Loading quality images for you. Please wait.
+          %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
+        .modal-content.hidden
+          .modal-body.no-padding
+            %img{:src => '', :alt => 'profile picture'}
+            %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+              %i.fa.fa-times-circle`
 %script
   init_homepage();

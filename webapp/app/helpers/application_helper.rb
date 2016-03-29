@@ -38,6 +38,52 @@ module ApplicationHelper
     end
   end
 
+  def is_device
+    ua = request.user_agent
+
+    tmp = ua.split('[FBAN')
+    if tmp[1]
+        ua = tmp[0];
+    end
+
+    tmp = ua.split('Twitter')
+    if tmp[1]
+        ua = tmp[0];
+    end
+
+    apple_phone         = /iPhone/i
+    apple_ipod          = /iPod/i
+    apple_tablet        = /iPad/i,
+    android_phone       = /(?=.*\bAndroid\b)(?=.*\bMobile\b)/i
+    android_tablet      = /Android/i
+    amazon_phone        = /(?=.*\bAndroid\b)(?=.*\bSD4930UR\b)/i
+    amazon_tablet       = /(?=.*\bAndroid\b)(?=.*\b(?:KFOT|KFTT|KFJWI|KFJWA|KFSOWI|KFTHWI|KFTHWA|KFAPWI|KFAPWA|KFARWI|KFASWI|KFSAWI|KFSAWA)\b)/i
+    windows_phone       = /IEMobile/i
+    windows_tablet      = /(?=.*\bWindows\b)(?=.*\bARM\b)/i
+    other_blackberry    = /BlackBerry/i
+    other_blackberry_10 = /BB10/i
+    other_opera         = /Opera Mini/i
+    other_chrome        = /(CriOS|Chrome)(?=.*\bMobile\b)/i
+    other_firefox       = /(?=.*\bFirefox\b)(?=.*\bMobile\b)/i
+    seven_inch          = /(?:Nexus 7|BNTV250|Kindle Fire|Silk|GT-P1000)/i
+
+    ua =~ apple_phone or
+    ua =~ apple_ipod or
+    ua =~ apple_tablet or
+    ua =~ android_phone or
+    ua =~ android_tablet or
+    ua =~ amazon_phone or
+    ua =~ amazon_tablet or
+    ua =~ windows_phone or
+    ua =~ windows_tablet or
+    ua =~ other_blackberry or
+    ua =~ other_blackberry_10 or
+    ua =~ other_opera or
+    ua =~ other_chrome or
+    ua =~ other_firefox or
+    ua =~ seven_inch
+  end
+
   def get_first_content_index(pager)
     pager[:page_start] *  pager[:page_length] + 1
   end
