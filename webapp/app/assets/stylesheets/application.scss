@@ -83,6 +83,14 @@ section {
   }
 }
 
+@media only screen and (max-device-width: 768px) {
+  .pager{
+    li {
+      font-size: 1.8rem;
+    }
+  }
+}
+
 .centered {
   text-align: center;
   margin-top: 1.5rem !important;

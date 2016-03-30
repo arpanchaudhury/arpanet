@@ -5,6 +5,12 @@
   background-color: #5cb85c;
 }
 
+@media only screen and (max-device-width: 768px) {
+  .tags .remove-tag {
+    font-size: 1.2rem;
+  }
+}
+
 .cards {
   .card-block {
     min-height: 200px;
@@ -40,6 +46,12 @@
   .tag {
     font-size: 0.8rem;
     background-color: rgb(58, 85, 134);
+  }
+
+  @media only screen and (max-device-width: 768px) {
+    .tag {
+      font-size: 1.2rem;
+    }
   }
 }
 
