@@ -4,6 +4,7 @@
 
   .navbar-brand {
     padding-top: 0;
+    font-size: 1rem;
   }
 
   .navbar-brand, .nav-link {
@@ -17,5 +18,9 @@
 @media only screen and (max-device-width: 768px) {
   .navbar {
     font-size: 1.8rem;
+
+    .navbar-brand {
+      font-size: 1.2rem;
+    }
   }
 }

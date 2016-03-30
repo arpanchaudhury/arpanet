@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -74,5 +74,20 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.react.variant = :production
+  config.x.api.url = 'http://arpanchaudhury.net:9000'
+
+  config.x.owner.email = 'arpanchaudhury@gmail.com'
+
+  config.x.mailer.email = 'arpan.personal.website@gmail.com'
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                  587,
+      user_name:            'arpan.personal.website@gmail.com',
+      password:             '########',
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
 end
