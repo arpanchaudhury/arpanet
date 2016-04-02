@@ -12,7 +12,7 @@
           .carousel-inner{:role => 'listbox'}
             - for i in 0..(image_details.size - 1)
               .carousel-item
-                %img{:alt => "slide #{i}", :src => "#{get_photograph_url(image_details[i])}"}
+                %img{:src => "#{get_photograph_url(image_details[i])}", :alt => "#{get_photograph_title(image_details[i])}"}
                 .carousel-caption
                   %h3= get_photograph_title(image_details[i])
                   %p= get_photograph_description(image_details[i])

@@ -13,14 +13,15 @@
             .row
               - group.each do |image_detail|
                 - if image_detail
+                  - title = get_photograph_title(image_detail)
                   .column.col-lg-4
                     .card
                       - if is_device
-                        = image_tag(get_resized_photograph_url(image_detail, 900, 600), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => 'photograph'})
+                        = image_tag(get_resized_photograph_url(image_detail, 900, 600), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => title})
                       - else
-                        = image_tag(get_resized_photograph_url(image_detail, 375, 250), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => 'photograph'})
+                        = image_tag(get_resized_photograph_url(image_detail, 375, 250), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => title})
                       .card-block
-                        %h4.card-title= get_photograph_title(image_detail)
+                        %h4.card-title= title
                         %p.card-text= get_photograph_description(image_detail)
                         -for tag in get_photograph_tags(image_detail)
                           %a.label.label-pill.label-success.tag= tag

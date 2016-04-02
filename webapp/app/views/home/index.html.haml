@@ -2,7 +2,7 @@
   .two-column-layout.container-fluid
     .row
       .column.column-one.col-lg-4
-        %img.img-thumbnail.profile-picture.center-block{:src => get_resized_profile_image_url(@profile, 600, 400), :alt => 'profile picture'}
+        %img.img-thumbnail.profile-picture.center-block{:src => get_resized_profile_image_url(@profile, 600, 400), :alt => 'Profile Picture'}
         .social-media-links
           .nav.nav-inline
             - for media in get_social_medias(@profile)
@@ -27,7 +27,7 @@
           %i.fa.fa-inverse.fa-5x.fa-spinner.fa-spin
         .modal-content.hidden
           .modal-body.no-padding
-            %img{:src => '', :alt => 'profile picture'}
+            %img{:src => '', :alt => 'Profile Picture', :rel => 'nofollow'}
             %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
               %i.fa.fa-times-circle`
 %script

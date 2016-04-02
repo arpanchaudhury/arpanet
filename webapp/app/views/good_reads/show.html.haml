@@ -1,12 +1,13 @@
 %section.container-fluid#write-up
   .row
-    %h2.title= get_blog_post_title(@blog_post)
+    - title = get_blog_post_title(@blog_post)
+    %h2.title= title
     - content_type = get_blog_post_type(@blog_post)
     .column.column-one.col-lg-4
       - if content_type == 'text'
-        = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'image'})
+        = image_tag('writeup-icon.png', {:class => 'image', :alt => title, :rel => 'nofollow'})
       - if content_type == 'text-image'
-        %img.img-fluid.image-rounded.image{:src => get_blog_post_image_url(@blog_post)}
+        %img.img-fluid.image-rounded.image{:src => get_blog_post_image_url(@blog_post), :alt => title}
       - if content_type == 'text-video'
         .video-container
           %iframe.video.center-block{:src => get_blog_post_video_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}

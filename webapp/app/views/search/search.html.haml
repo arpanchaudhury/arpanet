@@ -12,15 +12,16 @@
       .snippet-group
         - for blog_post in results
           - blog_post_type = get_blog_post_type(blog_post)
+          - blog_post_title = get_blog_post_title(blog_post)
           - blog_post_url = get_blog_post_url(blog_post)
           - timestamp = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S')
           %article.search-result.row.snippet
             .col-xs-12.col-sm-12.col-md-3
               %a.thumbnail{:href => blog_post_url}
                 - if blog_post_type == 'text-slide' or blog_post_type == 'text-video'
-                  %img.img-thumbnail{:alt => 'write up image', :src => get_blog_post_poster_image_url(blog_post)}
+                  %img.img-thumbnail{:src => get_blog_post_poster_image_url(blog_post), :alt => blog_post_title}
                 - else
-                  = image_tag('writeup-icon.png', {:alt => 'write-up', :class => 'center-block'})
+                  = image_tag('writeup-icon.png', {:class => 'center-block', :alt => blog_post_title, :rel => 'nofollow'})
             .col-xs-12.col-sm-12.col-md-2
               %ul.meta-search
                 %li
@@ -34,7 +35,7 @@
                   %span= get_blog_post_topics(blog_post, 4)
             .col-xs-12.col-sm-12.col-md-7.excerpet
               %h3
-                %a{:href => blog_post_url}= get_blog_post_title(blog_post)
+                %a{:href => blog_post_url}= blog_post_title
               %p= truncate(get_blog_post_content(blog_post), :length => 300)
               %span.plus
                 %a{:href => blog_post_url}
@@ -45,11 +46,12 @@
         .row.snippet-group
           - for photograph in group
             - if photograph
+              - photograph_title = get_photograph_title(photograph)
               .column.col-lg-3.snippet
                 .card.photograph
-                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'photo-small card-img-top img-thumbnail', :alt => 'photograph'})
+                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'photo-small card-img-top img-thumbnail', :alt => photograph_title})
                   .card-block
-                    %h4.card-title= get_photograph_title(photograph)
+                    %h4.card-title= photograph_title
                     %p.card-text= get_photograph_description(photograph)
     = render partial: 'partials/photography_view_modal'
   - if total_results != 0
