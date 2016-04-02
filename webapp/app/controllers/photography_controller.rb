@@ -17,5 +17,13 @@ class PhotographyController < ApplicationController
     @photography_equipments = JSON.parse(conn.get.body)
 
     @pager = {:count => response_body['count'].to_i, :page_start => page_start.to_i, :page_length => page_length.to_i}
+
+    if @tags.empty?
+      @page_title = 'Photographs'
+      @page_metadata = "List of photographs. Page #{page_start.to_i + 1} of #{@pager[:count] / page_length.to_i + 1}."
+    else
+      @page_title = "Photographs tagged with #{@tags.join(', ')}"
+      @page_metadata = "List of photographs. Page #{page_start.to_i + 1} of #{@pager[:count] / page_length.to_i + 1}. These photographs are tagged with #{@tags.join(', ')}"
+    end
   end
 end

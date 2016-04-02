@@ -16,12 +16,18 @@ class GoodReadsController < ApplicationController
 
     @topics = fetch_topics(@selected_topics, 10)
     @pager = {:count => response_body['count'].to_i, :page_start => page_start.to_i, :page_length => page_length.to_i}
+
+    @page_title = 'Articles and Blog Posts'
+    @page_metadata = 'List of articles and posts written about programming, research, agile practices, refactoring code, travel, photography and others.'
   end
 
   def show
     write_up_id = params[:id]
     conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups/#{write_up_id}"
     @blog_post = JSON.parse(conn.get.body)
+
+    @page_title = @blog_post['title']
+    @page_metadata =  @blog_post['metadata']
   end
 
   def topics

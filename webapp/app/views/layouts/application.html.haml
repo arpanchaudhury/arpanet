@@ -1,7 +1,8 @@
 !!!
 %html
   %head
-    %title Arpan Chaudhury
+    %title Arpan - #{@page_title}
+    %meta{:name => 'description', :content => @page_metadata}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags

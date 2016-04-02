@@ -57,5 +57,6 @@
       %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More
   - else
     %h4 Try with most popular search terms
-    - for suggestion in get_popular_search_terms(@content)
-      %button.btn.btn-success-outline.suggestion= suggestion
+    .suggestions
+      - for suggestion in get_popular_search_terms(@content)
+        %button.btn.btn-success-outline.suggestion= suggestion

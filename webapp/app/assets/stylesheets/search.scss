@@ -1,5 +1,8 @@
-.suggestion {
-  margin: 0.25rem;
+.suggestions {
+  text-align: left;
+  .suggestion {
+    margin: 0.25rem;
+  }
 }
 
 .search-results {
@@ -11,7 +14,7 @@
   .card-block {
     min-height: 175px;
   }
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
