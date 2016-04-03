@@ -36,6 +36,7 @@ val api = project.in(file("."))
             .enablePlugins(PlayScala)
             .settings(
               name := "api",
+              version := "1.0.0",
               scalaVersion := "2.11.7",
               libraryDependencies ++= libraries
             )
