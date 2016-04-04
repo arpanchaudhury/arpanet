@@ -5,7 +5,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>/var/log/api.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>api.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/var/log/api.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>180</maxHistory>
             <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>

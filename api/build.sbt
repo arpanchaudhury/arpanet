@@ -38,5 +38,6 @@ val api = project.in(file("."))
               name := "api",
               version := "1.0.0",
               scalaVersion := "2.11.7",
-              libraryDependencies ++= libraries
+              libraryDependencies ++= libraries,
+              unmanagedResourceDirectories in Compile += baseDirectory.value / "resources"
             )
