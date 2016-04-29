@@ -34,7 +34,7 @@
                 %h2= get_blog_post_title(blog_post)
               %b= date.strftime('%d %B %Y')
               %p= get_blog_post_content(blog_post)
-              %a.btn.btn-primary.btn-lg.pull-right{:href => blog_post_url} Continue Reading...
+              %a.btn.btn-primary.btn-lg.center-block{:href => blog_post_url, :style => 'max-width:500px'} Continue Reading...
           %nav
             %ul.pager
               %li

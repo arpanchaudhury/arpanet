@@ -7,7 +7,9 @@
       - if content_type == 'text'
         = image_tag('writeup-icon.png', {:class => 'image', :alt => title, :rel => 'nofollow'})
       - if content_type == 'text-image'
-        %img.img-fluid.image-rounded.image{:src => get_blog_post_image_url(@blog_post), :alt => title}
+        .col.col-lg-2
+        %img.img-fluid.image-rounded.image.col.col-lg-8{:src => get_blog_post_image_url(@blog_post), :alt => title}
+        .col.col-lg-2
       - if content_type == 'text-video'
         .video-container
           %iframe.video.center-block{:src => get_blog_post_video_url(@blog_post), :allowfullscreen => '', :frameborder => '0'}
