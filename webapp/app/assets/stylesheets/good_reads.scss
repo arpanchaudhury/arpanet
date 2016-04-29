@@ -4,6 +4,11 @@
 .filters {
   margin-top: 1rem;
   font-family: "Comic Sans MS", sans-serif;
+  border: 1px solid #5CB85C;
+
+  hr {
+    border-color: #5CB85C;
+  }
 
   .title {
     color: #BD4D1E;
@@ -24,7 +29,7 @@
 
       .c-indicator {
         top: 5px;
-        border: 1px solid #CCCCCC;
+        border: 1px solid #5CB85C;
       }
     }
   }
@@ -82,6 +87,15 @@
   .code {
     width: 80%;
     margin-top: 3rem;
+
+    .input-group-addon, .form-control {
+      border: 1px solid #5CB85C;
+    }
+
+    .form-control {
+      border-left: 0;
+      border-right: 0;
+    }
 
     .copy {
       cursor: pointer;
