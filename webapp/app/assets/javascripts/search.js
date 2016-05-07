@@ -56,6 +56,7 @@ function populate_initial_search_results(data) {
     photograph_view_modal_close_event_handler();
     hide_spinner_on_searched_photograph_load_event_handler();
     suggestion_click_event_handler();
+    tag_click_event_handler();
 }
 
 function load_more_event_handler() {
@@ -94,6 +95,7 @@ function append_search_data(data) {
 
     photograph_click_event_handler();
     hide_spinner_on_searched_photograph_load_event_handler();
+    tag_click_event_handler();
 }
 
 function remove_load_more_button() {
@@ -101,10 +103,11 @@ function remove_load_more_button() {
 }
 
 function photograph_click_event_handler() {
-    $('.photograph').click(function () {
-        var image_url = $(this).find('img').attr('src'),
-            image_title = $(this).closest('.card').find('.card-title').text(),
-            image_description = $(this).closest('.card').find('.card-text').text(),
+    $('.photograph img').click(function () {
+        var card = $(this).closest('.card'),
+            image_url = $(this).attr('src'),
+            image_title = card.find('.card-title').text(),
+            image_description = card.find('.card-text').text(),
             modal = $('#photograph-view-modal');
         modal.find('img').attr('src', remove_all_params(image_url));
         modal.find('.title').text(image_title);
@@ -128,5 +131,16 @@ function suggestion_click_event_handler() {
         var search_form = $('#search-form');
         search_form.find('.search-query').val(suggestion);
         search(search_form);
+    })
+}
+
+function tag_click_event_handler() {
+    $('.tag').click(function () {
+        var tag = $(this).text().trim();
+        var search_form = $('#search-form');
+        if(search_form.find('.search-query').val().trim() != tag.trim()) {
+            search_form.find('.search-query').val(tag);
+            search(search_form);
+        }
     })
 }

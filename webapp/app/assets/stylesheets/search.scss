@@ -8,13 +8,23 @@
 .search-results {
   margin-top: 1rem;
   text-align: center;
+
+  .tag {
+    font-size: 0.7rem !important;
+  }
+
+  @media only screen and (max-device-width: 768px) {
+    .tag {
+      font-size: 1.2rem !important;
+    }
+  }
 }
 
 .photograph {
   .card-block {
     min-height: 175px;
   }
-  &:hover {
+  &img:hover {
     cursor: pointer;
   }
 }

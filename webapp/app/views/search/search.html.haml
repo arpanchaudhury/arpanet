@@ -1,64 +1,70 @@
-.container
-  %hgroup.mb20
-    %h1 Search Results
-    - total_results = @search_results['total']
-    - results = @search_results['results']
-    %h2.lead
-      %strong.text-danger= total_results
-      result(s) were found for the search for
-      %strong.text-danger= @query
-  - if @content == 'write-ups'
-    .col-lg-12.results-container{'data-total-results' => total_results}
-      .snippet-group
-        - for blog_post in results
-          - blog_post_type = get_blog_post_type(blog_post)
-          - blog_post_title = get_blog_post_title(blog_post)
-          - blog_post_url = get_blog_post_url(blog_post)
-          - timestamp = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S')
-          %article.search-result.row.snippet
-            .col-xs-12.col-sm-12.col-md-3
-              %a.thumbnail{:href => blog_post_url}
-                - if blog_post_type == 'text-slide' or blog_post_type == 'text-video'
-                  %img.img-thumbnail{:src => get_blog_post_poster_image_url(blog_post), :alt => blog_post_title}
-                - else
-                  = image_tag('writeup-icon.png', {:class => 'center-block', :alt => blog_post_title, :rel => 'nofollow'})
-            .col-xs-12.col-sm-12.col-md-2
-              %ul.meta-search
-                %li
-                  %i.fa.fa-calendar
-                  %span= timestamp.to_date.to_s
-                %li
-                  %i.fa.fa-clock-o
-                  %span= timestamp.to_s(:time)
-                %li
-                  %i.fa.fa-tags
-                  %span= get_blog_post_topics(blog_post, 4)
-            .col-xs-12.col-sm-12.col-md-7.excerpet
-              %h3
-                %a{:href => blog_post_url}= blog_post_title
-              %p= truncate(get_blog_post_content(blog_post), :length => 300)
-              %span.plus
-                %a{:href => blog_post_url}
-                  %i.fa.fa-plus
-  - elsif @content == 'photographs'
-    .results-container{'data-total-results' => total_results}
-      - results.in_groups_of(4) do |group|
-        .row.snippet-group
-          - for photograph in group
-            - if photograph
-              - photograph_title = get_photograph_title(photograph)
-              .column.col-lg-3.snippet
-                .card.photograph
-                  = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'photo-small card-img-top img-thumbnail', :alt => photograph_title})
-                  .card-block
-                    %h4.card-title= photograph_title
-                    %p.card-text= get_photograph_description(photograph)
-    = render partial: 'partials/photography_view_modal'
-  - if total_results != 0
-    .column.col-lg-12
-      %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More
-  - else
-    %h4 Try with most popular search terms
-    .suggestions
-      - for suggestion in get_popular_search_terms(@content)
-        %button.btn.btn-success-outline.suggestion= suggestion
+.row
+  .col.col-lg-1
+  .col.col-lg-10
+    %hgroup.mb20
+      %h1 Search Results
+      - total_results = @search_results['total']
+      - results = @search_results['results']
+      %h2.lead
+        %strong.text-danger= total_results
+        result(s) were found for the search for
+        %strong.text-danger= @query
+    - if @content == 'write-ups'
+      .col-lg-12.results-container{'data-total-results' => total_results}
+        .snippet-group
+          - for blog_post in results
+            - blog_post_type = get_blog_post_type(blog_post)
+            - blog_post_title = get_blog_post_title(blog_post)
+            - blog_post_url = get_blog_post_url(blog_post)
+            - timestamp = DateTime.strptime(get_blog_post_timestamp(blog_post), '%Y-%m-%d %H:%M:%S')
+            %article.search-result.row.snippet
+              .col-xs-12.col-sm-12.col-md-3
+                %a.thumbnail{:href => blog_post_url}
+                  - if blog_post_type == 'text-slide' or blog_post_type == 'text-video'
+                    %img.img-thumbnail{:src => get_blog_post_poster_image_url(blog_post), :alt => blog_post_title}
+                  - else
+                    = image_tag('writeup-icon.png', {:class => 'center-block', :alt => blog_post_title, :rel => 'nofollow'})
+              .col-xs-12.col-sm-12.col-md-2
+                %ul.meta-search
+                  %li
+                    %i.fa.fa-calendar
+                    %span= timestamp.to_date.to_s
+                  %li
+                    %i.fa.fa-clock-o
+                    %span= timestamp.to_s(:time)
+                  %li
+                    %i.fa.fa-tags
+                    -for tag in get_blog_post_topics(blog_post, 4).sort_by {|tag| -tag.length}
+                      %a.label.label-pill.label-success.tag= tag
+              .col-xs-12.col-sm-12.col-md-7.excerpet
+                %h3
+                  %a{:href => blog_post_url}= blog_post_title
+                %p= truncate(get_blog_post_content(blog_post), :length => 300)
+                %span.plus
+                  %a{:href => blog_post_url}
+                    %i.fa.fa-plus
+    - elsif @content == 'photographs'
+      .results-container{'data-total-results' => total_results}
+        - results.in_groups_of(4) do |group|
+          .row.snippet-group
+            - for photograph in group
+              - if photograph
+                - photograph_title = get_photograph_title(photograph)
+                .column.col-lg-3.snippet
+                  .card.photograph
+                    = image_tag(get_resized_photograph_url(photograph, 300, 200), {:class => 'photo-small card-img-top img-thumbnail', :alt => photograph_title})
+                    .card-block
+                      %h4.card-title= photograph_title
+                      %p.card-text= get_photograph_description(photograph)
+                      -for tag in get_photograph_tags(photograph)
+                        %a.label.label-pill.label-success.tag= tag
+      = render partial: 'partials/photography_view_modal'
+    - if total_results != 0
+      .column.col-lg-12
+        %button.btn.btn-lg.btn-primary.search-result-loader.centered Load More
+    - else
+      %h4 Try with most popular search terms
+      .suggestions
+        - for suggestion in get_popular_search_terms(@content)
+          %button.btn.btn-success-outline.suggestion= suggestion
+  .col.col-lg-1
