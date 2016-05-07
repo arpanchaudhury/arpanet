@@ -9,9 +9,9 @@ GET     /profile                                            Get profile details
 
 GET     /resume                                             Get resume as 'application/pdf'
 
-GET     /search/write-ups                                   Get set of paginated search results for blog posts
+GET     /search/write-ups                                   Get set of paginated search results for blog posts <Query Parameters - pageStart, pageLength, searchTerm>
 
-GET     /search/photographs                                 Get set of paginated search results for photographs
+GET     /search/photographs                                 Get set of paginated search results for photographs <Query Parameters - pageStart, pageLength, searchTerm>
 
 GET     /photography/equipments                             Get details of equipments used for photography
 

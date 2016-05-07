@@ -1,4 +1,4 @@
-GET     /write-ups                          @api.controllers.BlogPostController.getWriteUps(pageStart: Int ?= 0, pageLength: Int ?= 10, topics: List[String] ?= List.empty)
+GET     /write-ups                          @api.controllers.BlogPostController.getWriteUps(pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue, topics: List[String] ?= List.empty)
 
 GET     /write-ups/topics                   @api.controllers.BlogPostController.getTopics
 
@@ -6,7 +6,7 @@ GET     /write-ups/:id                      @api.controllers.BlogPostController.
 
 GET     /write-ups/:id/markdown             @api.controllers.BlogPostController.getMarkdown(id: String)
 
-GET     /images/photography                 @api.controllers.PhotographyController.getImageDetails(pageStart: Int ?= 0, pageLength: Int ?= 9, tags: List[String] ?= List.empty)
+GET     /images/photography                 @api.controllers.PhotographyController.getImageDetails(pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue, tags: List[String] ?= List.empty)
 
 GET     /images/photography/tags            @api.controllers.PhotographyController.getTags
 
@@ -20,9 +20,9 @@ GET     /profile                            @api.controllers.StaticAssetsControl
 
 GET     /photography/equipments             @api.controllers.StaticAssetsController.getPhotographyEquipments
 
-GET     /search/write-ups                   @api.controllers.SearchController.searchWriteUps(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
+GET     /search/write-ups                   @api.controllers.SearchController.searchWriteUps(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue)
 
-GET     /search/photographs                 @api.controllers.SearchController.searchPhotographs(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= 10)
+GET     /search/photographs                 @api.controllers.SearchController.searchPhotographs(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue)
 
 GET     /*whatever                          @api.controllers.ApplicationController.other(whatever: String)
 
