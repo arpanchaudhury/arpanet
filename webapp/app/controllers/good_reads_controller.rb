@@ -2,20 +2,18 @@ class GoodReadsController < ApplicationController
 
   def index
     page_start = request.query_parameters['page-start'] ? request.query_parameters['page-start'] : '0'
-    page_length = request.query_parameters['page-length'] ? request.query_parameters['page-length'] : '5'
     @selected_topics = request.query_parameters['topics'] ? request.query_parameters['topics'].uniq : []
 
     conn = Faraday.new "#{Rails.configuration.x.api.url}/write-ups"
     api_response = conn.get do |req|
       req.params['pageStart'] = page_start
-      req.params['pageLength'] = page_length
       req.params['topics'] = @selected_topics
     end
     response_body = JSON.parse(api_response.body)
     @blog_posts = response_body['writeUps']
 
     @topics = fetch_topics(@selected_topics, 10)
-    @pager = {:count => response_body['count'].to_i, :page_start => page_start.to_i, :page_length => page_length.to_i}
+    @count = response_body['count'].to_i
 
     @page_title = 'Articles and Blog Posts'
     @page_metadata = 'List of articles and posts written about programming, research, agile practices, refactoring code, travel, photography and others.'

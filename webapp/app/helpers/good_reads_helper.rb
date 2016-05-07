@@ -20,7 +20,7 @@ module GoodReadsHelper
   end
 
   def get_blog_post_topics(blog_post, count)
-    blog_post['topics'].take(count).join(', ')
+    blog_post['topics'].take(count)
   end
 
   def get_blog_post_markdown(blog_post)

@@ -23,7 +23,7 @@
                     %input{:type => 'checkbox'}
                     %span.c-indicator
                     = topic
-      %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of total #{@pager[:count]} Posts
+      %h5.text-muted.centered Showing total #{@count} Posts
       - if is_device
         .blog-posts.column.col-lg-12
           - for blog_post in @blog_posts
@@ -35,14 +35,6 @@
               %b= date.strftime('%d %B %Y')
               %p= get_blog_post_content(blog_post)
               %a.btn.btn-primary.btn-lg.center-block{:href => blog_post_url, :style => 'max-width:500px'} Continue Reading...
-          %nav
-            %ul.pager
-              %li
-                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                  %i.fa.fa-2x.fa-hand-o-left
-              %li
-                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                  %i.fa.fa-2x.fa-hand-o-right
       - else
         .cd-horizontal-timeline.column.col-lg-9
           .timeline
@@ -74,13 +66,5 @@
             var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();
             first_event.addClass('selected');
             first_event_content.addClass('selected');
-          %nav
-            %ul.pager
-              %li
-                %a{:href => get_previous_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                  %i.fa.fa-2x.fa-hand-o-left
-              %li
-                %a{:href => get_next_page_url(@pager, good_reads_path, {:topics => @selected_topics})}
-                  %i.fa.fa-2x.fa-hand-o-right
 %script
   init_good_reads();
