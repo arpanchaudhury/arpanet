@@ -23,15 +23,23 @@ module PhotographyHelper
     equipment['title']
   end
 
-  def get_equipment_image_url(equipment, max_width, max_height)
-    "#{Rails.configuration.x.api.url}/images/public-image/#{equipment['img_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
-  end
-
   def get_equipment_description(equipment)
     equipment['description']
   end
 
   def get_equipment_specification_url(equipment)
     equipment['spec_url']
+  end
+
+  def get_reference_title(reference)
+    reference['title']
+  end
+
+  def get_reference_image_url(reference, max_width, max_height)
+    "#{Rails.configuration.x.api.url}/images/public-image/#{reference['image_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+  end
+
+  def get_reference_description(reference)
+    reference['description']
   end
 end

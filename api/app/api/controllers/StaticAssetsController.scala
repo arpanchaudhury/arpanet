@@ -57,4 +57,11 @@ class StaticAssetsController @Inject()(cache: CacheApi,
         Ok(await(documentService.getDocumentsByType("equipment")))
       }
   }
+
+  def getPhotographyReferences = Action.async {
+    implicit request =>
+      async {
+        Ok(await(documentService.getDocumentsByType("reference")))
+      }
+  }
 }

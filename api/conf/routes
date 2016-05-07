@@ -20,6 +20,8 @@ GET     /profile                            @api.controllers.StaticAssetsControl
 
 GET     /photography/equipments             @api.controllers.StaticAssetsController.getPhotographyEquipments
 
+GET     /photography/references             @api.controllers.StaticAssetsController.getPhotographyReferences
+
 GET     /search/write-ups                   @api.controllers.SearchController.searchWriteUps(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue)
 
 GET     /search/photographs                 @api.controllers.SearchController.searchPhotographs(searchTerm: String, pageStart: Int ?= 0, pageLength: Int ?= Int.MaxValue)
