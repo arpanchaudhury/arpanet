@@ -58,8 +58,23 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
     }
   }
 
+  def getHeroImage(dimensions: Option[Dimensions]) = async {
+    val eventualImageFile = await(photographyCollectionF).find(queryBuilder.findByTypeQuery("hero")).one[Photograph]
+    await(eventualImageFile) match {
+      case Some(document) =>
+        val image = await(resourceFinder.find(document.uri, document.extension))
+        dimensions.map { d =>
+          val resizedImageOutput = new File(s"${applicationConstants.TEMP_DIRECTORY}/$d-${image.getName}")
+          Image.fromFile(image).max(d.maxWidth, d.maxHeight).output(resizedImageOutput)
+        }.getOrElse(image)
+      case None =>
+        logger.error(s"Error: No hero-image found in ${mongoConstants.photographyCollectionName}")
+        sys.error(s"Error: No hero-image found in ${mongoConstants.photographyCollectionName}")
+    }
+  }
+
   def getPhotographDetails(pageStart: Int, pageLength: Int, tags: List[String]) = async {
-    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTags(tags)
+    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTagsQuery(tags)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
     val documentsF = await(photographyCollectionF).find(query)
       .options(queryOptions).cursor[Photograph]().collect[List](pageLength).transform(identity, e => {
@@ -71,7 +86,7 @@ class ImageService @Inject()(resourceFinder: ResourceFinder,
   }
 
   def getPhotographsCount(tags: List[String]) = async {
-    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTags(tags)
+    val query = if (tags.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTagsQuery(tags)
     val countF = await(photographyCollectionF).count(Some(query)).transform(identity, e => {
         logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
         sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")

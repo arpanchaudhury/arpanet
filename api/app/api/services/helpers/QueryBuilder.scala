@@ -5,7 +5,7 @@ import reactivemongo.bson.BSONDocument
 
 @Singleton
 class QueryBuilder {
-  sealed trait SortOrder {}
+  sealed trait SortOrder
   case object Ascending extends SortOrder
   case object Descending extends SortOrder
 
@@ -13,11 +13,11 @@ class QueryBuilder {
 
   def findByIdQuery(id: String) = BSONDocument("_id" -> id)
 
-  def findByTags(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$in" -> tags))
+  def findByTagsQuery(tags: List[String]) = BSONDocument("tags" -> BSONDocument("$in" -> tags))
 
-  def findByType(docType: String) = BSONDocument("type" -> docType)
+  def findByTypeQuery(docType: String) = BSONDocument("type" -> docType)
 
-  def findByTopics(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$in" -> topics))
+  def findByTopicsQuery(topics: List[String]) = BSONDocument("topics" -> BSONDocument("$in" -> topics))
 
   def fullTextSearchQuery(searchTerm: String) = BSONDocument("$text" -> BSONDocument("$search" -> searchTerm))
 

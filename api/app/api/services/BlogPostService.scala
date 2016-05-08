@@ -43,7 +43,7 @@ class BlogPostService @Inject()(markdownService: MarkdownService,
   }
 
   def getWriteUps(pageStart: Int, pageLength: Int, topics: List[String]) = async {
-    val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTopics(topics)
+    val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTopicsQuery(topics)
     val queryOptions = new QueryOpts(skipN = pageStart * pageLength, batchSizeN = pageLength, flagsN = 0)
     val documentsF = await(writeUpsCollectionF).find(query).sort(queryBuilder.sortByQuery("timestamp", queryBuilder.Descending)).
         options(queryOptions).cursor[WriteUp]().collect[List](pageLength).transform(identity, e => {
@@ -55,7 +55,7 @@ class BlogPostService @Inject()(markdownService: MarkdownService,
   }
 
   def getWriteUpsCount(topics: List[String]) = async {
-    val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTopics(topics)
+    val query = if (topics.isEmpty) queryBuilder.emptyQuery else queryBuilder.findByTopicsQuery(topics)
     val countF = await(writeUpsCollectionF).count(Some(query)).transform(identity, e => {
         logger.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")
         sys.error(s"Error: Can not fetch data from ${mongoConstants.writeUpsCollectionName}")

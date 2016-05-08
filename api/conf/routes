@@ -10,6 +10,8 @@ GET     /images/photography                 @api.controllers.PhotographyControll
 
 GET     /images/photography/tags            @api.controllers.PhotographyController.getTags
 
+GET     /images/photography/hero-image      @api.controllers.PhotographyController.getHeroImage(dimensions: Option[api.utils.Dimensions])
+
 GET     /images/photography/:imageId        @api.controllers.PhotographyController.getImage(imageId: String, dimensions: Option[api.utils.Dimensions])
 
 GET     /images/public-image/:imageId       @api.controllers.StaticAssetsController.getImage(imageId: String, dimensions: Option[api.utils.Dimensions])

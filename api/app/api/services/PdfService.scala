@@ -30,7 +30,7 @@ class PdfService @Inject()(resourceFinder: ResourceFinder,
   }
 
   def getDocumentByType(documentType: String) = async {
-    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByType(documentType)).one[Pdf]
+    val eventualDocument = await(pdfCollectionF).find(queryBuilder.findByTypeQuery(documentType)).one[Pdf]
     await(eventualDocument) match {
       case Some(document) => await(resourceFinder.find(document.uri, document.extension))
       case None =>

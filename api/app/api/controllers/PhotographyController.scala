@@ -29,6 +29,19 @@ class PhotographyController @Inject()(cache: CacheApi,
       }
   }
 
+  def getHeroImage(dimensions: Option[api.utils.Dimensions]) = Action.async {
+    implicit request =>
+      async {
+        Ok.sendFile(
+          cache.getOrElse(s"photography-hero-image-${dimensions.getOrElse("default")}") {
+            val image = Await.result(imageService.getHeroImage(dimensions), 20.seconds)
+            cache.set(s"photography-hero-image-${dimensions.getOrElse("default")}", image, 6.hours)
+            image
+          }
+        ).as("image/png")
+      }
+  }
+
   def getImageDetails(pageStart: Int, pageLength: Int, tags: List[String]) = Action.async {
     implicit request =>
       async {

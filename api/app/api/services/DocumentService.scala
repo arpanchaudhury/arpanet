@@ -31,7 +31,7 @@ class DocumentService @Inject()(mongoConnectionApi: MongoConnectionApi,
   }
 
   def getDocumentsByType(docType: String) = async {
-    val documentsF = await(documentsCollectionF).find(queryBuilder.findByType(docType))
+    val documentsF = await(documentsCollectionF).find(queryBuilder.findByTypeQuery(docType))
       .cursor[Document]().collect[List]().transform(identity, e => {
         logger.error(s"Error: Can not fetch data from ${mongoConstants.documentsCollectionName}")
         sys.error(s"Error: Can not fetch data from ${mongoConstants.documentsCollectionName}")

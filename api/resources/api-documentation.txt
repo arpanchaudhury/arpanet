@@ -29,6 +29,8 @@ GET     /images/photography                                 Get paginated detail
 
 GET     /images/photography/tags                            Get all tags from photography collection
 
+GET     /images/photography/hero-image                      Get a photograph tagged as hero image in photography collection. Optionally pass maxHeight and maxWidth query parameters to get resized image.
+
 GET     /images/photography/:imageId                        Get a photograph as 'image/png' when valid imageId is provided. Optionally pass maxHeight and maxWidth query parameters to get resized image.
 
 GET     /images/public-image/:imageId                       Get a public image as 'image/jpeg' when valid imageId is provided. Optionally pass maxHeight and maxWidth query parameters to get resized image.

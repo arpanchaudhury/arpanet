@@ -30,7 +30,7 @@ class ApplicationController @Inject()(cache: CacheApi) extends Controller {
   def other(whatever: String) = Action.async {
     async {
       val responseContent = cache.getOrElse(ApiDocumentationCacheKey) {
-        val documentation = Source.fromFile(ApiDocumentation).mkString
+        val documentation = Source.fromURL(getClass.getResource(ApiDocumentation)).mkString
         cache.set(ApiDocumentationCacheKey, documentation, 12.hours)
         documentation
       }
