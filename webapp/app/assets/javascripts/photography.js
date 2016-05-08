@@ -7,6 +7,11 @@ function init_photography() {
     initialize_carousel();
     hide_spinner_on_photographs_load_event_handler();
     initialize_drawer($('.drawer'));
+    initialize_tooltip();
+}
+
+function initialize_tooltip() {
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function initialize_carousel() {

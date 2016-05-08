@@ -31,9 +31,9 @@
               %a{:href => get_previous_page_url(@pager, photography_path, {:tags => @tags})}
                 %i.fa.fa-2x.fa-hand-o-left
             - if !is_device
-              %li
+              %li{'data-toggle' => 'tooltip',  'data-placement' => 'top', 'data-delay' => '{"show": "500", "hide": "100"}', 'data-offset' => '20px 0px', 'title' => 'Slide Show'}
                 %a.slide-show{'data-target' => '#photograph-modal', 'data-toggle' => 'modal'}
-                  %i.fa.fa-2x.fa-film{'data-toggle' => 'tooltip',  'data-placement' => 'top',  'title' => 'slide-show start'}
+                  %i.fa.fa-2x.fa-film
             %li
               %a{:href => get_next_page_url(@pager, photography_path, {:tags => @tags})}
                 %i.fa.fa-2x.fa-hand-o-right
