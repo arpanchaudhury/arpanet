@@ -1,3 +1,5 @@
+//= require parallax
+
 function init_photography() {
     generate_tag_links();
     generate_tag_removal_links();
@@ -8,6 +10,12 @@ function init_photography() {
     hide_spinner_on_photographs_load_event_handler();
     initialize_drawer($('.drawer'));
     initialize_tooltip();
+    initialize_parallax();
+}
+
+function initialize_parallax() {
+    var parallax_window = $('.parallax-window');
+    parallax_window.parallax({imageSrc: parallax_window.data('image-src')});
 }
 
 function initialize_tooltip() {

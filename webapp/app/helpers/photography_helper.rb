@@ -1,4 +1,8 @@
 module PhotographyHelper
+  def get_resized_hero_image_url(max_width, max_height)
+    "#{Rails.configuration.x.api.url}/images/photography/hero-image?maxWidth=#{max_width}&maxHeight=#{max_height}"
+  end
+
   def get_photograph_url(image_detail)
     "#{Rails.configuration.x.api.url}/images/photography/#{image_detail['_id']}"
   end
