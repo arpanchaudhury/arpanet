@@ -38,8 +38,7 @@
               %a{:href => get_next_page_url(@pager, photography_path, {:tags => @tags})}
                 %i.fa.fa-2x.fa-hand-o-right
       .column.column-two.col-lg-3
-        %h5.text-muted.centered References
-        %hr
+        %h5.text-muted.centered Equipments & References
         .drawer
           - for drawer_item in @photography_references
             .drawer-item
@@ -50,14 +49,6 @@
                   %h4.card-title= title
                 .card-block
                   %p.card-text= get_reference_description(drawer_item)
-          - if !is_device
-            .fa-stack.fa-lg.center-block.drawer-button
-              %i.fa.fa-circle-o.fa-stack-2x
-              %i.fa.fa-stack-1x.drawer-icon
-      .column.column-two.col-lg-3
-        %h5.text-muted.centered Equipments
-        %hr
-        .drawer
           - for drawer_item in @photography_equipments
             .drawer-item
               .card
