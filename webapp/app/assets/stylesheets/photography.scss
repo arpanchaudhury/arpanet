@@ -100,4 +100,17 @@
 #hero-image {
   height: 750px;
   margin-top: -350px;
+
+  .signature {
+    float: right;
+    margin-top: 675px;
+    margin-right: 25px;
+    color: rgba(20, 26, 38, 0.5);
+    font-size: 3rem;
+    font-family: 'Tangerine', serif;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
 }

@@ -330,7 +330,8 @@ Main Components
 }
 @media only screen and (min-width: 768px) {
   .cd-horizontal-timeline .events-content h2 {
-    font-size: 4rem;
+    font-size: 3rem;
+    font-family: "Comic Sans MS", sans-serif;
   }
   .cd-horizontal-timeline .events-content em {
     font-size: 1.8rem;

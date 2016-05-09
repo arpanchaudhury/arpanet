@@ -23,7 +23,7 @@
                     %input{:type => 'checkbox'}
                     %span.c-indicator
                     = topic
-      %h5.text-muted.centered Showing total #{@count} Posts
+      %h5.text-muted.centered Choose your favorites from #{@count} Posts
       - if is_device
         .blog-posts.column.col-lg-12
           - for blog_post in @blog_posts
@@ -60,7 +60,7 @@
                   %a{:href => blog_post_url}
                     %h2= get_blog_post_title(blog_post)
                   %em= date.strftime('%d %B %Y')
-                  %p= get_blog_post_content(blog_post)
+                  %p= truncate(get_blog_post_content(blog_post), :length => 1000)
                   %a.btn.btn-primary.btn-lg{:href => blog_post_url} Continue Reading...
           %script
             var timeline = $('.cd-horizontal-timeline'), first_event = timeline.find('.events ol li a').first(), first_event_content = timeline.find('.events-content ol li').first();

@@ -38,10 +38,11 @@ function search(search_form) {
 
 function populate_initial_search_results(data) {
     var html_data = $.parseHTML(data),
-        hero_image_section = $('#hero-image'),
+        parallax_windows = $('.parallax-window'),
         other_sections = $('section:not(.search-results)'),
         search_section = $('section.search-results');
-    hero_image_section.remove();
+    parallax_windows.parallax('destroy');
+    parallax_windows.remove();
     other_sections.remove();
     search_section.empty();
     search_section.append(html_data);

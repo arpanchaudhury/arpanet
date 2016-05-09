@@ -1,10 +1,13 @@
 - if !is_device
   #hero-image.parallax-window{'data-image-src' => get_resized_hero_image_url(1500, 1000)}
+    .signature
+      %span=icon('copyright')
+      Arpan Chaudhury
 %section
   .two-column-layout.container-fluid
     .row
       .column.column-one.col-lg-9
-        %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of total #{@pager[:count]} Photographs
+        %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of #{@pager[:count]} Photographs
         .tags
           - for tag in @tags
             %a.label.label-danger.remove-tag
