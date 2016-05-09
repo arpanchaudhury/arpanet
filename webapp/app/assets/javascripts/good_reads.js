@@ -13,6 +13,7 @@ function init_good_reads() {
     topic_selection_event_handler();
     suggestion_selection_event_handler();
     window_resize_handler();
+    initialize_tooltip();
 }
 
 function initialize_autocomplete() {
@@ -95,6 +96,7 @@ function code_copy_event_handler() {
         to_copy.select();
         try {
             document.execCommand('copy');
+            $(this).tooltip('hide').attr('data-original-title', 'Copied').tooltip('fixTitle');
         } catch (err) {}
     })
 }

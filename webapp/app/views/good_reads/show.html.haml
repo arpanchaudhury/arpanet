@@ -23,7 +23,7 @@
             %span.input-group-addon
               %i.fa.fa-github
             %input#repo-url.form-control{:type => 'text', :value => blog_post_code}
-            %span.input-group-addon.copy
+            %span.input-group-addon.copy{'data-toggle' => 'tooltip',  'data-placement' => 'top', 'data-offset' => '10px 0px', 'title' => 'Copy'}
               %i.fa.fa-clipboard
     .column.column-two.col-lg-8
       .markdown
