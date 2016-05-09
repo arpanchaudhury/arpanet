@@ -45,6 +45,14 @@
       .column.column-two.col-lg-3
         %h5.text-muted.centered Equipments & References
         .drawer
+          - for drawer_item in @photography_equipments
+            .drawer-item
+              .card
+                .card-block
+                  %h4.card-title= get_equipment_title(drawer_item)
+                .card-block
+                  %p.card-text= get_equipment_description(drawer_item)
+                  %a.card-link{:href => get_equipment_specification_url(drawer_item), :target => 'blank'} Specification
           - for drawer_item in @photography_references
             .drawer-item
               .card
@@ -54,14 +62,6 @@
                   %h4.card-title= title
                 .card-block
                   %p.card-text= get_reference_description(drawer_item)
-          - for drawer_item in @photography_equipments
-            .drawer-item
-              .card
-                .card-block
-                  %h4.card-title= get_equipment_title(drawer_item)
-                .card-block
-                  %p.card-text= get_equipment_description(drawer_item)
-                  %a.card-link{:href => get_equipment_specification_url(drawer_item), :target => 'blank'} Specification
           - if !is_device
             .fa-stack.fa-lg.center-block.drawer-button
               %i.fa.fa-circle-o.fa-stack-2x
