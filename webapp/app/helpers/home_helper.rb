@@ -1,10 +1,10 @@
 module HomeHelper
   def get_profile_image_url(profile)
-    "#{Rails.configuration.x.api.url}/images/public-image/#{profile['image_id']}"
+    "/images/public-image/#{profile['image_id']}"
   end
 
   def get_resized_profile_image_url(profile, max_width, max_height)
-    "#{Rails.configuration.x.api.url}/images/public-image/#{profile['image_id']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+    "/images/public-image/#{profile['image_id']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
   end
 
   def get_profile_summary(profile)

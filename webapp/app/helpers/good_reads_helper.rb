@@ -33,7 +33,7 @@ module GoodReadsHelper
   end
 
   def get_blog_post_image_url(blog_post)
-    "#{Rails.configuration.x.api.url}/images/public-image/#{blog_post['imageId']}"
+    "/images/public-image/#{blog_post['imageId']}"
   end
 
   def get_blog_post_video_url(blog_post)

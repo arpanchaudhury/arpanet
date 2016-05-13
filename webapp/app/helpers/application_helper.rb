@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def get_resume_url
-    "#{Rails.configuration.x.api.url}/resume"
-  end
 
   def get_next_page_url(pager, path, other_params)
     page_start = pager[:page_start].to_i

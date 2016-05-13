@@ -1,14 +1,14 @@
 module PhotographyHelper
   def get_resized_hero_image_url(max_width, max_height)
-    "#{Rails.configuration.x.api.url}/images/photography/hero-image?maxWidth=#{max_width}&maxHeight=#{max_height}"
+    "/images/photography/hero-image?maxWidth=#{max_width}&maxHeight=#{max_height}"
   end
 
   def get_photograph_url(image_detail)
-    "#{Rails.configuration.x.api.url}/images/photography/#{image_detail['_id']}"
+    "/images/photography/#{image_detail['_id']}"
   end
 
   def get_resized_photograph_url(image_detail, max_width, max_height)
-    "#{Rails.configuration.x.api.url}/images/photography/#{image_detail['_id']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+    "/images/photography/#{image_detail['_id']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
   end
 
   def get_photograph_title(image_detail)
@@ -40,7 +40,7 @@ module PhotographyHelper
   end
 
   def get_reference_image_url(reference, max_width, max_height)
-    "#{Rails.configuration.x.api.url}/images/public-image/#{reference['image_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+    "/images/public-image/#{reference['image_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
   end
 
   def get_reference_description(reference)

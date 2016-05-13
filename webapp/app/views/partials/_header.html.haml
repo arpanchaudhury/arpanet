@@ -10,7 +10,7 @@
       %a.nav-link{:href => photography_path} Photography
     %li.nav-item
       - if is_device
-        %a.nav-link{:href => get_resume_url, :download => true} Resume
+        %a.nav-link{:href => '/resume', :download => true} Resume
       - else
         %a.nav-link{'data-target' => '#resume-modal', 'data-toggle' => 'modal'} Resume
     %li.nav-item
