@@ -31,3 +31,8 @@ GET     /search/photographs                 @api.controllers.SearchController.se
 GET     /*whatever                          @api.controllers.ApplicationController.other(whatever: String)
 
 GET     /                                   @api.controllers.ApplicationController.home
+
+
+# ingestion routes
+
+POST    /ingest-data                        @api.controllers.IngestionController.ingest
