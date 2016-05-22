@@ -53,5 +53,5 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-  config.x.tmp = '/tmp/webapp'
+  config.x.tmp = '/tmp'
 end

@@ -5,7 +5,7 @@ Personal website written in ***Ruby*** and ***Scala***. ***Ruby on Rails*** and 
 Dependencies
 ------------
 
-WEBAPP
+***WEBAPP***
 
 * rails                 ~> 4.2.5
 * haml-rails            ~> 0.9
@@ -23,7 +23,7 @@ WEBAPP
 * spring                ~> 1.6.1
 * passenger             >= 5.0.25
 
-API
+***API***
 
 * java          ~ 1.8
 * scala         ~ 2.11.7

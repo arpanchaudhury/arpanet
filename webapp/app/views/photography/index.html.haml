@@ -57,9 +57,9 @@
             .drawer-item
               .card
                 - title = get_reference_title(drawer_item)
-                = image_tag(get_reference_image_url(drawer_item, 250, 375), {:class => 'card-img-top img-thumbnail photo-small center-block', :alt => title})
                 .card-block
                   %h4.card-title= title
+                  .card-subtitle.pull-right - #{get_reference_author(drawer_item)}
                 .card-block
                   %p.card-text= get_reference_description(drawer_item)
           - if !is_device

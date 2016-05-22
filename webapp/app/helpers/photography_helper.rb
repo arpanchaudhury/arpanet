@@ -37,10 +37,10 @@ module PhotographyHelper
 
   def get_reference_title(reference)
     reference['title']
-  end
+    end
 
-  def get_reference_image_url(reference, max_width, max_height)
-    "/images/public-image/#{reference['image_src']}?maxWidth=#{max_width}&maxHeight=#{max_height}"
+  def get_reference_author(reference)
+    reference['author']
   end
 
   def get_reference_description(reference)
