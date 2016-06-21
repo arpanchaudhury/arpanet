@@ -61,9 +61,8 @@
                 .card-block
                   %p.card-text= get_reference_description(drawer_item)
           - if !is_device
-            .fa-stack.fa-lg.center-block.drawer-button
-              %i.fa.fa-circle-o.fa-stack-2x
-              %i.fa.fa-stack-1x.drawer-icon
+            .drawer-button.center-block.btn.btn-success
+              %i.fa.fa-2x.drawer-icon
   - if !is_device
     = render partial: 'partials/photography_view_modal'
     = render partial: 'partials/photography_modal', :locals => {:image_details => @image_details}

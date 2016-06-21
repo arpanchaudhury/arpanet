@@ -89,12 +89,10 @@
 .drawer {
   .drawer-button {
     margin-top: 1.5rem;
+    max-width: 200px;
     display: block;
     cursor: pointer;
-    color: #0275D8;
-    &:hover {
-      color: #5CB85C;
-    }
+    text-align: center;
   }
 }
 
