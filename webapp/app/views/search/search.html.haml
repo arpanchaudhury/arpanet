@@ -7,7 +7,7 @@
       - results = @search_results['results']
       %h2.lead
         %strong.text-danger= total_results
-        result(s) were found for the search for
+        result(s) were found for
         %strong.text-danger= @query
     - if @content == 'write-ups'
       .col-lg-12.results-container{'data-total-results' => total_results}
@@ -20,10 +20,7 @@
             %article.search-result.row.snippet
               .col-xs-12.col-sm-12.col-md-3
                 %a.thumbnail{:href => blog_post_url}
-                  - if blog_post_type == 'text-slide' or blog_post_type == 'text-video'
-                    %img.img-thumbnail{:src => get_blog_post_poster_image_url(blog_post), :alt => blog_post_title}
-                  - else
-                    = image_tag('writeup-icon.png', {:class => 'center-block', :alt => blog_post_title, :rel => 'nofollow'})
+                  = image_tag('writeup-icon.png', {:class => 'center-block', :alt => blog_post_title, :rel => 'nofollow'})
               .col-xs-12.col-sm-12.col-md-2
                 %ul.meta-search
                   %li
