@@ -26,6 +26,7 @@
       font-family: 'Josefin Sans', sans-serif;
     }
     .card-text {
+      min-height: 60px;
       font-size: 1.2rem;
       font-family: 'Indie Flower', cursive;
     }
@@ -86,11 +87,11 @@
 }
 
 .drawer {
-  margin-top: 2rem;
   .drawer-button {
+    margin-top: 1.5rem;
     display: block;
     cursor: pointer;
-    color: rgba(125, 125, 125, 0.8);
+    color: #0275D8;
     &:hover {
       color: #5CB85C;
     }
@@ -98,12 +99,11 @@
 }
 
 #hero-image {
-  height: 750px;
-  margin-top: -350px;
-
+  height: 500px;
+  margin-top: -150px;
   .signature {
     float: left;
-    margin-top: 675px;
+    margin-top: 425px;
     margin-left: 25px;
     color: rgba(20, 26, 38, 0.5);
     font-size: 3rem;

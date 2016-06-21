@@ -81,18 +81,6 @@ module ApplicationHelper
     seven_inch === ua
   end
 
-  def get_first_content_index(pager)
-    pager[:page_start] * pager[:page_length] + 1
-  end
-
-  def get_last_content_index(pager)
-    if !last_page?(pager)
-      pager[:page_start] * pager[:page_length] + pager[:page_length]
-    else
-      pager[:page_start] * pager[:page_length] + pager[:count] - pager[:page_start] * pager[:page_length]
-    end
-  end
-
   private def last_page?(pager)
     pager[:page_start] * pager[:page_length] + pager[:page_length] >= pager[:count]
   end

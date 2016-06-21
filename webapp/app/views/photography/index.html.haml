@@ -7,7 +7,6 @@
   .two-column-layout.container-fluid
     .row
       .column.column-one.col-lg-9
-        %h5.text-muted.centered Showing #{get_first_content_index(@pager)} to #{get_last_content_index(@pager)} of #{@pager[:count]} Photographs
         .tags
           - for tag in @tags
             %a.label.label-danger.remove-tag
@@ -34,16 +33,15 @@
           %ul.pager
             %li
               %a{:href => get_previous_page_url(@pager, photography_path, {:tags => @tags})}
-                %i.fa.fa-2x.fa-hand-o-left
+                %i.fa.fa-2x.fa-angle-double-left
             - if !is_device
               %li{'data-toggle' => 'tooltip',  'data-placement' => 'top', 'data-delay' => '{"show": "500", "hide": "100"}', 'data-offset' => '20px 0px', 'title' => 'Slide Show'}
                 %a.slide-show{'data-target' => '#photograph-modal', 'data-toggle' => 'modal'}
                   %i.fa.fa-2x.fa-film
             %li
               %a{:href => get_next_page_url(@pager, photography_path, {:tags => @tags})}
-                %i.fa.fa-2x.fa-hand-o-right
+                %i.fa.fa-2x.fa-angle-double-right
       .column.column-two.col-lg-3
-        %h5.text-muted.centered Equipments & References
         .drawer
           - for drawer_item in @photography_equipments
             .drawer-item
